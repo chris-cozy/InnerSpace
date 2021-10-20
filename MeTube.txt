@@ -1,1 +1,26 @@
-This is a test.
+HTML & CSS
+PHP or Python
+MySQL
+
+
+TABLES:
+User | Personal information (Name, Gender, Password, Birthdate, Email) |
+User | Media file references |
+User | Playlists |
+Media files | User-defined category | Description | File information (date uploaded, file size, type, etc) |
+Media files | Users that Like | Users that Dislike | Users that viewed |
+Media files | Comments | User |
+Contact list (Friends list) - Symmetrical       Friend 1 | Friend 2 |
+
+
+Major steps:
+1. Set up the database tables that would be needed
+Learn to create tables in the database using phpMyAdmin for customization and add the tables
+
+2. Learn php to set up connecting the database to the interface
+The middleman between MySQL and HTML
+Ask professor about setting up the MySQL Queries, Php, and HTML (connecting them)
+
+3. Set up the interface with HTML & CSS
+
+
