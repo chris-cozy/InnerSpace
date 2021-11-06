@@ -23,4 +23,19 @@ Ask professor about setting up the MySQL Queries, Php, and HTML (connecting them
 
 3. Set up the interface with HTML & CSS
 
+PhpMyAdmin:
+metube__user
+p@ssword1
 
+
+METUBE HOME PAGE
+Search bar at the top
+Column on the left that has sections
+Media Displayed in the center
+    A separate row for videos, songs, and pictures
+    
+
+Keyword Search
+When user types in the keyword they want:
+    Search through MultiMedia table for that keyword
+        If it is present, display the media with the corresponding IDs
