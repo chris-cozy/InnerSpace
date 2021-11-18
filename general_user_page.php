@@ -1,11 +1,10 @@
 <?php
 	session_start();
 	include_once 'connection.php'
-	//session_start();
 ?>
 <!DOCTYPE html>
 <style>
-	.text{
+    .text{
 		color: white;
 		font-family: monospace;
 		align-items: center;
@@ -45,47 +44,38 @@
 		align-items: center;
 	}
 </style>
-
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>MeTube<3</title>
+        <title>Metube: Profile</title>
     </head>
     <body style="background-color: rgb(42, 44, 44);">
-		<header>
-			<h1 class="logo"><a href="MeTube.php" class="text">MeTube<3</a></h1>
-			<form>
-				<input type="text" value="Keyword Search"/>
-			</form>
-		</header>
-		<hr>
-		<main>
-			<section>
+        <header>
+            <h2 class="text"><a href="MeTube.html" class="text">MeTube<3</a></h2>
+            <h3 class="text">*User's name here*</h3>
+        </header>
+        <main>
+            <section>
 				<div class="navbar">
 					<nav>
 						<ul class="text">
-							<li><a href="MeTube.php">Home</a></li>
-							<?php
-								if (isset($_SESSION['userID'])){
-									echo "<li><a href='subscriptions.html'>Subscriptions</a></li>
-									<li><a href='./profile/user_profile.html'>Your Profile</a></li>";
-								}else{
-									echo "<li><a href='login.php'>Login</a></li>";
-								}
-							?>
+							<li><a href="user_profile.html" ><b>Media</b></a></li>
+							<li><a href="./playlists.html" >Playlists</a></li>
+							<li><a href="./friends.html" >Friends</a></li>
+                            <li><a href="./about.html" >About</a></li>
 						</ul>
 					</nav>
 				</div>
 			</section>
-			<hr>
-			<section>
-				<h2 class="text">Recommended Videos</h2>
-				<!--Display recent uploaded videos-->
+            <hr>
+			<!--Display recent uploaded medias-->
+            <section>
+				<h2 class="text">Their Videos</h2>
 				<div>
 					<?php
 					$i = 0;
 					$extensions_arr = array("mp4","avi","3gp","mov","mpeg");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media ORDER BY mediaID DESC");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID = $_SESSION['userID'] ORDER BY mediaID DESC");
 					while($row = mysqli_fetch_assoc($fetchVideos) && $i < 4){
 						$type = $row['type'];
 						if(in_array($type,$extensions_arr)){
@@ -106,12 +96,12 @@
 				<br>
 			</section>
 			<section>
-				<h2 class="text">Recommended Audio</h2>
+				<h2 class="text">Their Audio</h2>
 				<div>
 					<?php
 					$i = 0;
 					$extensions_arr = array("mp3");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media ORDER BY mediaID DESC");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID = $_SESSION['userID'] ORDER BY mediaID DESC");
 					while($row = mysqli_fetch_assoc($fetchVideos) && $i < 4){
 						$type = $row['type'];
 						if(in_array($type,$extensions_arr)){
@@ -132,12 +122,12 @@
 				<br>
 			</section>
 			<section>
-				<h2 class="text">Recommended Images</h2>
+				<h2 class="text">Their Images</h2>
 				<div>
 					<?php
 					$i = 0;
 					$extensions_arr = array("jpg","png");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media ORDER BY mediaID DESC");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID = $_SESSION['userID'] ORDER BY mediaID DESC");
 					while($row = mysqli_fetch_assoc($fetchVideos) && $i < 4){
 						$type = $row['type'];
 						if(in_array($type,$extensions_arr)){
@@ -154,21 +144,6 @@
 					?>
 				</div>
 			</section>
-			<hr>
-		</main>
-		<footer>
-			<section>
-				<div class="navbar">
-					<nav>
-						<ul class="text" style= "margin: 0px 140px;">
-							<li>About</li>
-							<li>Contact Us</li>
-							<li>FAQ</li>
-						</ul>
-					</nav>
-				</div>
-				
-			</section>
-		</footer>
+        </main>
     </body>
 </html>
