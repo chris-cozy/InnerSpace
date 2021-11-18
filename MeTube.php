@@ -1,5 +1,9 @@
 <?php
 	include_once 'connection.php'
+	session_start();
+?>
+<?php
+	$_SESSION['userID'] = "NULL";
 ?>
 <!DOCTYPE html>
 <style>
