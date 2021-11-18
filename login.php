@@ -45,7 +45,7 @@
     $query = "SELECT userID from user_info where username ='$username'";
     $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
     $_SESSION['userID'] = $result;
-    echo "user exists\n";
+    header("Location:MeTube.php");
 
   }
   //if not it will give error message
