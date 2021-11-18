@@ -65,9 +65,9 @@
 						<ul class="text">
 							<li><a href="MeTube.php">Home</a></li>
 							<?php
-								if (isset($_SESSION['userID'])){
+								if ($_SESSION['userID'] != "NULL"){
 									echo "<li><a href='subscriptions.html'>Subscriptions</a></li>
-									<li><a href='./profile/user_profile.html'>Your Profile</a></li>";
+									<li><a href='./profile/user_profile.php'>Your Profile</a></li>";
 								}else{
 									echo "<li><a href='login.php'>Login</a></li>";
 								}
