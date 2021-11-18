@@ -1,6 +1,6 @@
 <?php
 	include_once 'connection.php'
-	session_start();
+	//session_start();
 ?>
 <?php
 	$_SESSION['userID'] = "NULL";
@@ -55,7 +55,7 @@
     </head>
     <body style="background-color: rgb(42, 44, 44);">
 		<header>
-			<h1 class="logo"><a href="MeTube.html" class="text">MeTube<3</a></h1>
+			<h1 class="logo"><a href="MeTube.php" class="text">MeTube<3</a></h1>
 			<form>
 				<input type="text" value="Keyword Search"/>
 			</form>
@@ -66,13 +66,13 @@
 				<div class="navbar">
 					<nav>
 						<ul class="text">
-							<li><a href="MeTube.html">Home</a></li>
+							<li><a href="MeTube.php">Home</a></li>
 							<?php
-								if ($_SESSION['userID'] != NULL){
+								if ($_SESSION['userID'] != "NULL"){
 									echo "<li><a href='subscriptions.html'>Subscriptions</a></li>
-									<li><a href='./profile/user_profile.html'>Your Profile</a></li>"
+									<li><a href='./profile/user_profile.html'>Your Profile</a></li>";
 								}else{
-									echo "<li><a href='login.php'>Login</a></li>"
+									echo "<li><a href='login.php'>Login</a></li>";
 								}
 							?>
 						</ul>
