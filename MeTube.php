@@ -3,9 +3,6 @@
 	include_once 'connection.php'
 	//session_start();
 ?>
-<?php
-	$_SESSION['userID'] = "NULL";
-?>
 <!DOCTYPE html>
 <style>
 	.text{
@@ -69,7 +66,7 @@
 						<ul class="text">
 							<li><a href="MeTube.php">Home</a></li>
 							<?php
-								if ($_SESSION['userID'] != "NULL"){
+								if (isset($_SESSION['userID'])){
 									echo "<li><a href='subscriptions.html'>Subscriptions</a></li>
 									<li><a href='./profile/user_profile.html'>Your Profile</a></li>";
 								}else{
