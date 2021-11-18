@@ -1,7 +1,6 @@
 <?php
 	session_start();
-	include_once 'connection.php'
-	//session_start();
+	include_once 'connection.php';
 ?>
 <!DOCTYPE html>
 <style>
