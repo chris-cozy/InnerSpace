@@ -1,5 +1,4 @@
 
-
 <?php
   //this will begin a session, and will be useful when working with
   //the homepage and account information pertaining to if the user

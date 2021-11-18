@@ -63,6 +63,8 @@
 							<li><a href="./friends.html" >Friends</a></li>
                             <li><a href="./about.html" >About</a></li>
                             <li><a href="user_profile.html" >Messages</a></li>
+							<li><a href="updateprofile.php">Update Profile</a></li>
+							<li><a href="upload.php">Upload</a></li>
 						</ul>
 					</nav>
 				</div>
