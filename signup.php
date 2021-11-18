@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 
 <html>
@@ -66,14 +67,17 @@
     else{
       //setting the session and entering the information then
       //going to homepage
+
+      $sql = "INSERT INTO user_info(username, password, gender, first_name, last_name, birthday)
+      VALUES ('$username', '$password', '$gender', '$fname', '$lname', '$birthday')";
       $query = "SELECT userID from user_info where username ='$username'";
       $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
       $_SESSION['userID'] = $result;
-      $sql = "INSERT INTO user(username, password, gender, first_name, last_name, birthday)
-      VALUES ('$username', '$password', '$gender', '$fname', '$lname', '$birthday')";
 
         if($conn->query($sql) == TRUE){
-          echo"entered into user";
+          header('Location:MeTube.php');
+          exit;
+          echo "entered into database\n";
         }
   }
   }
