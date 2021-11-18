@@ -26,7 +26,7 @@
 </html>
 
 <?php
-  include 'configure.php';
+  include 'connection.php';
   //checks if the user has submitted the information yet
   if(isset($_POST['submit'])){
 
