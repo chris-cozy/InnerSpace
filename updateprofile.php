@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 
 <html>
@@ -32,7 +35,7 @@
 <?php
   if(isset($_POST['submitinfo'])){
     $about_info = $_POST['aboutinfo'];
-    "update accountinfo set aboutInfo = "aboutinfo" where username = $_SESSION['username']";"
+    "update accountinfo set aboutInfo = 'aboutinfo' where username = $_SESSION['username']";"
   }
 
 

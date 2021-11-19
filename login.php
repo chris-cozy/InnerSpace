@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  include 'connection.php';
+?>
 <!DOCTYPE html>
 
 <html>
@@ -26,8 +30,6 @@
 </html>
 
 <?php
-  session_start();
-  include 'connection.php';
   //checks if the user has submitted the information yet
   if(isset($_POST['submit'])){
 
