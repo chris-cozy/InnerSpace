@@ -1,5 +1,9 @@
 
+<?php
+session_start();
+header("Location:MeTube.php");
 
+?>
 <!DOCTYPE html>
 
 <html>
@@ -8,11 +12,7 @@
 </head>
 
 <body>
-<?php
 
-header("Location:MeTube.php");
-
-?>
 
 </body>
 </html>

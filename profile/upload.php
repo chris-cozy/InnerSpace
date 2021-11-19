@@ -7,7 +7,7 @@
         $maxsize = 5242880; // 5MB
         if(isset($_FILES['file']['name']) && $_FILES['file']['name'] != ''){
             $name = $_FILES['file']['name'];
-            $target_dir = "videos/";
+            $target_dir = "media/";
             $target_file = $target_dir . $_FILES["file"]["name"];
      
             // Select file type
@@ -26,7 +26,7 @@
                   // Upload
                   if(move_uploaded_file($_FILES['file']['tmp_name'],$target_file)){
                     // Insert record
-                    $query = "INSERT INTO media (title,location) VALUES('".$name."','".$target_file."')";
+                    $query = "INSERT INTO media (title, loc) VALUES($name, $target_file)";
      
                     mysqli_query($conn,$query);
                     $_SESSION['message'] = "Upload successfully.";
@@ -39,7 +39,7 @@
         }else{
             $_SESSION['message'] = "Please select a file.";
         }
-        header('location: MeTube.php');
+        header('location: user_profile.php');
         exit;
      } 
 ?>

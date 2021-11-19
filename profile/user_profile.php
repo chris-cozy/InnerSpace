@@ -77,10 +77,10 @@
 				<div>
 					<?php
 					$i = 0;
-					$uid = $_SESSION['userID'];
+					$uid = 24;
 					//WATCH PREPARED STATEMENTS VIDEO
 					$extensions_arr = array("mp4","avi","3gp","mov","mpeg");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID=('$uid') ORDER BY mediaID DESC");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' ORDER BY mediaID DESC");
 
 					while($row = mysqli_fetch_assoc($fetchVideos) && $i < 4){
 						$type = $row['type'];
@@ -105,10 +105,10 @@
 				<h2 class="text">Your Audio</h2>
 				<div>
 					<?php
-					$uid = $_SESSION['userID'];
+					$uid = 24;
 					$i = 0;
 					$extensions_arr = array("mp3");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID=('$uid') ORDER BY mediaID DESC");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' ORDER BY mediaID DESC");
 					while($row = mysqli_fetch_assoc($fetchVideos) && $i < 4){
 						$type = $row['type'];
 						if(in_array($type,$extensions_arr)){
@@ -132,10 +132,10 @@
 				<h2 class="text">Your Images</h2>
 				<div>
 					<?php
-					$uid = $_SESSION['userID'];
+					$uid = 24;
 					$i = 0;
 					$extensions_arr = array("jpg","png");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID=('$uid') ORDER BY mediaID DESC");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' ORDER BY mediaID DESC");
 					while($row = mysqli_fetch_assoc($fetchVideos) && $i < 4){
 						$type = $row['type'];
 						if(in_array($type,$extensions_arr)){
