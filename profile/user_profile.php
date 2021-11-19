@@ -59,11 +59,11 @@
 				<div class="navbar">
 					<nav>
 						<ul class="text">
-							<li><a href="user_profile.html" ><b>Media</b></a></li>
+							<li><a href="user_profile.php" ><b>Media</b></a></li>
 							<li><a href="./playlists.html" >Playlists</a></li>
 							<li><a href="./friends.html" >Friends</a></li>
-                            <li><a href="./about.html" >About</a></li>
-                            <li><a href="user_profile.html" >Messages</a></li>
+                            <li><a href="./about.php" >About</a></li>
+                            <li><a href="user_profile.php" >Messages</a></li>
 							<li><a href="updateprofile.php">Update Profile</a></li>
 							<li><a href="upload.php">Upload</a></li>
 						</ul>

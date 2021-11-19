@@ -54,8 +54,8 @@
             <h2 class="text"><a href="../MeTube.html" class="text">MeTube<3</a></h2>
 			<?php
 				$uid = $_SESSION['userID'];
-				echo "<h3 class="text">About ".$uid."</h3>"
 			?>
+			<h3 class="text">About: <?php echo $uid ?></h3>
         </header>
         <main>
             <section>
@@ -85,10 +85,10 @@
 							$lastN = $row['last_name'];
 							$birthday = $row['birthday'];
 							$date_created = $row['date_created'];
-							echo "<ul class="text">
+							echo "<ul class='text'>
 							<li>User ID: ".$userID."</li>
 							<li>Gender: ".$gender."</li>
-							<li>Name: ".$firstN. .$lastN."</li>
+							<li>Name: ".$firstN." ".$lastN."</li>
                             <li>Birthday: ".$birthday."</li>
                             <li>Day Account Created: ".$date_created."</li>
 						</ul>";
@@ -103,7 +103,7 @@
 						while($row = mysqli_fetch_assoc($fetchAccountInfo)){
 							$about = $row['aboutInfo'];
 							$subscriberCount = $row['subscriberCount'];
-							echo "<ul class="text">
+							echo "<ul class='text'>
 							<li>Subscriber Count: ".$subscriberCount."</li>
 							<li>About: ".$about."</li>
 						</ul>";
