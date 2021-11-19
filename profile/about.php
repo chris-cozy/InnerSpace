@@ -53,7 +53,8 @@
         <header>
             <h2 class="text"><a href="../MeTube.html" class="text">MeTube<3</a></h2>
 			<?php
-				echo "<h3 class="text">".$_SESSION['userID']."</h3>"
+				$uid = $_SESSION['userID'];
+				echo "<h3 class="text">About ".$uid."</h3>"
 			?>
         </header>
         <main>
@@ -61,7 +62,7 @@
 				<div class="navbar">
 					<nav>
 						<ul class="text">
-							<li><a href="user_profile.html" >Media</a></li>
+							<li><a href="user_profile.html">Media</a></li>
 							<li><a href="playlists.html" >Playlists</a></li>
 							<li><a href="friends.html" >Friends</a></li>
                             <li><a href="about.html" ><b>About</b></a></li>
@@ -74,8 +75,9 @@
             <section>
 				<span style= 'display: inline-block;'>
 					<?php
+						$uid = $_SESSION['userID'];
 						//Enter code to display user info
-						$fetchUserInfo = mysqli_query($conn, "SELECT * FROM user_info WHERE userID = $_SESSION['userID]");
+						$fetchUserInfo = mysqli_query($conn, "SELECT * FROM user_info WHERE userID=('$uid')");
 						while($row = mysqli_fetch_assoc($fetchUserInfo)){
 							$userID = $row['user_id'];
 							$gender = $row['gender'];
@@ -95,8 +97,9 @@
 				</span>
 				<span style= 'display: inline-block;'>
 					<?php
+						$uid = $_SESSION['userID'];
 						//Enter code to display account info
-						$fetchAccountInfo = mysqli_query($conn, "SELECT * FROM account_info WHERE userID = $_SESSION['userID]");
+						$fetchAccountInfo = mysqli_query($conn, "SELECT * FROM account_info WHERE userID=('$uid')");
 						while($row = mysqli_fetch_assoc($fetchAccountInfo)){
 							$about = $row['aboutInfo'];
 							$subscriberCount = $row['subscriberCount'];
