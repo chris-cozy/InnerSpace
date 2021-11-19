@@ -77,8 +77,11 @@
 				<div>
 					<?php
 					$i = 0;
+					$user = '$_SESSION['userID']';
+					//WATCH PREPARED STATEMENTS VIDEO
 					$extensions_arr = array("mp4","avi","3gp","mov","mpeg");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID = ".$_SESSION['userID']." ORDER BY mediaID DESC");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID = ? ORDER BY mediaID DESC");
+
 					while($row = mysqli_fetch_assoc($fetchVideos) && $i < 4){
 						$type = $row['type'];
 						if(in_array($type,$extensions_arr)){
