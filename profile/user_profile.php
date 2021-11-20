@@ -53,11 +53,6 @@
         <header>
             <h2 class="text"><a href="MeTube.html" class="text">MeTube<3</a></h2>
             <h3 class="text">*User's name here*</h3>
-						<?php
-							$query = "SELECT username from user_info WHERE userID = ".$_SESSION['userID']."";
-							$result = $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-							echo $result;
-						 ?>
         </header>
         <main>
             <section>
