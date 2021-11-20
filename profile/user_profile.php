@@ -83,27 +83,24 @@
 					$uid = $_SESSION['userID'];
 					//WATCH PREPARED STATEMENTS VIDEO
 					$extensions_arr = array("mp4","avi","3gp","mov","mpeg");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'video' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
 					$resultCheck = mysqli_num_rows($fetchVideos);
 					if ($resultCheck > 0){
-						$row = mysqli_fetch_assoc($fetchVideos);
-						while($row && $i < 4 && $i < $resultCheck){
-							if (isset($row['type'])){
-								$type = $row['type'];
-								if(in_array($type,$extensions_arr)){
-									$location = $row['loc'];
-									$name = $row['title'];
-									echo "<span style= 'display: inline-block;'>
-											<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
-											<br>
-											<span>".$name."</span>
-										</span>";
-				
-								}
+						do{
+							$row = mysqli_fetch_assoc($fetchVideos);
+							if (isset($row['loc'])){
+								$location = $row['loc'];
+								$name = $row['title'];
+								echo "<span style= 'display: inline-block;'>
+										<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
+										<br>
+										<span>".$name."</span>
+									</span>";
 							}
 							$i++;
-						}
+
+						}while($row && $i < 4 && $i < $resultCheck);
 					}
 					?>
 				</div>
@@ -118,27 +115,23 @@
 					$uid = $_SESSION['userID'];
 					$i = 0;
 					$extensions_arr = array("mp3");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'audio' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
 					$resultCheck = mysqli_num_rows($fetchVideos);
 					if ($resultCheck > 0){
-						$row = mysqli_fetch_assoc($fetchVideos);
-						while($row && $i < 4 && $i < $resultCheck){
-							if (isset($row['type'])){
-								$type = $row['type'];
-								if(in_array($type,$extensions_arr)){
-									$location = $row['loc'];
-									$name = $row['title'];
-									echo "<span style= 'display: inline-block;'>
-											<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
-											<br>
-											<span>".$name."</span>
-										</span>";
-				
-								}
+						do{
+							$row = mysqli_fetch_assoc($fetchVideos);
+							if (isset($row['loc'])){
+								$location = $row['loc'];
+								$name = $row['title'];
+								echo "<span style= 'display: inline-block;'>
+										<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
+										<br>
+										<span>".$name."</span>
+									</span>";
 							}
 							$i++;
-						}
+						}while($row && $i < 4 && $i < $resultCheck);
 					}
 					?>
 				</div>
@@ -153,27 +146,25 @@
 					$uid = $_SESSION['userID'];
 					$i = 0;
 					$extensions_arr = array("jpg","png");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'image' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
 					$resultCheck = mysqli_num_rows($fetchVideos);
+
 					if ($resultCheck > 0){
-						$row = mysqli_fetch_assoc($fetchVideos);
-						while($row && $i < 4 && $i < $resultCheck){
-							if (isset($row['type'])){
-								$type = $row['type'];
-								if(in_array($type,$extensions_arr)){
-									$location = $row['loc'];
-									$name = $row['title'];
-									echo "<span style= 'display: inline-block;'>
-											<img src='".$location."' width='200' alt='This image could not be displayed :/'/>
-											<br>
-											<span>".$name."</span>
-										</span>";
-				
-								}
+						do{
+							$row = mysqli_fetch_assoc($fetchVideos);
+							if (isset($row['loc'])){
+								$location = $row['loc'];
+								$name = $row['title'];
+								echo "<span style= 'display: inline-block;'>
+										<img src='".$location."' width='200' alt='This image could not be displayed :/'/>
+										<br>
+										<span>".$name."</span>
+									</span>";
 							}
 							$i++;
-						}
+
+						}while($row && $i < 4 && $i < $resultCheck);
 					}
 					?>
 				</div>

@@ -28,10 +28,23 @@
                   // Uploads the files from their computer into the target directory
                   if(move_uploaded_file($_FILES['file']['tmp_name'],$target_file)){
                     
-                    // Insert record. There is a problem here
+                    //Determine type
+                    $vid = array("mp4","avi","3gp","mov","mpeg");
+                    $aud = array("mp3");
+                    $img = array("jpg","png");
+
+                    if (in_array($extension,$vid)){
+                        $type = "video";
+                    }elseif (in_array($extension,$aud)){
+                        $type = "audio";
+                    }elseif (in_array($extension, $img)){
+                        $type = "image";
+                    }
+
+                    // Insert record.
                     $desc = $_POST['desc'];
                     $key = $_POST['key'];
-                    $query = "INSERT INTO media (userID, title, loc, type, data_size, description, keyword) VALUES('$uid', '$name', '$target_file', '$extension', '$size', '$desc', '$key')";
+                    $query = "INSERT INTO media (userID, title, loc, type, ext, data_size, description, keyword) VALUES('$uid', '$name', '$target_file', '$type', '$extension', '$size', '$desc', '$key')";
      
                     mysqli_query($conn,$query);
                     $_SESSION['message'] = "Upload successfully.";
