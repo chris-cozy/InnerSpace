@@ -68,6 +68,8 @@
 								if (isset($_SESSION['userID'])){
 									echo "<li><a href='subscriptions.html'>Subscriptions</a></li>
 									<li><a href='./profile/user_profile.php'>Your Profile</a></li>";
+									echo "<li><a href = 'signout.php'>Sign Out</a></li>";
+
 								}else{
 									echo "<li><a href='login.php'>Login</a></li>";
 								}
@@ -91,7 +93,7 @@
 							$location = $row['location'];
 							$name = $row['title'];
 							echo "<span style= 'display: inline-block;'>
-									<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>     
+									<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
 									<br>
 									<span>".$name."</span>
 								</span>";
@@ -117,7 +119,7 @@
 							$location = $row['location'];
 							$name = $row['title'];
 							echo "<span style= 'display: inline-block;'>
-									<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>     
+									<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
 									<br>
 									<span>".$name."</span>
 								</span>";
@@ -143,7 +145,7 @@
 							$location = $row['location'];
 							$name = $row['title'];
 							echo "<span style= 'display: inline-block;'>
-									<img src='".$location."' width='200' alt='This image could not be displayed :/'/>     
+									<img src='".$location."' width='200' alt='This image could not be displayed :/'/>
 									<br>
 									<span>".$name."</span>
 								</span>";
@@ -166,7 +168,7 @@
 						</ul>
 					</nav>
 				</div>
-				
+
 			</section>
 		</footer>
     </body>

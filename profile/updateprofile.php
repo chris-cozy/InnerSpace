@@ -7,7 +7,7 @@
 <head>
   <title> Update Information</title>
 </head>
-<?php include 'configure.php'; ?>
+<?php include 'connection.php'; ?>
 
 <body>
 <h2> Update Profile Information </h2>
@@ -35,8 +35,8 @@
 <?php
   if(isset($_POST['submitinfo'])){
     $about_info = $_POST['aboutinfo'];
-    "update accountinfo set aboutInfo = 'aboutinfo' where username = $_SESSION['username']";"
+    $user_id = $SESSION['userID'];
+    $query = "UPDATE accountinfo SET aboutInfo = 'aboutinfo' WHERE userID = '$user_id'";
+    $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
   }
-
-
  ?>
