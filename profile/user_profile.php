@@ -80,7 +80,7 @@
 				<div>
 					<?php
 					$i = 0;
-					$uid = 24;
+					$uid = $_SESSION['userID'];
 					//WATCH PREPARED STATEMENTS VIDEO
 					$extensions_arr = array("mp4","avi","3gp","mov","mpeg");
 					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
@@ -115,7 +115,7 @@
 				<h2 class="text">Your Audio</h2>
 				<div>
 					<?php
-					$uid = 24;
+					$uid = $_SESSION['userID'];
 					$i = 0;
 					$extensions_arr = array("mp3");
 					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
@@ -150,7 +150,7 @@
 				<h2 class="text">Your Images</h2>
 				<div>
 					<?php
-					$uid = 24;
+					$uid = $_SESSION['userID'];
 					$i = 0;
 					$extensions_arr = array("jpg","png");
 					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
