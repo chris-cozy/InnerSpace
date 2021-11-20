@@ -79,7 +79,7 @@
 						//Enter code to display user info
 						$fetchUserInfo = mysqli_query($conn, "SELECT * FROM user_info WHERE userID=('$uid')");
 						while($row = mysqli_fetch_assoc($fetchUserInfo)){
-							$userID = $row['user_id'];
+							$userID = $row['userID'];
 							$gender = $row['gender'];
 							$firstN = $row['first_name'];
 							$lastN = $row['last_name'];

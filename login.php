@@ -46,8 +46,9 @@
     //if the user exists, set the session to the user then go
     //to homepage as a logged in user
     $query = "SELECT userID from user_info where username ='$username'";
-    $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-    $_SESSION['userID'] = $result;
+    $queryres = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+    $result = mysqli_fetch_array($queryres);
+    $_SESSION['userID'] = $result['userID'];
     header("Location:MeTube.php");
 
   }

@@ -71,8 +71,9 @@
       $sql = "INSERT INTO user_info(username, password, gender, first_name, last_name, birthday)
       VALUES ('$username', '$password', '$gender', '$fname', '$lname', '$birthday')";
       $query = "SELECT userID from user_info where username ='$username'";
-      $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-      $_SESSION['userID'] = $result;
+      $queryres = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+      $result = mysqli_fetch_array($queryres);
+      $_SESSION['userID'] = $result['userID'];
 
         if($conn->query($sql) == TRUE){
           header('Location:MeTube.php');
