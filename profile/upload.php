@@ -27,8 +27,11 @@
                }else{
                   // Uploads the files from their computer into the target directory
                   if(move_uploaded_file($_FILES['file']['tmp_name'],$target_file)){
-                    // Insert record
-                    $query = "INSERT INTO media (title, loc, type, data_size) VALUES($name', '$target_file', '$extension', '$size')";
+                    
+                    // Insert record. There is a problem here
+                    $desc = $_POST['desc'];
+                    $key = $_POST['key'];
+                    $query = "INSERT INTO media (userID, title, loc, type, data_size, description, keyword) VALUES('$uid', '$name', '$target_file', '$extension', '$size', '$desc', '$key')";
      
                     mysqli_query($conn,$query);
                     $_SESSION['message'] = "Upload successfully.";
@@ -63,6 +66,8 @@
         <form method="POST" action="" enctype='multipart/form-data'>
             <label for="user_file">Select a file:</label>
             <input type="file" name="file">
+            <input type="text" name="desc" placeholder="Enter a description">
+            <input type="text" name="key" placeholder="Enter a single keyword">
             <input type="submit" value='Upload' name='but_upload'>
         </form>
 
