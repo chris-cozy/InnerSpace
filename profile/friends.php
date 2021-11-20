@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  include "connection.php";
+  ?>
+
 <!DOCTYPE html>
 <style>
     .text{
@@ -66,6 +71,31 @@
 			</section>
             <hr>
             <section>
+                <?php
+                //going through the database and getting the friends name
+                $uid = $_SESSION['userID'];
+                $query = "SELECT * from user_friends WHERE userID = '$uid'";
+                $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+
+                $numrows = mysqli_num_rows($result);
+
+                if($numrows == 0){
+                  echo "You have no friends";
+                }
+
+                else{
+                //looping through all the friends for the user
+                while($rows = mysqli_fetch_array($result)){
+                  //using the join command to merge the table and get the information for the friends (username)
+                  $friendID = $result['friendID'];
+                  $query = "SELECT username from user_info WHERE userID = '$friendID'";
+                  $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+                  echo "$result";
+                }
+              }
+                ?>
+
+
 
             </section>
         </main>
