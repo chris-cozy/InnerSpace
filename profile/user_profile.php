@@ -51,8 +51,11 @@
     </head>
     <body style="background-color: rgb(42, 44, 44);">
         <header>
-            <h2 class="text"><a href="MeTube.html" class="text">MeTube<3</a></h2>
+            <h2 class="text"><a href="../MeTube.php" class="text">MeTube<3</a></h2>
             <h3 class="text">*User's name here*</h3>
+			<?php
+				echo $_SESSION['userID'];
+			?>
         </header>
         <main>
             <section>
@@ -139,7 +142,7 @@
 					while($row = mysqli_fetch_assoc($fetchVideos) && $i < 4){
 						$type = $row['type'];
 						if(in_array($type,$extensions_arr)){
-							$location = $row['location'];
+							$location = $row['loc'];
 							$name = $row['title'];
 							echo "<span style= 'display: inline-block;'>
 									<img src='".$location."' width='200' alt='This image could not be displayed :/'/>

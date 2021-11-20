@@ -62,7 +62,7 @@
 				<div class="navbar">
 					<nav>
 						<ul class="text">
-							<li><a href="user_profile.html">Media</a></li>
+							<li><a href="user_profile.php">Media</a></li>
 							<li><a href="playlists.html" >Playlists</a></li>
 							<li><a href="friends.html" >Friends</a></li>
                             <li><a href="about.html" ><b>About</b></a></li>

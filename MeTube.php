@@ -90,7 +90,7 @@
 					while($row = mysqli_fetch_assoc($fetchVideos) && $i < 4){
 						$type = $row['type'];
 						if(in_array($type,$extensions_arr)){
-							$location = $row['location'];
+							$location = "profile/" .$row['loc'];
 							$name = $row['title'];
 							echo "<span style= 'display: inline-block;'>
 									<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
@@ -116,7 +116,7 @@
 					while($row = mysqli_fetch_assoc($fetchVideos) && $i < 4){
 						$type = $row['type'];
 						if(in_array($type,$extensions_arr)){
-							$location = $row['location'];
+							$location = "profile/" .$row['loc'];
 							$name = $row['title'];
 							echo "<span style= 'display: inline-block;'>
 									<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
@@ -142,7 +142,7 @@
 					while($row = mysqli_fetch_assoc($fetchVideos) && $i < 4){
 						$type = $row['type'];
 						if(in_array($type,$extensions_arr)){
-							$location = $row['location'];
+							$location = "profile/" .$row['loc'];
 							$name = $row['title'];
 							echo "<span style= 'display: inline-block;'>
 									<img src='".$location."' width='200' alt='This image could not be displayed :/'/>
