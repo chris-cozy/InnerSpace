@@ -53,6 +53,11 @@
         <header>
             <h2 class="text"><a href="MeTube.html" class="text">MeTube<3</a></h2>
             <h3 class="text">*User's name here*</h3>
+						<?php
+							$query = "SELECT username from user_info WHERE userID = ".$_SESSION['userID']."";
+							$result = $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+							echo $result;
+						 ?>
         </header>
         <main>
             <section>
@@ -88,7 +93,7 @@
 							$location = $row['location'];
 							$name = $row['title'];
 							echo "<span style= 'display: inline-block;'>
-									<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>     
+									<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
 									<br>
 									<span>".$name."</span>
 								</span>";
@@ -115,7 +120,7 @@
 							$location = $row['location'];
 							$name = $row['title'];
 							echo "<span style= 'display: inline-block;'>
-									<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>     
+									<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
 									<br>
 									<span>".$name."</span>
 								</span>";
@@ -142,7 +147,7 @@
 							$location = $row['location'];
 							$name = $row['title'];
 							echo "<span style= 'display: inline-block;'>
-									<img src='".$location."' width='200' alt='This image could not be displayed :/'/>     
+									<img src='".$location."' width='200' alt='This image could not be displayed :/'/>
 									<br>
 									<span>".$name."</span>
 								</span>";
