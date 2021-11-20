@@ -54,6 +54,7 @@
             <h2 class="text"><a href="../MeTube.html" class="text">MeTube<3</a></h2>
 			<?php
 				$uid = $_SESSION['userID'];
+				
 			?>
 			<h3 class="text">About: <?php echo $uid ?></h3>
         </header>
