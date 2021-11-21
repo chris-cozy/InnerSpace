@@ -71,23 +71,57 @@
 							$location = "profile/".$row['loc'];
 							$name = $row['title'];
                             $type = $row['type'];
+                            $description = $row['description'];
+                            $creatorID = $row['userID'];
+                            $creator = "";
+
+                            $query = mysqli_query($conn, "SELECT * FROM user_info WHERE userID='$creatorID';") or die ("Query error".mysqli_error($conn)."\n");
+                            $resultCheck = mysqli_num_rows($query);
+
+					        if ($resultCheck > 0){
+                                $row = mysqli_fetch_assoc($query);
+						        if (isset($row['username'])){
+                                    $creator = $row['username'];
+                                }
+                            }
                             if($type=='video'){
                                 echo "<span style= 'display: inline-block;'>
 										<video src='".$location."' controls width='700px'>This video could not be displayed :/</video>
 										<br>
-										<span>".$name."</span>
+										<span style= 'display: inline-block;'>
+                                            <p>".$name."</p>
+                                            <br>
+                                            <p>".$description."</p>
+                                            <br>
+                                            <p>Posted By: </p>
+                                            <a href='general_user_page.php?creatorID='".$creatorID."'?creatorUser='".$creator."''>".$creator."</a>
+                                        </span>
 									</span>";
                             }elseif($type=='audio'){
                                 echo "<span style= 'display: inline-block;'>
 										<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
 										<br>
-										<span>".$name."</span>
+										<span style= 'display: inline-block;'>
+                                            <p>".$name."</p>
+                                            <br>
+                                            <p>".$description."</p>
+                                            <br>
+                                            <p>Posted By: </p>
+                                            <a href='general_user_page.php?creatorID='".$creatorID."''>".$creator."</a>
+                                        </span>
 									</span>";
                             }elseif($type=='image'){
                                 echo "<span style= 'display: inline-block;'>
 									    <img src='".$location."' width='700' alt='This image could not be displayed :/'/>
 									    <br>
-									    <span>".$name."</span>
+									    <span style= 'display: inline-block;'>
+                                            <p>".$name."</p>
+                                            <br>
+                                            <p>".$description."</p>
+                                            <br>
+                                            <p>Posted By: </p>
+                                            <a href='general_user_page.php?creatorID='".$creatorID."''>".$creator."</a>
+                                        </span>
 								    </span>";
                             }
                         }
@@ -124,6 +158,14 @@
                         }
                     }
                     
+                    //---HANDLING FAVORITED---//
+                    if(isset($_POST['fav'])){
+                        $query = "INSERT INTO media_favorited (userID, mediaID) VALUES ('$uid', '$mediaID');";
+                        mysqli_query($conn,$query);
+                    }elseif(isset($_POST['unfav'])){
+                        $query = "DELETE FROM media_favorited WHERE userID='$uid' AND mediaID='$mediaID';";
+                        mysqli_query($conn,$query);
+                    } 
                 ?>
                 <span style= 'display: inline-block;'>
                     <form method="POST" action="">
@@ -134,6 +176,14 @@
                         <?php
                             if(!isset($_POST['sub'])){
                                 echo "<input type='submit' value='Submit' name='sub'>";
+                            }
+                            //check if the user has favorited
+                            $query = mysqli_query($conn, "SELECT * FROM media_favorited WHERE userID = '$uid' AND mediaID = '$mediaID';") or die ("Query error".mysqli_error($conn)."\n");
+					        $resultCheck = mysqli_num_rows($query);
+                            if($resultCheck == 0){
+                                echo "<input type='submit' value='Favorite' name='fav'>";
+                            }else{
+                                echo "<input type='submit' value='Unfavorite' name='unfav'>";
                             }
                         ?>
                         
@@ -190,7 +240,7 @@
                     
 
                     ?>
-                    <form method="POST" action="weird.php">
+                    <form method="POST" action="comment_grab.php">
                         <input type="text" name="comment" placeholder="Enter your comment"/>
                         <input type='submit' value='Submit' name='sub_com'>
                     </form>

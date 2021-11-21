@@ -63,8 +63,8 @@ include 'connection.php';
 							<li><a href="user_profile.php" >Media</a></li>
 							<li><a href="playlists.php" ><b>Playlists</b></a></li>
 							<li><a href="friends.html" >Friends</a></li>
-                            <li><a href="about.php" >About</a></li>
-                            <li><a href="user_profile.php" >Messages</a></li>
+              <li><a href="about.php" >About</a></li>
+              <li><a href="user_profile.php" >Messages</a></li>
 						</ul>
 					</nav>
 				</div>

@@ -1,45 +1,18 @@
-Steps:
-1. Set up the database tables that would be needed
-Learn to create tables in the database using phpMyAdmin for customization and add the tables
-
-2. Learn php to set up connecting the database to the interface
-The middleman between MySQL and HTML
-Ask professor about setting up the MySQL Queries, Php, and HTML (connecting them)
-
-3. Set up the interface with HTML & CSS
-
 PhpMyAdmin:
 metube__user
 p@ssword1
 
 PLAN (What we need):
-Once user has logged in, establish a session with their user and Password
-
----From the log in/sign up page go to the metube home page
-    This page will display 4 most recently uploaded videos, audios, and images, along with their title
-    Establish 
-    Enable keyword Search
-        SELECT 4 FROM media WHERE keyword="input" AND type=".mp4"
+---Enable keyword Search
+    SELECT 4 FROM media WHERE keyword="input" AND type=".mp4"
 
 In the subscriptions page, display the 4 most recently uploaded media from anyone in their friends list
     This one will be slightly more complicated. Will need to first select all of the user's friends, then append that list to media and sort to find their most recent videos
 Make an array containing all of the userID's of the current user's friends
 Select 4 recent medias from the media table who's userID's are present in the array
 
----On the profile main page, display the user's most recent uploads, separated by type
+On the playlist page, display a list of their playlists.  Clicking on a playlist name will navigate to the playlist media page
 
----On the profile about page, display their about Description
-
-On the friends page, display a list of their friends.
-    Clicking on of their friends will take them to a profile page of their friends
-    Get friend's userID from clicking their name
-
-On the playlist page, display a list of their playlists.  Clicking on a playlist name will display the media in the playlist, separated by type
-
-Clicking on the media in any page will take them to a media page. (HAVE TO MAKE THE TITLES LINKS)
-    This media page will display the playable or viewable media
-    Underneath will be the like and dislike count
-    Under that will be the comments, ordered by date/time. Each comment will have the username of the one who posted it displayed next to it
 
 Messaging
 "his  messaging  system  works  as  a  
@@ -47,13 +20,7 @@ web-based email system with which users can send, receive, reply, and delete mes
 discussion group to share and discuss interests and multimedia files. Once a user creates or joins a group, it can start 
 a discussion topic, post a multimedia files, or post comments on discussion topics or multimedia files. "
 
-When not logged in, esssion variable for userID is NULL and prevents them 
-
 KNOWN PROBLEMS
-user_profile.php - add prepared statements
-
-
-
 
 Keyword Search
 When user types in the keyword they want:
@@ -62,12 +29,6 @@ When user types in the keyword they want:
 
 
 TO-DO:
-Design Structure of media viewing pages
 Design logic of Playlists
 Design Friends page as well as playlist page
 Learn CSS to make all of the pages pretty
-Design About page
-
-Establish Session Variables
-    - Username
-    - Password
