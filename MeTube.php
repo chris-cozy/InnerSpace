@@ -164,7 +164,7 @@
 								echo "<span style= 'display: inline-block;'>
 										<img src='".$location."' width='200' alt='This image could not be displayed :/'/>
 										<br>
-										<span><a href='media_content.php?mediaID='".$row['mediaID']."''>".$name."</a></span>
+										<span><a href='media_content.php?mediaID=".$row['mediaID']."'>".$name."</a></span>
 									</span>";
 							}
 							$i++;
