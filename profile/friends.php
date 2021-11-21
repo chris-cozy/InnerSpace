@@ -90,7 +90,8 @@
                   $friendID = $rows['friendID'];
                   $query = "SELECT username from user_info WHERE userID = '$friendID'";
                   $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-                  echo "$result";
+                  $row = mysqli_fetch_assoc($result);
+				  echo $row['username'];
                 }
               }
                 ?>
