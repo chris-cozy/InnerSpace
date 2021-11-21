@@ -96,16 +96,71 @@
 			</section>
 			<hr>
 			<section>
-                <form>
+                <?php
+                    //check if the user has liked
+                    $query = mysqli_query($conn, "SELECT * FROM media_likes WHERE userID = '$uid' AND mediaID = '$mediaID';") or die ("Query error".mysqli_error($conn)."\n");
+
+					$resultCheck = mysqli_num_rows($query);
+					if ($resultCheck == 0){
+                        //check if the user has disliked
+                        $query = mysqli_query($conn, "SELECT * FROM media_dislikes WHERE userID = '$uid' AND mediaID = '$mediaID';") or die ("Query error".mysqli_error($conn)."\n");
+
+					    $resultCheck = mysqli_num_rows($query);
+                        if ($resultCheck == 0){
+                            //User has neither liked or disliked
+                            if(isset($_POST['sub'])){
+                                $selection = $_POST['LD'];
+                                if($selection == "LIKE"){
+                                    //If they liked
+                                    $query = "INSERT INTO media_likes (mediaID, userID) VALUES ('$mediaID', '$uid');";
+
+                                }elseif($selection == "DISLIKE"){
+                                    //If they disliked
+                                    $query = "INSERT INTO media_dislikes (mediaID, userID) VALUES ('$mediaID', '$uid');";
+                                }
+                            mysqli_query($conn,$query);
+                            }
+                        }
+                    }
                     
-                </form>
+                ?>
+                <span style= 'display: inline-block;'>
+                    <form method="POST" action="">
+                        <input name="LD" type="radio" id="like" value="LIKE"/>
+                        <label for="like">LIKE :)</label><br>
+                        <input name="LD" type="radio" id="dislike" value="DISLIKE"/>
+                        <label for="dislike">DISLIKE :(</label><br>
+                        <?php
+                            if(!isset($_POST['sub'])){
+                                echo "<input type='submit' value='Submit' name='sub'>";
+                            }
+                        ?>
+                        
+                    </form>
+                </span>
+                <span>
+                    <p>Likes: 
+                    <?php
+                        $query = mysqli_query($conn, "SELECT * FROM media_likes WHERE mediaID = '$mediaID';") or die ("Query error".mysqli_error($conn)."\n");
+                        $resultCheck = mysqli_num_rows($query);
+                        echo $resultCheck;
+                    ?>
+                    </p>
+                    <p>Dislikes: 
+                    <?php
+                        $query = mysqli_query($conn, "SELECT * FROM media_dislikes WHERE mediaID = '$mediaID';") or die ("Query error".mysqli_error($conn)."\n");
+                        $resultCheck = mysqli_num_rows($query);
+                        echo $resultCheck;
+                    ?>
+                    </P>
+                </span>
 			</section>
 			<section>
                 <h2 class="text">COMMENTS</h2>
-                <span>
+                <span style= 'display: inline-block;'>
                     <p>Comment go here :P</p>
                 </span>
-                <span>
+                <span style= 'display: inline-block;'>
                     <P>Comment button go here :P</p>
                 </span>
 			</section>
