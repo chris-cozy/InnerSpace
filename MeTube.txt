@@ -11,11 +11,7 @@ In the subscriptions page, display the 4 most recently uploaded media from anyon
 Make an array containing all of the userID's of the current user's friends
 Select 4 recent medias from the media table who's userID's are present in the array
 
-On the friends page, display a list of their friends.
-    Clicking on of their friends will take them to a profile page of their friends
-    Get friend's userID from clicking their name
-
-On the playlist page, display a list of their playlists.  Clicking on a playlist name will display the media in the playlist, separated by type
+On the playlist page, display a list of their playlists.  Clicking on a playlist name will navigate to the playlist media page
 
 
 Messaging
