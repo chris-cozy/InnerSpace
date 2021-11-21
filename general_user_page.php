@@ -77,7 +77,32 @@
 							<p>".$about."</p>
 							<br>
 							<h4 class='text'>Subscribers: ".$subs."</h4>";
+					//---HANDLING FAVORITED---//
+                    if(isset($_POST['fri'])){
+                        $query = "INSERT INTO user_friends (userID, friendID) VALUES ('$uid', '$creatorID');";
+                        mysqli_query($conn,$query);
+						$query = "INSERT INTO user_friends (userID, friendID) VALUES ('$creatorID', '$uid');";
+                        mysqli_query($conn,$query);
+                    }elseif(isset($_POST['unfri'])){
+                        $query = "DELETE FROM user_friends WHERE userID='$uid' AND friendID='$creatorID';";
+                        mysqli_query($conn,$query);
+						$query = "DELETE FROM user_friends WHERE userID='$creatorID' AND friendID='$uid';";
+                        mysqli_query($conn,$query);
+                    } 
 				?>
+				<form method="POST" action="">
+					<?php
+						$creatorID = $_GET['creatorID'];
+                        //check if the user has favorited
+                        $query = mysqli_query($conn, "SELECT * FROM user_friends WHERE userID = '$uid' AND friendID = '$creatorID';") or die ("Query error".mysqli_error($conn)."\n");
+					    $resultCheck = mysqli_num_rows($query);
+                        if($resultCheck == 0){
+                            echo "<input type='submit' value='Friend' name='fri'>";
+                        }else{
+                            echo "<input type='submit' value='Unfriend' name='unfri'>";
+                        }
+                    ?>    
+                    </form>
 			</section>
             <hr>
 			<!--Display recent uploaded medias-->
