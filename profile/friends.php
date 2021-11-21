@@ -87,7 +87,7 @@
                 //looping through all the friends for the user
                 while($rows = mysqli_fetch_array($result)){
                   //using the join command to merge the table and get the information for the friends (username)
-                  $friendID = $result['friendID'];
+                  $friendID = $rows['friendID'];
                   $query = "SELECT username from user_info WHERE userID = '$friendID'";
                   $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
                   echo "$result";
