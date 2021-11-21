@@ -84,7 +84,8 @@ include 'connection.php';
                     echo "This playlist is empty";
                   }
                   else{
-                while($row = mysqli_fetch_assoc($result)){
+                do{
+                  $row = mysqli_fetch_assoc($result)
                   $mediaID = $row['mediaID'];
                   $query = "SELECT * from media WHERE mediaID = '$mediaID'";
                   $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
@@ -114,7 +115,7 @@ include 'connection.php';
                         </span>";
                         }
                     }
-                  }
+                  }while($row);
                 }
               }
             ?>
