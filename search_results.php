@@ -1,11 +1,6 @@
 <?php
 	session_start();
 	include_once 'connection.php';
-
-	if(isset($_POST['search'])){
-		$_SESSION['keyword'] = $_POST['key'];
-	}
-
 ?>
 <!DOCTYPE html>
 <style>
@@ -58,9 +53,8 @@
     <body style="background-color: rgb(42, 44, 44);">
 		<header>
 			<h1 class="logo"><a href="MeTube.php" class="text">MeTube<3</a></h1>
-			<form method="POST" action="">
-				<input type="text" name='key' placeholder="Keyword Search">
-				<input type="submit" value='Search' name='search'>
+			<form>
+				<input type="text" value="Keyword Search"/>
 			</form>
 		</header>
 		<hr>
@@ -86,14 +80,15 @@
 			</section>
 			<hr>
 			<section>
-				<h2 class="text">Recommended Videos</h2>
+				<h2 class="text">Searched Videos</h2>
 				<!--Display recent uploaded videos-->
 				<div>
 					<?php
+                    $key = $_SESSION['keyword'];
 					$i = 0;
 					//WATCH PREPARED STATEMENTS VIDEO
 					$extensions_arr = array("mp4","avi","3gp","mov","mpeg");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'video' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'video' AND keyword = '$key' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
 					$resultCheck = mysqli_num_rows($fetchVideos);
 					if ($resultCheck > 0){
@@ -119,12 +114,13 @@
 				<br>
 			</section>
 			<section>
-				<h2 class="text">Recommended Audio</h2>
+				<h2 class="text">Searched Audio</h2>
 				<div>
 					<?php
+                    $key = $_SESSION['keyword'];
 					$i = 0;
 					$extensions_arr = array("mp3");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'audio' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'audio' AND keyword = '$key' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
 					$resultCheck = mysqli_num_rows($fetchVideos);
 					if ($resultCheck > 0){
@@ -149,12 +145,13 @@
 				<br>
 			</section>
 			<section>
-				<h2 class="text">Recommended Images</h2>
+				<h2 class="text">Searched Images</h2>
 				<div>
 					<?php
+                    $key = $_SESSION['keyword'];
 					$i = 0;
 					$extensions_arr = array("jpg","png");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'image' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'image' AND keyword = '$key' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
 					$resultCheck = mysqli_num_rows($fetchVideos);
 
