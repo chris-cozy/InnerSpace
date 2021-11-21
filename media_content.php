@@ -2,6 +2,7 @@
 	session_start();
 	include_once 'connection.php';
     $mediaID = $_GET['mediaID'];
+    $_SESSION['curmediaID'] = $mediaID;
     $uid = $_SESSION['userID'];
 ?>
 <!DOCTYPE html>
@@ -158,10 +159,41 @@
 			<section>
                 <h2 class="text">COMMENTS</h2>
                 <span style= 'display: inline-block;'>
-                    <p>Comment go here :P</p>
+                    <?php
+                        $i = 0;
+                        $query = mysqli_query($conn, "SELECT * FROM media_comments WHERE mediaID = '$mediaID' ORDER BY date_time ASC;") or die ("Query error".mysqli_error($conn)."\n");
+
+                        $resultCheck = mysqli_num_rows($query);
+                        if ($resultCheck > 0){
+                            do{
+                                $row = mysqli_fetch_assoc($query);
+                                if (isset($row['comment'])){
+                                    $comment = $row['comment'];
+                                    $userID = $row['userID'];
+
+                                    $query2 = mysqli_query($conn, "SELECT * FROM user_info WHERE userID = '$userID';") or die ("Query error".mysqli_error($conn)."\n");
+                                    $row2 = mysqli_fetch_assoc($query2);
+                                    if (isset($row2['username'])){
+                                        $username = $row2['username'];
+                                    }
+                                }
+                                echo "<p>".$comment." - ".$username."</p>";
+                                $i++;
+    
+                            }while($row && $i < 20 && $i < $resultCheck);
+                        }
+
+                    ?>
                 </span>
                 <span style= 'display: inline-block;'>
-                    <P>Comment button go here :P</p>
+                    <?php
+                    
+
+                    ?>
+                    <form method="POST" action="weird.php">
+                        <input type="text" name="comment" placeholder="Enter your comment"/>
+                        <input type='submit' value='Submit' name='sub_com'>
+                    </form>
                 </span>
 			</section>
 			<hr>
