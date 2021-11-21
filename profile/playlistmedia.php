@@ -85,7 +85,9 @@ include 'connection.php';
                   }
                   else{
                 while($row = mysqli_fetch_assoc($result)){
-                  $query = "SELECT * from media WHERE mediaID = "
+                  $mediaID = $row['mediaID'];
+                  $query = "SELECT * from media WHERE mediaID = '$mediaID'";
+                  $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
                   if (isset($row['loc'])){
                     $location = "profile/".$row['loc'];
                     $name = $row['title'];

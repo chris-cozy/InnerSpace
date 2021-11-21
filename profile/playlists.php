@@ -73,7 +73,6 @@ include 'connection.php'
             <section>
               <div class="text">
                 <h2> Playlists</h2>
-                <h3> Create Playlist</h3>
               </div>
 
               <?php
@@ -92,12 +91,16 @@ include 'connection.php'
               while($rows = mysqli_fetch_assoc($result)){
                 //using the join command to merge the table and get the information for the friends (username)
                 $playlistname = $rows['playlist_name'];
-                echo '<a href="playlistmedia.php?pid=1"> '.$playlistname.' </a>';
+                $playlistID = $rows['playlistID'];
+                echo '<a href="playlistmedia.php?pid=$playlistID"> '.$playlistname.' </a>';
               }
             }
             ?>
 
             </section>
+
+            <section>
+              <h3> Create Playlist </h3>
         </main>
     </body>
 </html>
