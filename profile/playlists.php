@@ -92,7 +92,7 @@ include 'connection.php'
               while($rows = mysqli_fetch_assoc($result)){
                 //using the join command to merge the table and get the information for the friends (username)
                 $playlistname = $rows['playlist_name'];
-                echo $playlistname;
+                echo '<a href="playlistmedia.php"> '.$playlistname.' </a>';
               }
             }
             ?>
