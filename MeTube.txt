@@ -3,8 +3,6 @@ metube__user
 p@ssword1
 
 PLAN (What we need):
----Enable keyword Search
-    SELECT 4 FROM media WHERE keyword="input" AND type=".mp4"
 
 In the subscriptions page, display the 4 most recently uploaded media from anyone in their friends list
     This one will be slightly more complicated. Will need to first select all of the user's friends, then append that list to media and sort to find their most recent videos
@@ -20,15 +18,8 @@ web-based email system with which users can send, receive, reply, and delete mes
 discussion group to share and discuss interests and multimedia files. Once a user creates or joins a group, it can start 
 a discussion topic, post a multimedia files, or post comments on discussion topics or multimedia files. "
 
-KNOWN PROBLEMS
-
-Keyword Search
-When user types in the keyword they want:
-    Search through MultiMedia table for that keyword
-        If it is present, display the media with the corresponding IDs
-
 
 TO-DO:
 Design logic of Playlists
-Design Friends page as well as playlist page
+Design playlist page
 Learn CSS to make all of the pages pretty
