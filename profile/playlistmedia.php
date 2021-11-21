@@ -52,7 +52,7 @@ include 'connection.php';
     </head>
     <body style="background-color: rgb(42, 44, 44);">
         <header>
-            <h2 class="text"><a href="MeTube.html" class="text">MeTube<3</a></h2>
+            <h2 class="text"><a href="MeTube.php" class="text">MeTube<3</a></h2>
             <h3 class="text">*User's name here*</h3>
         </header>
         <main>
@@ -62,7 +62,7 @@ include 'connection.php';
 						<ul class="text">
 							<li><a href="user_profile.php" >Media</a></li>
 							<li><a href="playlists.php" ><b>Playlists</b></a></li>
-							<li><a href="friends.html" >Friends</a></li>
+							<li><a href="friends.php" >Friends</a></li>
               <li><a href="about.php" >About</a></li>
               <li><a href="user_profile.php" >Messages</a></li>
 						</ul>
