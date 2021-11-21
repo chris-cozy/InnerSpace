@@ -190,7 +190,7 @@
                     
 
                     ?>
-                    <form method="POST" action="weird.php">
+                    <form method="POST" action="comment_grab.php">
                         <input type="text" name="comment" placeholder="Enter your comment"/>
                         <input type='submit' value='Submit' name='sub_com'>
                     </form>
