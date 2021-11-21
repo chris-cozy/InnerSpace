@@ -124,6 +124,14 @@
                         }
                     }
                     
+                    //---HANDLING FAVORITED---//
+                    if(isset($_POST['fav'])){
+                        $query = "INSERT INTO media_favorited (userID, mediaID) VALUES ('$uid', '$mediaID');";
+                        mysqli_query($conn,$query);
+                    }elseif(isset($_POST['unfav'])){
+                        $query = "DELETE FROM media_favorited WHERE userID='$uid' AND mediaID='$mediaID';";
+                        mysqli_query($conn,$query);
+                    } 
                 ?>
                 <span style= 'display: inline-block;'>
                     <form method="POST" action="">
@@ -134,6 +142,14 @@
                         <?php
                             if(!isset($_POST['sub'])){
                                 echo "<input type='submit' value='Submit' name='sub'>";
+                            }
+                            //check if the user has favorited
+                            $query = mysqli_query($conn, "SELECT * FROM media_favorited WHERE userID = '$uid' AND mediaID = '$mediaID';") or die ("Query error".mysqli_error($conn)."\n");
+					        $resultCheck = mysqli_num_rows($query);
+                            if($resultCheck == 0){
+                                echo "<input type='submit' value='Favorite' name='fav'>";
+                            }else{
+                                echo "<input type='submit' value='Unfavorite' name='unfav'>";
                             }
                         ?>
                         
