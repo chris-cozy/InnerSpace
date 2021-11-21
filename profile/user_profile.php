@@ -95,7 +95,7 @@
 								echo "<span style= 'display: inline-block;'>
 										<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
 										<br>
-										<span>".$name."</span>
+										<span><a href='../media_content.php?mediaID='".$row['mediaID']."''>".$name."</a></span>
 									</span>";
 							}
 							$i++;
@@ -127,7 +127,7 @@
 								echo "<span style= 'display: inline-block;'>
 										<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
 										<br>
-										<span>".$name."</span>
+										<span><a href='../media_content.php?mediaID='".$row['mediaID']."''>".$name."</a></span>
 									</span>";
 							}
 							$i++;
@@ -159,7 +159,7 @@
 								echo "<span style= 'display: inline-block;'>
 										<img src='".$location."' width='200' alt='This image could not be displayed :/'/>
 										<br>
-										<span>".$name."</span>
+										<span><a href='../media_content.php?mediaID='".$row['mediaID']."''>".$name."</a></span>
 									</span>";
 							}
 							$i++;
