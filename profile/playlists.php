@@ -1,3 +1,8 @@
+<?php
+session_start();
+include 'connection.php'
+ ?>
+
 <!DOCTYPE html>
 <style>
     .text{
@@ -70,6 +75,27 @@
                 <h2> Playlists</h2>
                 <h3> Create Playlist</h3>
               </div>
+
+              <?php
+              $uid = $_SESSION['userID'];
+              $query = "SELECT * from user_playlists WHERE userID = '$uid'";
+              $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+
+              $numrows = mysqli_num_rows($result);
+
+              if($numrows == 0){
+                echo "You currently have no playlists";
+              }
+
+              else{
+              //looping through all the friends for the user
+              while($rows = mysqli_fetch_assoc($result)){
+                //using the join command to merge the table and get the information for the friends (username)
+                $playlistname = $rows['playlist_name'];
+                echo $playlistname;
+              }
+            }
+            ?>
 
             </section>
         </main>
