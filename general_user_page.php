@@ -67,7 +67,7 @@
 					$resultCheck = mysqli_num_rows($query);
 					if ($resultCheck > 0){
 						$row = mysqli_fetch_assoc($query);
-						if (isset($row['about_info'])){
+						if (isset($row['userID'])){
 							$about = $row['about_info'];
 							$subs = $row['subscriber_count'];
 						}
@@ -96,7 +96,7 @@
 						do{
 							$row = mysqli_fetch_assoc($fetchVideos);
 							if (isset($row['loc'])){
-								$location = $row['loc'];
+								$location = "profile/".$row['loc'];
 								$name = $row['title'];
 								echo "<span style= 'display: inline-block;'>
 										<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
@@ -128,7 +128,7 @@
 						do{
 							$row = mysqli_fetch_assoc($fetchVideos);
 							if (isset($row['loc'])){
-								$location = $row['loc'];
+								$location = "profile/".$row['loc'];
 								$name = $row['title'];
 								echo "<span style= 'display: inline-block;'>
 										<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
@@ -160,7 +160,7 @@
 						do{
 							$row = mysqli_fetch_assoc($fetchVideos);
 							if (isset($row['loc'])){
-								$location = $row['loc'];
+								$location = "profile/".$row['loc'];
 								$name = $row['title'];
 								echo "<span style= 'display: inline-block;'>
 										<img src='".$location."' width='200' alt='This image could not be displayed :/'/>

@@ -74,8 +74,11 @@
       $queryres = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
       $result = mysqli_fetch_array($queryres);
       $_SESSION['userID'] = $result['userID'];
+      $userID = $result['userID'];
+      $sql2 = "INSERT INTO account_info(userID) VALUES ('$userID');";
 
         if($conn->query($sql) == TRUE){
+          $conn->query($sql2);
           header('Location:MeTube.php');
           exit;
           echo "entered into database\n";

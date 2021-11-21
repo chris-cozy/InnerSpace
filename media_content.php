@@ -94,7 +94,7 @@
                                             <p>".$description."</p>
                                             <br>
                                             <p>Posted By: </p>
-                                            <a href='general_user_page.php?creatorID='".$creatorID."'?creatorUser='".$creator."''>".$creator."</a>
+                                            <a href='general_user_page.php?creatorID=".$creatorID."&creatorUser=".$creator."'>".$creator."</a>
                                         </span>
 									</span>";
                             }elseif($type=='audio'){
@@ -107,7 +107,7 @@
                                             <p>".$description."</p>
                                             <br>
                                             <p>Posted By: </p>
-                                            <a href='general_user_page.php?creatorID='".$creatorID."''>".$creator."</a>
+                                            <a href='general_user_page.php?creatorID=".$creatorID."&creatorUser=".$creator."'>".$creator."</a>
                                         </span>
 									</span>";
                             }elseif($type=='image'){
@@ -120,7 +120,7 @@
                                             <p>".$description."</p>
                                             <br>
                                             <p>Posted By: </p>
-                                            <a href='general_user_page.php?creatorID='".$creatorID."''>".$creator."</a>
+                                            <a href='general_user_page.php?creatorID=".$creatorID."&creatorUser=".$creator."'>".$creator."</a>
                                         </span>
 								    </span>";
                             }
