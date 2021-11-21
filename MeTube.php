@@ -4,6 +4,7 @@
 
 	if(isset($_POST['search'])){
 		$_SESSION['keyword'] = $_POST['key'];
+		header('location: search_results.php' );
 	}
 
 ?>
