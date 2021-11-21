@@ -95,7 +95,7 @@
 							echo "<span style= 'display: inline-block;'>
 									<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
 									<br>
-									<span>".$name."</span>
+									<span><a href='media_content.php?mediaID=<?php echo $row['mediaID']; ?>'>".$name."</a></span>
 								</span>";
 							$i++;
 						}
