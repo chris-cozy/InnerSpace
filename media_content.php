@@ -71,23 +71,57 @@
 							$location = "profile/".$row['loc'];
 							$name = $row['title'];
                             $type = $row['type'];
+                            $description = $row['description'];
+                            $creatorID = $row['userID'];
+                            $creator = "";
+
+                            $query = mysqli_query($conn, "SELECT * FROM user_info WHERE userID='$creatorID';") or die ("Query error".mysqli_error($conn)."\n");
+                            $resultCheck = mysqli_num_rows($query);
+
+					        if ($resultCheck > 0){
+                                $row = mysqli_fetch_assoc($query);
+						        if (isset($row['username'])){
+                                    $creator = $row['username'];
+                                }
+                            }
                             if($type=='video'){
                                 echo "<span style= 'display: inline-block;'>
 										<video src='".$location."' controls width='700px'>This video could not be displayed :/</video>
 										<br>
-										<span>".$name."</span>
+										<span style= 'display: inline-block;'>
+                                            <p>".$name."</p>
+                                            <br>
+                                            <p>".$description."</p>
+                                            <br>
+                                            <p>Posted By: </p>
+                                            <a href='general_user_page.php?creatorID='".$creatorID."'?creatorUser='".$creator."''>".$creator."</a>
+                                        </span>
 									</span>";
                             }elseif($type=='audio'){
                                 echo "<span style= 'display: inline-block;'>
 										<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
 										<br>
-										<span>".$name."</span>
+										<span style= 'display: inline-block;'>
+                                            <p>".$name."</p>
+                                            <br>
+                                            <p>".$description."</p>
+                                            <br>
+                                            <p>Posted By: </p>
+                                            <a href='general_user_page.php?creatorID='".$creatorID."''>".$creator."</a>
+                                        </span>
 									</span>";
                             }elseif($type=='image'){
                                 echo "<span style= 'display: inline-block;'>
 									    <img src='".$location."' width='700' alt='This image could not be displayed :/'/>
 									    <br>
-									    <span>".$name."</span>
+									    <span style= 'display: inline-block;'>
+                                            <p>".$name."</p>
+                                            <br>
+                                            <p>".$description."</p>
+                                            <br>
+                                            <p>Posted By: </p>
+                                            <a href='general_user_page.php?creatorID='".$creatorID."''>".$creator."</a>
+                                        </span>
 								    </span>";
                             }
                         }
