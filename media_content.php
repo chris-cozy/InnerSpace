@@ -124,6 +124,10 @@
                                         </span>
 								    </span>";
                             }
+                            //Handling downloads
+                            if(isset($_POST['dl'])){
+                                readfile($location.$name);
+                            }
                         }
 					}
                 ?>
@@ -165,7 +169,7 @@
                     }elseif(isset($_POST['unfav'])){
                         $query = "DELETE FROM media_favorited WHERE userID='$uid' AND mediaID='$mediaID';";
                         mysqli_query($conn,$query);
-                    } 
+                    }
                 ?>
                 <span style= 'display: inline-block;'>
                     <form method="POST" action="">
@@ -186,7 +190,7 @@
                                 echo "<input type='submit' value='Unfavorite' name='unfav'>";
                             }
                         ?>
-                        
+                        <input type='submit' value='Download' name='dl'>
                     </form>
                 </span>
                 <span>

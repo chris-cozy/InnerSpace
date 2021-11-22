@@ -20,6 +20,6 @@ a discussion topic, post a multimedia files, or post comments on discussion topi
 
 
 TO-DO:
-Design logic of Playlists
-Design playlist page
-Learn CSS to make all of the pages pretty
+DL files
+Favorite lists
+Messages
