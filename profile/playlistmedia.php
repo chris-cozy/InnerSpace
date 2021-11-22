@@ -56,30 +56,30 @@ include 'connection.php';
             <h3 class="text">*User's name here*</h3>
         </header>
         <main>
-            <section>
-				<div class="navbar">
-					<nav>
-						<ul class="text">
-							<li><a href="user_profile.php" >Media</a></li>
-							<li><a href="playlists.php" ><b>Playlists</b></a></li>
-							<li><a href="friends.php" >Friends</a></li>
-              <li><a href="about.php" >About</a></li>
-              <li><a href="user_profile.php" >Messages</a></li>
-						</ul>
-					</nav>
-				</div>
-			</section>
-            <hr>
-            <section>
-              <div class="text">
-                <h2> Playlists</h2>
-                <?php
-                  if(isset($_GET['pid'])){
-                    $pid = $_GET['pid'];
-                    $query = "SELECT * from media_playlists  WHERE playlistID = '$pid'";
-                    $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-                    $numrows = mysqli_num_rows($result);
-                    echo $pid;
+          <section>
+				    <div class="navbar">
+					    <nav>
+						    <ul class="text">
+							    <li><a href="user_profile.php" >Media</a></li>
+							    <li><a href="playlists.php" ><b>Playlists</b></a></li>
+							    <li><a href="friends.php" >Friends</a></li>
+                  <li><a href="about.php" >About</a></li>
+                  <li><a href="messages.php" >Messages</a></li>
+						    </ul>
+					    </nav>
+				    </div>
+			    </section>
+          <hr>
+          <section>
+            <div class="text">
+              <h2> Playlists</h2>
+              <?php
+                if(isset($_GET['pid'])){
+                  $pid = $_GET['pid'];
+                  $query = "SELECT * from media_playlists  WHERE playlistID = '$pid'";
+                  $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+                  $numrows = mysqli_num_rows($result);
+                  echo $pid;
                   if($numrows == 0){
                     echo "This playlist is empty";
                   }
@@ -116,15 +116,11 @@ include 'connection.php';
                             }
                         }
                       }while($row);
-                }
-              }
-            ?>
-              </div>
-
-
-
-
-            </section>
+                  }
+                } 
+              ?>
+            </div>
+          </section>
         </main>
     </body>
 </html>

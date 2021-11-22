@@ -67,57 +67,58 @@ include 'connection.php'
             <h3 class="text">*User's name here*</h3>
         </header>
         <main>
-            <section>
-				<div class="navbar">
-					<nav>
-						<ul class="text">
-							<li><a href="user_profile.php" >Media</a></li>
-							<li><a href="playlists.php" ><b>Playlists</b></a></li>
-							<li><a href="friends.php" >Friends</a></li>
-                            <li><a href="about.php" >About</a></li>
-                            <li><a href="user_profile.php" >Messages</a></li>
-						</ul>
-					</nav>
-				</div>
-			</section>
-            <hr>
-            <section>
-              <div class="playlist">
-                <h2> Playlists</h2>
+          <section>
+				    <div class="navbar">
+					    <nav>
+						    <ul class="text">
+							    <li><a href="user_profile.php" >Media</a></li>
+							    <li><a href="playlists.php" ><b>Playlists</b></a></li>
+							    <li><a href="friends.php" >Friends</a></li>
+                  <li><a href="about.php" >About</a></li>
+                  <li><a href="messages.php" >Messages</a></li>
+						    </ul>
+					    </nav>
+				    </div>
+			    </section>
+          <hr>
+          <section>
+            <div class="playlist">
+              <h2> Playlists</h2>
 
 
               <?php
-              $uid = $_SESSION['userID'];
-              $query = "SELECT * from user_playlists WHERE userID = '$uid'";
-              $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-              $numrows = mysqli_num_rows($result);
+                $uid = $_SESSION['userID'];
+                $query = "SELECT * from user_playlists WHERE userID = '$uid'";
+                $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+                $numrows = mysqli_num_rows($result);
 
-              if($numrows == 0){
-                echo "You currently have no playlists";
-              }
+                if($numrows == 0){
+                  echo "You currently have no playlists";
+                }
 
-              else{
-              //displaying all of the users playlists
-              while($rows = mysqli_fetch_assoc($result)){
-                $playlistname = $rows['playlist_name'];
-                $playlistID = $rows['playlistID'];
-                echo '<a href="playlistmedia.php?pid=$playlistID"> '.$playlistname.' </a>';
-              }
-            }
-            ?>
-          </div>
-            </section>
+                else{
+                //displaying all of the users playlists
+                  while($rows = mysqli_fetch_assoc($result)){
+                    $playlistname = $rows['playlist_name'];
+                    $playlistID = $rows['playlistID'];
+                    echo '<a href="playlistmedia.php?pid=$playlistID"> '.$playlistname.' </a>';
+                  }
+                }
+              ?>
+            </div>
+          </section>
 
-            <section>
-              <div class="playlistbar">
+          <section>
+            <div class="playlistbar">
               <h2 class='text'> Create Playlist</h2>
               <form action = "" method = "post">
                 <p>
-                  <label for "playlistname">Playlist Name </label><br>
-                    <input type="text" id = "playlistname" name = "playlistname"><br>
+                <label for "playlistname">Playlist Name </label><br>
+                <input type="text" id = "playlistname" name = "playlistname"><br>
 
-                    <input type="submit" value="Send" name="submit">
-                    <input type="reset">
+                <input type="submit" value="Send" name="submit">
+                <input type="reset">
+              </form>
             </div>
 
             <?php
@@ -134,7 +135,7 @@ include 'connection.php'
                 }
 
               }
-             ?>
+            ?>
         </main>
     </body>
 </html>

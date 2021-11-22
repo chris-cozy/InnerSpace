@@ -64,10 +64,10 @@
 					<nav>
 						<ul class="text">
 							<li><a href="user_profile.php">Media</a></li>
-							<li><a href="playlists.html" >Playlists</a></li>
-							<li><a href="friends.html" >Friends</a></li>
-                            <li><a href="about.html" ><b>About</b></a></li>
-                            <li><a href="user_profile.html" >Messages</a></li>
+							<li><a href="playlists.php" >Playlists</a></li>
+							<li><a href="friends.php" >Friends</a></li>
+                            <li><a href="about.php" ><b>About</b></a></li>
+                            <li><a href="messages.php" >Messages</a></li>
 						</ul>
 					</nav>
 				</div>
