@@ -48,6 +48,7 @@ include 'functions.php';
                 do{
                   $row = mysqli_fetch_assoc($result);
                   $mediaID = $row['mediaID'];
+
                   $query = "SELECT * from media WHERE mediaID = '$mediaID'";
                   $result2 = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
                   $row2=mysqli_fetch_assoc($result2);
@@ -60,37 +61,39 @@ include 'functions.php';
                         echo "<span style= 'display: inline-block;'>
                         <video src='".$location."' controls width='700px'>This video could not be displayed :/</video>
                         <br>
-                        <span><a href='../media_content.php?mediaID='".$row2['mediaID']."''>".$name."</a></span>
+                        <span><a href='../media_content.php?mediaID='".$mediaID."''>".$name."</a></span>
                         </span>";
                       }
                       elseif($type=='audio'){
                         echo "<span style= 'display: inline-block;'>
                         <audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
                         <br>
-                        <span><a href='../media_content.php?mediaID='".$row2['mediaID']."''>".$name."</a></span>
+                        <span><a href='../media_content.php?mediaID='".$mediaID."''>".$name."</a></span>
                         </span>";
                       }
                       elseif($type=='image'){
                         echo "<span style= 'display: inline-block;'>
                         <img src='".$location."' width='700' alt='This image could not be displayed :/'/>
                         <br>
-                        <span><a href='../media_content.php?mediaID='".$row2['mediaID']."''>".$name."</a></span>
+                        <span><a href='../media_content.php?mediaID='".$mediaID."''>".$name."</a></span>
                         </span>";
                       }
                   }
                   $i++;
-                }while($row2&& $i < $numrows2);
+                }while($row2 && $i < $numrows2);
               }
             }
           ?>
           <form>
             <for action="" method="post">
-            <button name="delete" type="submit">Delete</button>
+            <button name="delete" type="submit">Delete Playlist</button>
           </form>
 
           <?php
             if(isset($_POST['delete'])){
-              $query = "DELETE FROM media_playlists where playlistID ='$pid' and mediaID='$mediaID'";
+              $query = "DELETE FROM media_playlists where playlistID ='$pid';";
+              $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+              $query = "DELETE FROM user_playlists where playlistID ='$pid';";
               $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
               header("Location:playlistmedia.php");
             }
