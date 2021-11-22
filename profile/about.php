@@ -1,6 +1,7 @@
 <?php
 	session_start();
-	include_once 'connection.php'
+	include_once 'connection.php';
+	include 'functions.php';
 ?>
 <!DOCTYPE html>
 <style>
@@ -56,7 +57,10 @@
 				$uid = $_SESSION['userID'];
 
 			?>
-			<h3 class="text">About: <?php echo $uid ?></h3>
+			<h3 class="text">About: <?php 
+					$uid = $_SESSION['userID'];
+					getName($uid, $conn);
+				?></h3>
         </header>
         <main>
             <section>

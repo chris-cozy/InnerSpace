@@ -1,6 +1,7 @@
 <?php
 	session_start();
-	include_once 'connection.php'
+	include_once 'connection.php';
+	include 'functions.php';
 ?>
 <!DOCTYPE html>
 <style>
@@ -52,10 +53,12 @@
     <body style="background-color: rgb(42, 44, 44);">
         <header>
             <h2 class="text"><a href="../MeTube.php" class="text">MeTube<3</a></h2>
-            <h3 class="text"><?php echo $_SESSION['userID']; ?></h3>
-			<?php
-				echo $_SESSION['userID'];
-			?>
+            <h3 class="text">
+				<?php 
+					$uid = $_SESSION['userID'];
+					getName($uid, $conn);
+				?>
+			</h3>
         </header>
         <main>
             <section>

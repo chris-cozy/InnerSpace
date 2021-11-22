@@ -1,6 +1,6 @@
 <?php
 
-function getName($uid)
+function getName($uid, $conn)
 {
 	$query = mysqli_query($conn, "SELECT * FROM user_info WHERE userID='$uid';") or die ("Query error".mysqli_error($conn)."\n");
 	$results = mysqli_num_rows($query);
@@ -11,5 +11,5 @@ function getName($uid)
 			$username = $row['username'];
 		}
 	}
-	echo $username
+	echo $username;
 }
