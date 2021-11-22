@@ -45,7 +45,31 @@
 		align-items: center;
 	}
 </style>
-
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Metube: Profile</title>
+    </head>
+    <body style="background-color: rgb(42, 44, 44);">
+        <header>
+            <h2 class="text"><a href="MeTube.php" class="text">MeTube<3</a></h2>
+            <h3 class="text">*User's name here*</h3>
+        </header>
+        <main>
+            <section>
+				<div class="navbar">
+					<nav>
+						<ul class="text">
+							<li><a href="user_profile.php" >Media</a></li>
+							<li><a href="playlists.php" >Playlists</a></li>
+							<li><a href="friends.php" ><b>Friends</b></a></li>
+                            <li><a href="about.php" >About</a></li>
+                            <li><a href="messages.php" >Messages</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+            <hr>
 <!-- recieved messages-->
 <h2>Inbox</h2>
 <?php
@@ -59,19 +83,16 @@
 	else{
 		do{
 			$row = mysqli_fetch_assoc($result);
-			$senderID = $rows['senderID']; 
+			$senderID = $rows['senderID'];
 			$getsender = "SELECT username FROM users where userID = '$senderID'";
 			$senderresult = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
 			$row2 = mysqli_fetch_assoc($senderresult);
 			$senderusername = $row2['username'];
 			$message = $row['message'];
 			echo "From: '.$senderusername.'\n";
-			echo $message; 
+			echo $message;
 		}while($row);
 
 ?>
-<!-- sent messages --> 
+<!-- sent messages -->
 <h2> Outbox</h2>
-
-
-
