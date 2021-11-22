@@ -1,48 +1,7 @@
 <?php
-session_start();
-include 'connection.php';
- ?>
-
-<!DOCTYPE html>
-<style>
-    .text{
-                color: white;
-                font-family: monospace;
-                align-items: center;
-                text-decoration: none;
-        }
-        .logo{
-                color: white;
-                font-family: monospace;
-                font-size: 25px;
-                cursor: pointer;
-        }
-        .navbar{
-                width: 100%;
-                height: 15vh;
-                margin: auto;
-                display: flex;
-                align-items: center;
-        }
-        .headnav{
-                flex: 1;
-                padding-left: 100px;
-        }<?php
-session_start();
-include 'connection.php';
- ?>
-
-<!DOCTYPE html>
-<style>
-    .text{
-                color: white;
-                font-family: monospace;
-                align-items: center;
-                text-decoration: none;<?php
-session_start();
-include 'connection.php';
- ?>
-
+	session_start();
+	include'connection.php';
+?>
 <!DOCTYPE html>
 <style>
     .text{
