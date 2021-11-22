@@ -126,8 +126,17 @@ include 'connection.php'
                 <input type="text" id="playlistdelete" name="playlistdelete"><br>
 
                  <input type="submit" value="Send" name="submitdelete">
+		<input type="reset">
+
+		<h2 class='text'> Rename a Playlist</h2>
+		<label for "playlistold">What Playlist would you like to rename?</label><br>
+		<input type='text' id='playlistold' name="playlistold"><br>
+		<label for'playlistnew'>What new name?</label><br>
+		<input type='text' id='playlistnew'name="playlistnew"><br>
+		  <input type="submit" value="Send" name="submitrename">
                 <input type="reset">
 
+		
               </form>
            
             <?php
@@ -177,7 +186,39 @@ include 'connection.php'
 			 header("Location:playlists.php");
 			 }
 		 }
-?>
+?>	
+
+<?php
+		if(isset($_POST['submitrename'])){
+		       	$userID = $_SESSION['userID'];
+			$playlistname = $_POST['playlistold'];
+			$newplaylistname = $_POST['playlistnew'];
+
+			$query = "SELECT *  FROM user_playlists WHERE userID  = '$userID' and playlist_name = '$playlistname'";
+		        $result = mysqli_query($conn,$query) or die ("Query error ".mysqli_error($conn)."\n");
+		        $num_rows = mysqli_num_rows($result);
+		        if($num_rows == 0){
+				echo "Playlist $playlistname does not exist";
+			}
+			else{
+				 $row = mysqli_fetch_assoc($result);
+				 $playlistID = $row['playlistID'];
+				 $query = "SELECT *  FROM user_playlists WHERE userID  = '$userID' and playlist_name = '$newplaylistname'";
+				 $result = mysqli_query($conn,$query) or die ("Query error ".mysqli_error($conn)."\n");
+			       	$num_rows = mysqli_num_rows($result);
+				if($num_rows != 0){
+					echo "You already have a playlist called '.$newplaylistname.'";	
+				 }
+				else{
+					$query = "UPDATE user_playlists SET playlist_name = '$newplaylistname' where playlistID = '$playlistID'";
+					$result = mysqli_query($conn,$query) or die ("Query error ".mysqli_error($conn)."\n");
+					unset($_POST['submitrename']);
+					header("Location:playlists.php");
+				}
+			}
+		}
+	?>
+
         </main>
     </body>
 </html>
