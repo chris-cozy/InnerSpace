@@ -110,7 +110,7 @@ include 'connection.php'
 
             <section>
               <div class="playlistbar">
-              <h2> Create Playlist</h2>
+              <h2 class='text'> Create Playlist</h2>
               <form action = "" method = "post">
                 <p>
                   <label for "playlistname">Playlist Name </label><br>
@@ -134,10 +134,6 @@ include 'connection.php'
                 }
 
               }
-
-
-
-
              ?>
         </main>
     </body>

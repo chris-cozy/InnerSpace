@@ -169,6 +169,71 @@
 					?>
 				</div>
 			</section>
+			<br>
+			<hr>
+			<section>
+             <h2 class='text'>Favorites</h2>
+             <?php
+              $uid = $_SESSION['userID'];
+              $query = mysqli_query($conn, "SELECT * FROM media_favorited WHERE userID = '$uid';") or die ("Query error".mysqli_error($conn)."\n");
+
+              $resultCheck = mysqli_num_rows($query);
+              if ($resultCheck > 0){
+                do{
+                  $row = mysqli_fetch_assoc($query);
+                  if (isset($row['mediaID'])){
+                    $mediaID = $row['mediaID'];
+
+                    $query = mysqli_query($conn, "SELECT * FROM media WHERE mediaID='$mediaID';") or die ("Query error".mysqli_error($conn)."\n");
+                    $resultCheck = mysqli_num_rows($query);
+
+                    if ($resultCheck > 0){
+                      $row = mysqli_fetch_assoc($query);
+                      if (isset($row['loc'])){
+                        $location = $row['loc'];
+                        $name = $row['title'];
+                        $type = $row['type'];
+                        $description = $row['description'];
+                        $creatorID = $row['userID'];
+                        $creator = "";
+
+                        $query = mysqli_query($conn, "SELECT * FROM user_info WHERE userID='$creatorID';") or die ("Query error".mysqli_error($conn)."\n");
+                        $resultCheck = mysqli_num_rows($query);
+
+                        if ($resultCheck > 0){
+                          $row = mysqli_fetch_assoc($query);
+                          if (isset($row['username'])){
+                          $creator = $row['username'];
+                          }
+                        }
+                        if($type=='video'){
+                          echo "<span style= 'display: inline-block;'>
+										        <video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
+										        <br>
+										        <span><a href='media_content.php?mediaID='".$mediaID."''>".$name."</a></span>
+									          </span>";
+                        }elseif($type=='audio'){
+                          echo "<span style= 'display: inline-block;'>
+										        <audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
+										        <br>
+										        <span><a href='media_content.php?mediaID='".$mediaID."''>".$name."</a></span>
+								          	</span>";
+                        }elseif($type=='image'){
+                          echo "<span style= 'display: inline-block;'>
+										        <img src='".$location."' width='200' alt='This image could not be displayed :/'/>
+										        <br>
+										        <span><a href='media_content.php?mediaID=".$mediaID."'>".$name."</a></span>
+									          </span>";
+                        }
+                      }
+                    }
+                  }
+                }while($row);
+              }
+
+
+            ?>
+            </section>
         </main>
     </body>
 </html>

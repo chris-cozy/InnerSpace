@@ -3,12 +3,6 @@ metube__user
 p@ssword1
 
 PLAN (What we need):
-
-In the subscriptions page, display the 4 most recently uploaded media from anyone in their friends list
-    This one will be slightly more complicated. Will need to first select all of the user's friends, then append that list to media and sort to find their most recent videos
-Make an array containing all of the userID's of the current user's friends
-Select 4 recent medias from the media table who's userID's are present in the array
-
 On the playlist page, display a list of their playlists.  Clicking on a playlist name will navigate to the playlist media page
 
 
@@ -20,6 +14,4 @@ a discussion topic, post a multimedia files, or post comments on discussion topi
 
 
 TO-DO:
-DL files
-Favorite lists
 Messages
