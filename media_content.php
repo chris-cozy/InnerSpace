@@ -196,6 +196,14 @@
                         $query = "DELETE FROM media_favorited WHERE userID='$uid' AND mediaID='$mediaID';";
                         mysqli_query($conn,$query);
                     }
+                    
+                    //---HANDLING ADD TO PLAYLISTS---//
+                    if(isset($_POST['p_list'])){
+                        $p_id = $_POST['playlists'];
+                        $query = "INSERT INTO media_playlists (playlistID, mediaID) VALUES ('$p_id', '$mediaID');";
+                        mysqli_query($conn,$query);
+                    }
+
                 ?>
                 <span style= 'display: inline-block;'>
                     <form method="POST" action="">
@@ -209,14 +217,31 @@
                             }
                             //check if the user has favorited
                             $query = mysqli_query($conn, "SELECT * FROM media_favorited WHERE userID = '$uid' AND mediaID = '$mediaID';") or die ("Query error".mysqli_error($conn)."\n");
-					        $resultCheck = mysqli_num_rows($query);
-                            if($resultCheck == 0){
+					        $results = mysqli_num_rows($query);
+                            if($results == 0){
                                 echo "<input type='submit' value='Favorite' name='fav'>";
                             }else{
                                 echo "<input type='submit' value='Unfavorite' name='unfav'>";
                             }
                         ?>
                         <input type='submit' value='Download' name='dl'>
+                        <select name='playlists' id='playlists'>
+                            <?php
+                                $query = mysqli_query($conn, "SELECT * FROM user_playlists WHERE userID = '$uid';") or die ("Query error".mysqli_error($conn)."\n");
+                                $results = mysqli_num_rows($query);
+                                if($results > 0){
+                                    do{
+                                        $row = mysqli_fetch_assoc($query);
+                                        if (isset($row['playlistID'])){
+                                            $p_name = $row['playlist_name'];
+                                            $p_id = $row['playlistID'];
+                                            echo "<option value='".$p_id."'>".$p_name."</option>";
+                                        }
+                                    }while($row);
+                                }
+                            ?>
+                        </select>
+                        <input type='submit' value='Add to Playlist' name='p_list'>
                     </form>
                 </span>
                 <span>
