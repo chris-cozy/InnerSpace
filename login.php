@@ -50,9 +50,9 @@
 </head>
 
 <body style="background-color: rgb(42, 44, 44);">
-  <p> Please login with your username and password</p>
+  <p class='text'> Please login with your username and password</p>
 
-  <form action = "" method = "post">
+  <form action = "" method = "post" class='text'>
     <p>
       <label for "username">Username: </label><br>
         <input type="text" id = "username" name = "username"><br>
@@ -63,7 +63,7 @@
 <input type="submit" value="Send" name="submit">
 <input type="reset">
 
-<p> Don't have an account? Sign up  <a href = "signup.php"> here </a>
+<p class='text'>Don't have an account? Sign up  <a href = "signup.php"> here </a>
 </p>
 </form>
 </body>

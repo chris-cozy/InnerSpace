@@ -88,39 +88,39 @@
                                 echo "<span style= 'display: inline-block;'>
 										<video src='".$location."' controls width='700px'>This video could not be displayed :/</video>
 										<br>
-										<span style= 'display: inline-block;'>
+										<span style= 'display: inline-block;' class='text'>
                                             <p>".$name."</p>
-                                            <br>
                                             <p>".$description."</p>
                                             <br>
-                                            <p>Posted By: </p>
-                                            <a href='general_user_page.php?creatorID=".$creatorID."&creatorUser=".$creator."'>".$creator."</a>
+                                            <p>Posted By: 
+                                                <a href='general_user_page.php?creatorID=".$creatorID."&creatorUser=".$creator."' class='text'>".$creator."</a>
+                                            </p>
                                         </span>
 									</span>";
                             }elseif($type=='audio'){
                                 echo "<span style= 'display: inline-block;'>
 										<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
 										<br>
-										<span style= 'display: inline-block;'>
+										<span style= 'display: inline-block;' class='text'>
                                             <p>".$name."</p>
-                                            <br>
                                             <p>".$description."</p>
                                             <br>
-                                            <p>Posted By: </p>
-                                            <a href='general_user_page.php?creatorID=".$creatorID."&creatorUser=".$creator."'>".$creator."</a>
+                                            <p>Posted By: 
+                                                <a href='general_user_page.php?creatorID=".$creatorID."&creatorUser=".$creator."' class='text'>".$creator."</a>
+                                            </p>
                                         </span>
 									</span>";
                             }elseif($type=='image'){
                                 echo "<span style= 'display: inline-block;'>
 									    <img src='".$location."' width='700' alt='This image could not be displayed :/'/>
 									    <br>
-									    <span style= 'display: inline-block;'>
+									    <span style= 'display: inline-block;' class='text'>
                                             <p>".$name."</p>
-                                            <br>
                                             <p>".$description."</p>
                                             <br>
-                                            <p>Posted By: </p>
-                                            <a href='general_user_page.php?creatorID=".$creatorID."&creatorUser=".$creator."'>".$creator."</a>
+                                            <p>Posted By: 
+                                                <a href='general_user_page.php?creatorID=".$creatorID."&creatorUser=".$creator."' class='text'>".$creator."</a>
+                                            </p>
                                         </span>
 								    </span>";
                             }
@@ -206,7 +206,7 @@
 
                 ?>
                 <span style= 'display: inline-block;'>
-                    <form method="POST" action="">
+                    <form method="POST" action="" class='text'>
                         <input name="LD" type="radio" id="like" value="LIKE"/>
                         <label for="like">LIKE :)</label><br>
                         <input name="LD" type="radio" id="dislike" value="DISLIKE"/>
@@ -245,14 +245,14 @@
                     </form>
                 </span>
                 <span>
-                    <p>Likes: 
+                    <p class='text'>Likes: 
                     <?php
                         $query = mysqli_query($conn, "SELECT * FROM media_likes WHERE mediaID = '$mediaID';") or die ("Query error".mysqli_error($conn)."\n");
                         $resultCheck = mysqli_num_rows($query);
                         echo $resultCheck;
                     ?>
                     </p>
-                    <p>Dislikes: 
+                    <p class='text'>Dislikes: 
                     <?php
                         $query = mysqli_query($conn, "SELECT * FROM media_dislikes WHERE mediaID = '$mediaID';") or die ("Query error".mysqli_error($conn)."\n");
                         $resultCheck = mysqli_num_rows($query);
@@ -282,7 +282,7 @@
                                         $username = $row2['username'];
                                     }
                                 }
-                                echo "<p>".$comment." - ".$username."</p>";
+                                echo "<p class='text'>".$comment." - ".$username."</p>";
                                 $i++;
     
                             }while($row && $i < 20 && $i < $resultCheck);

@@ -62,9 +62,9 @@
 						<ul class="text">
 							<li><a href="user_profile.php" >Media</a></li>
 							<li><a href="playlists.php" >Playlists</a></li>
-							<li><a href="friends.php" ><b>Friends</b></a></li>
+							<li><a href="friends.php" >Friends</a></li>
                             <li><a href="about.php" >About</a></li>
-                            <li><a href="messages.php" >Messages</a></li>
+                            <li><a href="messages.php" ><b>Messages<b></a></li>
 						</ul>
 					</nav>
 				</div>
@@ -101,6 +101,7 @@
 	
 	}
 ?>
+<hr>
 <!-- messages that have been sent-->
 <h2> Outbox </h2>
 <?php
@@ -131,9 +132,9 @@
 	}
 ?>
 </div>
-
-<h2> Send a message </h2>
-<form action="" method="post">
+<hr>
+<h2 class='text'> Send a message </h2>
+<form action="" method="post" class='text'>
 	<label for="username"> To: </label>
 	<input type="text" id="username" name="username" required><br>
 	

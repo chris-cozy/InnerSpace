@@ -74,8 +74,8 @@ include 'connection.php'
 							    <li><a href="user_profile.php" >Media</a></li>
 							    <li><a href="playlists.php" ><b>Playlists</b></a></li>
 							    <li><a href="friends.php" >Friends</a></li>
-                  <li><a href="about.php" >About</a></li>
-                  <li><a href="messages.php" >Messages</a></li>
+                  				<li><a href="about.php" >About</a></li>
+                  				<li><a href="messages.php" >Messages</a></li>
 						    </ul>
 					    </nav>
 				    </div>
@@ -83,7 +83,7 @@ include 'connection.php'
           <hr>
           <section>
             <div class="playlist">
-              <h2> Playlists</h2>
+              <h2 class='text'> Playlists</h2>
 
 
               <?php
@@ -102,7 +102,7 @@ include 'connection.php'
                     $playlistname = $rows['playlist_name'];
 		    $playlistID = $rows['playlistID'];
 		    echo "<br>";
-		    echo '<a href="playlistmedia.php?pid='.$playlistID.'"> '.$playlistname.' </a>';
+		    echo "<a href='playlistmedia.php?pid='".$playlistID."' class='text'> ".$playlistname." </a>";
 		    echo "<br>";
                   }
                 }
@@ -115,23 +115,23 @@ include 'connection.php'
               <h2 class='text'> Create Playlist</h2>
               <form action = "" method = "post">
                 <p>
-                <label for "playlistname">Playlist Name </label><br>
+                <label for "playlistname" class='text'>Playlist Name </label><br>
                 <input type="text" id = "playlistname" name = "playlistname"><br>
 
                 <input type="submit" value="Send" name="submit">
 		<input type="reset">
 
 		<h2 class='text'> Delete a Playlist</h2>
-		<label for "playlistdelete">What Playlist would you like to delete?</label><br>
+		<label for "playlistdelete" class='text'>What Playlist would you like to delete?</label><br>
                 <input type="text" id="playlistdelete" name="playlistdelete"><br>
 
                  <input type="submit" value="Send" name="submitdelete">
 		<input type="reset">
 
 		<h2 class='text'> Rename a Playlist</h2>
-		<label for "playlistold">What Playlist would you like to rename?</label><br>
+		<label for "playlistold" class='text'>What Playlist would you like to rename?</label><br>
 		<input type='text' id='playlistold' name="playlistold"><br>
-		<label for'playlistnew'>What new name?</label><br>
+		<label for'playlistnew' class='text'>What new name?</label><br>
 		<input type='text' id='playlistnew'name="playlistnew"><br>
 		  <input type="submit" value="Send" name="submitrename">
                 <input type="reset">
