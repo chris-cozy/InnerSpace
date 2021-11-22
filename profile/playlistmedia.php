@@ -6,121 +6,224 @@ include 'connection.php';
 <!DOCTYPE html>
 <style>
     .text{
-		color: white;
-		font-family: monospace;
-		align-items: center;
-		text-decoration: none;
-	}
-	.logo{
-		color: white;
-		font-family: monospace;
-		font-size: 25px;
-		cursor: pointer;
-	}
-	.navbar{
-		width: 100%;
-		height: 15vh;
-		margin: auto;
-		display: flex;
-		align-items: center;
-	}
-	.headnav{
-		flex: 1;
-		padding-left: 100px;
-	}
-	nav ul li{
-		display: inline-block;
-		list-style: none;
-		margin: 0px 60px;
-	}
-	nav ul li a{
-		text-decoration: none;
-		color: rgb(255, 255, 255);
-		text-align: center;
-	}
-	.profile{
-		display: inline-block;
-		color: white;
-		margin: auto;
-		align-items: center;
-	}
-</style>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Metube: Profile</title>
-    </head>
-    <body style="background-color: rgb(42, 44, 44);">
-        <header>
-            <h2 class="text"><a href="MeTube.php" class="text">MeTube<3</a></h2>
-            <h3 class="text">*User's name here*</h3>
-        </header>
-        <main>
-          <section>
-				    <div class="navbar">
-					    <nav>
-						    <ul class="text">
-							    <li><a href="user_profile.php" >Media</a></li>
-							    <li><a href="playlists.php" ><b>Playlists</b></a></li>
-							    <li><a href="friends.php" >Friends</a></li>
-                  <li><a href="about.php" >About</a></li>
-                  <li><a href="messages.php" >Messages</a></li>
-						    </ul>
-					    </nav>
-				    </div>
-			    </section>
-          <hr>
-          <section>
-            <div class="text">
-              <h2> Playlists</h2>
-              <?php
-                if(isset($_GET['pid'])){
-                  $pid = $_GET['pid'];
-                  $query = "SELECT * from media_playlists  WHERE playlistID = '$pid'";
-                  $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-                  $numrows = mysqli_num_rows($result);
-                  echo $pid;
-                  if($numrows == 0){
-                    echo "This playlist is empty";
+                color: white;
+                font-family: monospace;
+                align-items: center;
+                text-decoration: none;
+        }
+        .logo{
+                color: white;
+                font-family: monospace;
+                font-size: 25px;
+                cursor: pointer;
+        }
+        .navbar{
+                width: 100%;
+                height: 15vh;
+                margin: auto;
+                display: flex;
+                align-items: center;
+        }
+        .headnav{
+                flex: 1;
+                padding-left: 100px;
+        }<?php
+session_start();
+include 'connection.php';
+ ?>
+
+<!DOCTYPE html>
+<style>
+    .text{
+                color: white;
+                font-family: monospace;
+                align-items: center;
+                text-decoration: none;<?php
+session_start();
+include 'connection.php';
+ ?>
+
+<!DOCTYPE html>
+<style>
+    .text{
+                color: white;
+                font-family: monospace;
+                align-items: center;
+                text-decoration: none;
+        }
+        .logo{
+                color: white;
+                font-family: monospace;
+                font-size: 25px;
+                cursor: pointer;
+        }
+        .logo{
+                color: white;
+                font-family: monospace;
+                font-size: 25px;
+                cursor: pointer;
+        }
+        .navbar{
+                width: 100%;
+                height: 15vh;
+                margin: auto;
+        nav ul li{
+                display: inline-block;
+                list-style: none;
+                margin: 0px 60px;
+        }
+        nav ul li a{
+          text-decoration: none;
+                          color: rgb(255, 255, 255);
+                          text-align: center;
                   }
-                  else{
-                    do{
-                      $row = mysqli_fetch_assoc($result);
-                      $mediaID = $row['mediaID'];
-                      $query = "SELECT * from media WHERE mediaID = '$mediaID'";
-                      $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-                      if (isset($row['loc'])){
-                        $location = "profile/".$row['loc'];
-                        $name = $row['title'];
-                            $type = $row['type'];
-                            if($type=='video'){
-                              echo "<span style= 'display: inline-block;'>
-                              <video src='".$location."' controls width='700px'>This video could not be displayed :/</video>
-                              <br>
-                              <span>".$name."</span>
-                          </span>";
-                            }
-                            elseif($type=='audio'){
-                              echo "<span style= 'display: inline-block;'>
-                              <audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
-                              <br>
-                              <span>".$name."</span>
-                              </span>";
-                            }
-                            elseif($type=='image'){
-                              echo "<span style= 'display: inline-block;'>
-                              <img src='".$location."' width='700' alt='This image could not be displayed :/'/>
-                              <br>
-                              <span>".$name."</span>
-                            </span>";
-                            }
-                        }
-                      }while($row);
+                  .profile{
+                          display: inline-block;
+                          color: white;
+                          margin: auto;
+                          align-items: center;
                   }
-                } 
-              ?>
-            </div>
-          </section>
-        </main>
-    </body>
+          </style>
+          <html>
+              <head>
+                  <meta charset="UTF-8">
+                  <title>Metube: Profile</title>
+              </head>
+              <body style="background-color: rgb(42, 44, 44);">
+                  <header>
+                      <h2 class="text"><a href="MeTube.php" class="text">MeTube<3</a></h2>
+                      <h3 class="text">*User's name here*</h3>
+                  </header>
+                  <main>
+                    <section>
+                                              <div class="navbar">
+                                                      <nav>
+                                                              <ul class="text">
+                                                                      <li><a href="user_profile.php" >Media</a></li>
+                                                                      <li><a href="playlists.php" ><b>Playlists</b></a></li>
+                                                                      <li><a href="friends.php" >Friends</a></li>
+                                                                      <li><a href="about.php" >About</a></li>
+                                                                                       <li><a href="messages.php" >Messages</a></li>
+                                                                                                                         </ul>
+                                                                                                                 </nav>
+                                                                                                         </div>
+                                                                                                 </section>
+                                                                               <hr>
+                                                                               <section>
+                                                                                 <div class="text">
+                                                                                   <h2> Playlists</h2>
+
+
+                                                                                   <?php
+                                                                                             $i = 0;
+                                                                                             if(isset($_GET['pid'])){
+                                                                                               $pid = $_GET['pid'];
+                                                                                               $query = "SELECT * from media_playlists  WHERE playlistID = '$pid'";
+                                                                                               $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+                                                                                               $numrows = mysqli_num_rows($result);
+                                                                                               if($numrows == 0){
+                                                                                                 echo "This playlist is empty";
+                                                                                               }
+                                                                                               else{
+
+                                                                                                 do{
+                                                                                                   $row = mysqli_fetch_assoc($result);
+                                                                                                   $mediaID = $row['mediaID'];
+                                                                                                   $query = "SELECT * from media WHERE mediaID = '$mediaID'";
+                                                                                                   $result2 = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+                                                                                                   $row2=mysqli_fetch_assoc($result2);
+                                                                                                   $numrows2 = mysqli_num_rows($result2);
+                                                                                                   if (isset($row2['loc'])){
+                                                                                                     $location = "profile/".$row2['loc'];
+                                                                                                     $name = $row2['title'];
+                                                                                                     $type = $row2['type'];
+              if($type=='video'){
+                echo "<span style= 'display: inline-block;'>
+                <video src='".$location."' controls width='700px'>This video could not be displayed :/</video>
+                <br>
+                <span><a href='../media_content.php?mediaID='".$row2['mediaID']."''>".$name."</a></span>
+            </span>";
+              }
+              elseif($type=='audio'){
+                echo "<span style= 'display: inline-block;'>
+                <audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
+                <br>
+                <span><a href='../media_content.php?mediaID='".$row2['mediaID']."''>".$name."</a></span>
+
+                </span>";
+              }
+              elseif($type=='image'){
+                echo "<span style= 'display: inline-block;'>
+                <img src='".$location."' width='700' alt='This image could not be displayed :/'/>
+                <br>
+                <span><a href='../media_content.php?mediaID='".$row2['mediaID']."''>".$name."</a></span>
+
+              </span>";
+              }
+        }
+        $i++;
+?>
+<form>
+<for action="" method="post">
+<button name="delete" type="submit">Delete</button>
+</form>
+<?php
+
+}while($row2&& $i < $numrows2);
+}
+}
+?>
+
+<?php
+if(isset($_POST['delete'])){
+  $query = "DELETE FROM media_playlists where playlistID ='$pid' and mediaID='$mediaID'";
+   $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+  header("Location:playlistmedia.php");
+}
+?>
+
+</div>
+</section>
+</main>
+</body>
+</html>
+              <br>
+                <span><a href='../media_content.php?mediaID='".$row2['mediaID']."''>".$name."</a></span>
+
+                </span>";
+              }
+              elseif($type=='image'){
+                echo "<span style= 'display: inline-block;'>
+                <img src='".$location."' width='700' alt='This image could not be displayed :/'/>
+                <br>
+                <span><a href='../media_content.php?mediaID='".$row2['mediaID']."''>".$name."</a></span>
+
+              </span>";
+              }
+        }
+        $i++;
+?>
+<form>
+<for action="" method="post">
+<button name="delete" type="submit">Delete</button>
+</form>
+<?php
+
+}while($row2&& $i < $numrows2);
+}
+}
+?>
+
+<?php
+if(isset($_POST['delete'])){
+  $query = "DELETE FROM media_playlists where playlistID ='$pid' and mediaID='$mediaID'";
+   $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+  header("Location:playlistmedia.php");
+}
+?>
+
+</div>
+</section>
+</main>
+</body>
 </html>
