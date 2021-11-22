@@ -126,7 +126,33 @@
                             }
                             //Handling downloads
                             if(isset($_POST['dl'])){
-                                readfile($location.$name);
+                            
+                                //Clear the cache
+                                clearstatcache();
+
+                                //Check the file path exists or not
+                                if(file_exists($location)) {
+
+                                //Define header information
+                                header('Content-Description: File Transfer');
+                                header('Content-Type: application/octet-stream');
+                                header('Content-Disposition: attachment; filename="'.basename($location).'"');
+                                header('Content-Length: ' . filesize($location));
+                                header('Pragma: public');
+
+                                //Clear system output buffer
+                                flush();
+
+                                //Read the size of the file
+                                readfile($location,true);
+
+                                //Terminate from the script
+                                die();
+                                }
+                                else{
+                                echo "File path does not exist.";
+                                }
+                                echo "File path is not defined.";
                             }
                         }
 					}
