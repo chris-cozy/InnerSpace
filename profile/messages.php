@@ -132,6 +132,51 @@
 	}
 ?>
 </div>
+
+<h2> Send a message </h2>
+<form action="" method="post">
+	<label for="username"> To: </label>
+	<input type="text" id="username" name="username" required><br>
+	
+	<br>
+	<label for="message"> Message: </label><br>
+	<input type="text" id="message" name="message" required><br>
+
+	<input type="submit" value="submit" name="submit"><br>
+	<input type="reset"><br>
+
+</form>
 </main>
 </body>
-</html>
+
+<?php
+	if(isset($_POST['submit'])){
+		$sendto = $_POST['username'];
+		$message = $_POST['message'];
+
+		$query = "SELECT * from user_info WHERE username = '$sendto'";
+	        $result =  mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+		$num_rows = mysqli_num_rows($result);
+
+		if($num_rows == 0){
+			echo "no user with that username exists";
+		}
+		else{
+			$row = mysqli_fetch_assoc($result);
+			$receiverID = $row['userID'];
+			$senderID = $_SESSION['userID'];
+
+			$query = "INSERT INTO messages(senderID, receiverID, message) VALUES ('$senderID','$receiverID','$message')";
+		       	$result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+			unset($_POST['submit']);
+				header("Location:messages.php"); 
+			
+			
+
+	}
+}
+?>
+</html>			
+
+
+
