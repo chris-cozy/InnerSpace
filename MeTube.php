@@ -72,10 +72,11 @@
 						<ul class="text">
 							<li><a href="MeTube.php">Home</a></li>
 							<?php
+								//If the user is logged in, echo the user's options. If not, give the option to log in
 								if (isset($_SESSION['userID'])){
 									echo "<li><a href='subscriptions.html'>Subscriptions</a></li>
-									<li><a href='./profile/user_profile.php'>Your Profile</a></li>";
-									echo "<li><a href = 'signout.php'>Sign Out</a></li>";
+											<li><a href='./profile/user_profile.php'>Your Profile</a></li>
+											<li><a href = 'signout.php'>Sign Out</a></li>";
 
 								}else{
 									echo "<li><a href='login.php'>Login</a></li>";
