@@ -84,38 +84,38 @@ include 'connection.php';
                     echo "This playlist is empty";
                   }
                   else{
-                do{
-                  $row = mysqli_fetch_assoc($result)
-                  $mediaID = $row['mediaID'];
-                  $query = "SELECT * from media WHERE mediaID = '$mediaID'";
-                  $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-                  if (isset($row['loc'])){
-                    $location = "profile/".$row['loc'];
-                    $name = $row['title'];
-                        $type = $row['type'];
-                        if($type=='video'){
-                          echo "<span style= 'display: inline-block;'>
-                          <video src='".$location."' controls width='700px'>This video could not be displayed :/</video>
-                          <br>
-                          <span>".$name."</span>
-                      </span>";
-                        }
-                        elseif($type=='audio'){
-                          echo "<span style= 'display: inline-block;'>
-                          <audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
-                          <br>
-                          <span>".$name."</span>
+                    do{
+                      $row = mysqli_fetch_assoc($result)
+                      $mediaID = $row['mediaID'];
+                      $query = "SELECT * from media WHERE mediaID = '$mediaID'";
+                      $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+                      if (isset($row['loc'])){
+                        $location = "profile/".$row['loc'];
+                        $name = $row['title'];
+                            $type = $row['type'];
+                            if($type=='video'){
+                              echo "<span style= 'display: inline-block;'>
+                              <video src='".$location."' controls width='700px'>This video could not be displayed :/</video>
+                              <br>
+                              <span>".$name."</span>
                           </span>";
+                            }
+                            elseif($type=='audio'){
+                              echo "<span style= 'display: inline-block;'>
+                              <audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
+                              <br>
+                              <span>".$name."</span>
+                              </span>";
+                            }
+                            elseif($type=='image'){
+                              echo "<span style= 'display: inline-block;'>
+                              <img src='".$location."' width='700' alt='This image could not be displayed :/'/>
+                              <br>
+                              <span>".$name."</span>
+                            </span>";
+                            }
                         }
-                        elseif($type=='image'){
-                          echo "<span style= 'display: inline-block;'>
-                          <img src='".$location."' width='700' alt='This image could not be displayed :/'/>
-                          <br>
-                          <span>".$name."</span>
-                        </span>";
-                        }
-                    }
-                  }while($row);
+                      }while($row);
                 }
               }
             ?>
