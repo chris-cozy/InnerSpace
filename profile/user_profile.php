@@ -66,7 +66,6 @@
 							<li><a href="./playlists.php" >Playlists</a></li>
 							<li><a href="./friends.php" >Friends</a></li>
                             <li><a href="./about.php" >About</a></li>
-                            <li><a href="user_profile.php" >Messages</a></li>
 							<li><a href="updateprofile.php">Update Profile</a></li>
 							<li><a href="upload.php">Upload</a></li>
 							<li><a href="messages.php">Messages</a></li>
@@ -80,16 +79,17 @@
 				<h2 class="text">Your Videos</h2>
 				<div>
 					<?php
+					//Initialize media counter
 					$i = 0;
+					//Set user id variable
 					$uid = $_SESSION['userID'];
-					//WATCH PREPARED STATEMENTS VIDEO
-					$extensions_arr = array("mp4","avi","3gp","mov","mpeg");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'video' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-
-					$resultCheck = mysqli_num_rows($fetchVideos);
-					if ($resultCheck > 0){
+					$query = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'video' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$results = mysqli_num_rows($query);
+					//Check if there are valid rows
+					if ($results > 0){
 						do{
-							$row = mysqli_fetch_assoc($fetchVideos);
+							//Display media
+							$row = mysqli_fetch_assoc($query);
 							if (isset($row['loc'])){
 								$location = $row['loc'];
 								$name = $row['title'];
@@ -100,8 +100,7 @@
 									</span>";
 							}
 							$i++;
-
-						}while($row && $i < 4 && $i < $resultCheck);
+						}while($row && $i < 5);
 					}
 					?>
 				</div>
@@ -113,15 +112,17 @@
 				<h2 class="text">Your Audio</h2>
 				<div>
 					<?php
-					$uid = $_SESSION['userID'];
+					//Initialize media counter
 					$i = 0;
-					$extensions_arr = array("mp3");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'audio' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-
-					$resultCheck = mysqli_num_rows($fetchVideos);
-					if ($resultCheck > 0){
+					//Set user id variable
+					$uid = $_SESSION['userID'];
+					$query = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'audio' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$results = mysqli_num_rows($query);
+					//Check if there are valid rows
+					if ($results > 0){
 						do{
-							$row = mysqli_fetch_assoc($fetchVideos);
+							//Display media
+							$row = mysqli_fetch_assoc($query);
 							if (isset($row['loc'])){
 								$location = $row['loc'];
 								$name = $row['title'];
@@ -132,7 +133,7 @@
 									</span>";
 							}
 							$i++;
-						}while($row && $i < 4 && $i < $resultCheck);
+						}while($row && $i < 5);
 					}
 					?>
 				</div>
@@ -144,16 +145,17 @@
 				<h2 class="text">Your Images</h2>
 				<div>
 					<?php
-					$uid = $_SESSION['userID'];
+					//Initialize media counter
 					$i = 0;
-					$extensions_arr = array("jpg","png");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'image' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-
-					$resultCheck = mysqli_num_rows($fetchVideos);
-
-					if ($resultCheck > 0){
+					//Set user id variable
+					$uid = $_SESSION['userID'];
+					$query = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'image' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$results= mysqli_num_rows($query);
+					//Check if there are valid rows
+					if ($results > 0){
 						do{
-							$row = mysqli_fetch_assoc($fetchVideos);
+							//Display media
+							$row = mysqli_fetch_assoc($query);
 							if (isset($row['loc'])){
 								$location = $row['loc'];
 								$name = $row['title'];
@@ -164,8 +166,7 @@
 									</span>";
 							}
 							$i++;
-
-						}while($row && $i < 4 && $i < $resultCheck);
+						}while($row && $i < 5);
 					}
 					?>
 				</div>
@@ -175,20 +176,20 @@
 			<section>
              <h2 class='text'>Favorites</h2>
              <?php
+			 //Set user id variable
               $uid = $_SESSION['userID'];
               $query = mysqli_query($conn, "SELECT * FROM media_favorited WHERE userID = '$uid';") or die ("Query error".mysqli_error($conn)."\n");
-
-              $resultCheck = mysqli_num_rows($query);
-              if ($resultCheck > 0){
+              $results = mysqli_num_rows($query);
+              if ($results > 0){
                 do{
                   $row = mysqli_fetch_assoc($query);
                   if (isset($row['mediaID'])){
                     $mediaID = $row['mediaID'];
 
                     $query = mysqli_query($conn, "SELECT * FROM media WHERE mediaID='$mediaID';") or die ("Query error".mysqli_error($conn)."\n");
-                    $resultCheck = mysqli_num_rows($query);
+                    $results = mysqli_num_rows($query);
 
-                    if ($resultCheck > 0){
+                    if ($results > 0){
                       $row = mysqli_fetch_assoc($query);
                       if (isset($row['loc'])){
                         $location = $row['loc'];
@@ -199,9 +200,9 @@
                         $creator = "";
 
                         $query = mysqli_query($conn, "SELECT * FROM user_info WHERE userID='$creatorID';") or die ("Query error".mysqli_error($conn)."\n");
-                        $resultCheck = mysqli_num_rows($query);
+                        $results = mysqli_num_rows($query);
 
-                        if ($resultCheck > 0){
+                        if ($results > 0){
                           $row = mysqli_fetch_assoc($query);
                           if (isset($row['username'])){
                           $creator = $row['username'];
@@ -231,8 +232,6 @@
                   }
                 }while($row);
               }
-
-
             ?>
             </section>
         </main>

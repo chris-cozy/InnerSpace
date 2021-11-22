@@ -13,4 +13,3 @@
     }
 
     header("Location: media_content.php?mediaID=$mediaID");
-?>

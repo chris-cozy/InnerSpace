@@ -1,20 +1,60 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
-
+<style>
+	.text{
+		color: white;
+		font-family: monospace;
+		align-items: center;
+		text-decoration: none;
+	}
+	.logo{
+		color: white;
+		font-family: monospace;
+		font-size: 25px;
+		cursor: pointer;
+	}
+	.navbar{
+		width: 100%;
+		height: 15vh;
+		margin: auto;
+		display: flex;
+		align-items: center;
+	}
+	.headnav{
+		flex: 1;
+		padding-left: 100px;
+	}
+	nav ul li{
+		display: inline-block;
+		list-style: none;
+		margin: 0px 60px;
+	}
+	nav ul li a{
+		text-decoration: none;
+		color: rgb(255, 255, 255);
+		text-align: center;
+	}
+	.profile{
+		display: inline-block;
+		color: white;
+		margin: auto;
+		align-items: center;
+	}
+</style>
 <html>
 <head>
   <title> Metube Sign Up</title>
 </head>
 
-<body>
+<body  style="background-color: rgb(42, 44, 44);">
+  <h2 class="text">SIGN UP</h2>
   <form action="" method="post">
-    <p>
-        <label for="username">Please Select a Username: </label><br>
-        <input type="text" id = "username" name = "username" required><br>
-        <label for="password">Please Select a Password: </label><br>
-        <input type="password" id="password" name="password" required><br>
+      <label for="username">Please Select a Username: </label><br>
+      <input type="text" id = "username" name = "username" required><br>
+      <label for="password">Please Select a Password: </label><br>
+      <input type="password" id="password" name="password" required><br>
 
-      <p>Please Select Your Gender:</p><br>
+      <h3>Please Select Your Gender:</h3><br>
       <input type="radio" id="female" name="gender" value="Female" required>
       <label for="female">Female</label><br>
 

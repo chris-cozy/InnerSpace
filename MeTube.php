@@ -74,9 +74,8 @@
 							<?php
 								//If the user is logged in, echo the user's options. If not, give the option to log in
 								if (isset($_SESSION['userID'])){
-									echo "<li><a href='subscriptions.html'>Subscriptions</a></li>
-											<li><a href='./profile/user_profile.php'>Your Profile</a></li>
-											<li><a href = 'signout.php'>Sign Out</a></li>";
+									echo "<li><a href='./profile/user_profile.php'>Your Profile</a></li>
+										<li><a href = 'signout.php'>Sign Out</a></li>";
 
 								}else{
 									echo "<li><a href='login.php'>Login</a></li>";
@@ -92,27 +91,28 @@
 				<!--Display recent uploaded videos-->
 				<div>
 					<?php
+					//Initialize counter
 					$i = 0;
-					//WATCH PREPARED STATEMENTS VIDEO
-					$extensions_arr = array("mp4","avi","3gp","mov","mpeg");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'video' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-
-					$resultCheck = mysqli_num_rows($fetchVideos);
-					if ($resultCheck > 0){
+					//Query to grab recent videos
+					$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'video' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$results = mysqli_num_rows($query);
+					//Check if there are any videos
+					if ($results > 0){
+						//Output the most recent 5
 						do{
-							$row = mysqli_fetch_assoc($fetchVideos);
+							$row = mysqli_fetch_assoc($query);
 							if (isset($row['loc'])){
 								$location = "profile/".$row['loc'];
 								$name = $row['title'];
 								echo "<span style= 'display: inline-block;'>
 										<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
 										<br>
-										<span><a href='media_content.php?mediaID='".$row['mediaID']."''>".$name."</a></span>
+										<span class='text'><a href='media_content.php?mediaID='".$row['mediaID']."''>".$name."</a></span>
 									</span>";
 							}
 							$i++;
 
-						}while($row && $i < 4 && $i < $resultCheck);
+						}while($row && $i < 5);
 					}
 					?>
 				</div>
@@ -124,25 +124,27 @@
 				<h2 class="text">Recommended Audio</h2>
 				<div>
 					<?php
+					//Initialize counter
 					$i = 0;
-					$extensions_arr = array("mp3");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'audio' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-
-					$resultCheck = mysqli_num_rows($fetchVideos);
-					if ($resultCheck > 0){
+					//Query to grab recent audio
+					$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'audio' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$results = mysqli_num_rows($query);
+					//Check if there are any videos
+					if ($results > 0){
 						do{
-							$row = mysqli_fetch_assoc($fetchVideos);
+							//Output the most recent 5
+							$row = mysqli_fetch_assoc($query);
 							if (isset($row['loc'])){
 								$location = "profile/".$row['loc'];
 								$name = $row['title'];
 								echo "<span style= 'display: inline-block;'>
 										<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
 										<br>
-										<span><a href='media_content.php?mediaID='".$row['mediaID']."''>".$name."</a></span>
+										<span class='text'><a href='media_content.php?mediaID='".$row['mediaID']."''>".$name."</a></span>
 									</span>";
 							}
 							$i++;
-						}while($row && $i < 4 && $i < $resultCheck);
+						}while($row && $i < 5);
 					}
 					?>
 				</div>
@@ -154,27 +156,27 @@
 				<h2 class="text">Recommended Images</h2>
 				<div>
 					<?php
+					//Initialize counter
 					$i = 0;
-					$extensions_arr = array("jpg","png");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'image' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-
-					$resultCheck = mysqli_num_rows($fetchVideos);
-
-					if ($resultCheck > 0){
+					//Query to grab recent images
+					$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'image' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+					$results = mysqli_num_rows($query);
+					//Check if there are any videos
+					if ($results > 0){
 						do{
-							$row = mysqli_fetch_assoc($fetchVideos);
+							//Output the most recent 5
+							$row = mysqli_fetch_assoc($query);
 							if (isset($row['loc'])){
 								$location = "profile/".$row['loc'];
 								$name = $row['title'];
 								echo "<span style= 'display: inline-block;'>
 										<img src='".$location."' width='200' alt='This image could not be displayed :/'/>
 										<br>
-										<span><a href='media_content.php?mediaID=".$row['mediaID']."'>".$name."</a></span>
+										<span class='text'><a href='media_content.php?mediaID=".$row['mediaID']."'>".$name."</a></span>
 									</span>";
 							}
 							$i++;
-
-						}while($row && $i < 4 && $i < $resultCheck);
+						}while($row && $i < 5);
 					}
 					?>
 				</div>
