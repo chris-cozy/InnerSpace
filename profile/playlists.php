@@ -100,11 +100,13 @@ include 'connection.php'
                 //displaying all of the users playlists
                   while($rows = mysqli_fetch_assoc($result)){
                     $playlistname = $rows['playlist_name'];
-                    $playlistID = $rows['playlistID'];
-                    echo '<a href="playlistmedia.php?pid=$playlistID"> '.$playlistname.' </a>';
+		    $playlistID = $rows['playlistID'];
+		    echo "<br>";
+		    echo '<a href="playlistmedia.php?pid='.$playlistID.'"> '.$playlistname.' </a>';
+		    echo "<br>";
                   }
                 }
-              ?>
+?>
             </div>
           </section>
 
@@ -117,25 +119,106 @@ include 'connection.php'
                 <input type="text" id = "playlistname" name = "playlistname"><br>
 
                 <input type="submit" value="Send" name="submit">
-                <input type="reset">
-              </form>
-            </div>
+		<input type="reset">
 
+		<h2 class='text'> Delete a Playlist</h2>
+		<label for "playlistdelete">What Playlist would you like to delete?</label><br>
+                <input type="text" id="playlistdelete" name="playlistdelete"><br>
+
+                 <input type="submit" value="Send" name="submitdelete">
+		<input type="reset">
+
+		<h2 class='text'> Rename a Playlist</h2>
+		<label for "playlistold">What Playlist would you like to rename?</label><br>
+		<input type='text' id='playlistold' name="playlistold"><br>
+		<label for'playlistnew'>What new name?</label><br>
+		<input type='text' id='playlistnew'name="playlistnew"><br>
+		  <input type="submit" value="Send" name="submitrename">
+                <input type="reset">
+
+		
+              </form>
+           
             <?php
               //adding the new playlist to the database
-              if(isset($_POST['playlistname'])){
+              if(isset($_POST['submit'])){
                 $userID = $_SESSION['userID'];
                 $playlistname = $_POST['playlistname'];
-
+		
+		$query = "SELECT *  FROM user_playlists WHERE userID  = '$userID' and playlist_name = '$playlistname'";
+	         $result = mysqli_query($conn,$query) or die ("Query error ".mysqli_error($conn)."\n");
+	        $num_rows = mysqli_num_rows($result);
+	        if($num_rows != 0){
+			echo "You already have a playlist by that name";
+		 }
+		else{
                 $query = "INSERT INTO user_playlists(userID, playlist_name) VALUES ('$userID', '$playlistname')";
                 $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+		unset($_POST['submit']);
+		header("location:playlists.php");
+		}
+	      }
+?>
+	<?php
+		if(isset($_POST['submitdelete'])){
+		       	$userID = $_SESSION['userID'];
+			 $playlistname = $_POST['playlistdelete'];
+					
+			 $query = "SELECT *  FROM user_playlists WHERE userID  = '$userID' and playlist_name = '$playlistname'";
+		       	 $result = mysqli_query($conn,$query) or die ("Query error ".mysqli_error($conn)."\n");
+			 $num_rows = mysqli_num_rows($result);
+			 if($num_rows == 0){
+				 echo "You do not have any playlists by that name";
+	                 }
+			 else{
+			 $query = "SELECT * FROM user_playlists WHERE userID = '$userID' and playlist_name='$playlistname'";
+			 $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+			 $row = mysqli_fetch_assoc($result);
+			 $playlistID = $row['playlistID'];
 
-                if($conn->query($sql) == TRUE){
-                  echo "Playlist '.$playlistname.' Created";
-                }
+			 $query = "DELETE FROM user_playlists where userID='$userID' and playlistID='$playlistID'";
+			 $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+				
+			 $query = "DELETE FROM media_playlists where  playlistID='$playlistID'";
+			 $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+			
+			 unset($_POST['submitdelete']);
+			 header("Location:playlists.php");
+			 }
+		 }
+?>	
 
-              }
-            ?>
+<?php
+		if(isset($_POST['submitrename'])){
+		       	$userID = $_SESSION['userID'];
+			$playlistname = $_POST['playlistold'];
+			$newplaylistname = $_POST['playlistnew'];
+
+			$query = "SELECT *  FROM user_playlists WHERE userID  = '$userID' and playlist_name = '$playlistname'";
+		        $result = mysqli_query($conn,$query) or die ("Query error ".mysqli_error($conn)."\n");
+		        $num_rows = mysqli_num_rows($result);
+		        if($num_rows == 0){
+				echo "Playlist $playlistname does not exist";
+			}
+			else{
+				 $row = mysqli_fetch_assoc($result);
+				 $playlistID = $row['playlistID'];
+				 $query = "SELECT *  FROM user_playlists WHERE userID  = '$userID' and playlist_name = '$newplaylistname'";
+				 $result = mysqli_query($conn,$query) or die ("Query error ".mysqli_error($conn)."\n");
+			       	$num_rows = mysqli_num_rows($result);
+				if($num_rows != 0){
+					echo "You already have a playlist called '.$newplaylistname.'";	
+				 }
+				else{
+					$query = "UPDATE user_playlists SET playlist_name = '$newplaylistname' where playlistID = '$playlistID'";
+					$result = mysqli_query($conn,$query) or die ("Query error ".mysqli_error($conn)."\n");
+					unset($_POST['submitrename']);
+					header("Location:playlists.php");
+				}
+			}
+		}
+	?>
+
         </main>
     </body>
 </html>
