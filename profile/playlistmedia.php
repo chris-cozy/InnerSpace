@@ -82,62 +82,21 @@ include 'functions.php';
                 }while($row2&& $i < $numrows2);
               }
             }
-        ?>
-<form>
-<for action="" method="post">
-<button name="delete" type="submit">Delete</button>
-</form>
+          ?>
+          <form>
+            <for action="" method="post">
+            <button name="delete" type="submit">Delete</button>
+          </form>
 
-<?php
-if(isset($_POST['delete'])){
-  $query = "DELETE FROM media_playlists where playlistID ='$pid' and mediaID='$mediaID'";
-   $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-  header("Location:playlistmedia.php");
-}
-?>
-
-</div>
-</section>
-</main>
-</body>
-</html>
-              <br>
-                <span><a href='../media_content.php?mediaID='".$row2['mediaID']."''>".$name."</a></span>
-
-                </span>";
-              }
-              elseif($type=='image'){
-                echo "<span style= 'display: inline-block;'>
-                <img src='".$location."' width='700' alt='This image could not be displayed :/'/>
-                <br>
-                <span><a href='../media_content.php?mediaID='".$row2['mediaID']."''>".$name."</a></span>
-
-              </span>";
-              }
-        }
-        $i++;
-?>
-<form>
-<for action="" method="post">
-<button name="delete" type="submit">Delete</button>
-</form>
-<?php
-
-}while($row2&& $i < $numrows2);
-}
-}
-?>
-
-<?php
-if(isset($_POST['delete'])){
-  $query = "DELETE FROM media_playlists where playlistID ='$pid' and mediaID='$mediaID'";
-   $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-  header("Location:playlistmedia.php");
-}
-?>
-
-</div>
-</section>
-</main>
-</body>
+          <?php
+            if(isset($_POST['delete'])){
+              $query = "DELETE FROM media_playlists where playlistID ='$pid' and mediaID='$mediaID'";
+              $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+              header("Location:playlistmedia.php");
+            }
+          ?>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
