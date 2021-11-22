@@ -85,7 +85,7 @@ include 'connection.php';
                   }
                   else{
                     do{
-                      $row = mysqli_fetch_assoc($result)
+                      $row = mysqli_fetch_assoc($result);
                       $mediaID = $row['mediaID'];
                       $query = "SELECT * from media WHERE mediaID = '$mediaID'";
                       $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");

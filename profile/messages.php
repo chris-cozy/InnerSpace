@@ -95,11 +95,10 @@
 			echo "From: $senderusername\n";
 			echo "<br>";
 		        echo $message;
-		        echo "<br>";
-                        echo'<a href="messagereply.php?"> Reply</a>';
 			echo "<br>";
 			}
 		}while($row);
+	
 	}
 ?>
 <!-- messages that have been sent-->

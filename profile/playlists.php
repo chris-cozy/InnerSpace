@@ -100,11 +100,13 @@ include 'connection.php'
                 //displaying all of the users playlists
                   while($rows = mysqli_fetch_assoc($result)){
                     $playlistname = $rows['playlist_name'];
-                    $playlistID = $rows['playlistID'];
-                    echo '<a href="playlistmedia.php?pid=$playlistID"> '.$playlistname.' </a>';
+		    $playlistID = $rows['playlistID'];
+		    echo "<br>";
+		    echo '<a href="playlistmedia.php?pid='.$playlistID.'"> '.$playlistname.' </a>';
+		    echo "<br>";
                   }
                 }
-              ?>
+?>
             </div>
           </section>
 
@@ -126,15 +128,20 @@ include 'connection.php'
               if(isset($_POST['playlistname'])){
                 $userID = $_SESSION['userID'];
                 $playlistname = $_POST['playlistname'];
-
+		
+		$query = "SELECT *  FROM user_playlists WHERE userID  = '$userID' and playlist_name = '$playlistname'";
+	         $result = mysqli_query($conn,$query) or die ("Query error ".mysqli_error($conn)."\n");
+	        $num_rows = mysqli_num_rows($result);
+	        if($num_rows != 0){
+			echo "You already have a playlist by that name";
+		 }
+		else{
                 $query = "INSERT INTO user_playlists(userID, playlist_name) VALUES ('$userID', '$playlistname')";
                 $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-
-                if($conn->query($sql) == TRUE){
-                  echo "Playlist '.$playlistname.' Created";
-                }
-
-              }
+		unset($_POST['playlistname']);
+		header("location:playlists.php");
+		}
+	      }
             ?>
         </main>
     </body>
