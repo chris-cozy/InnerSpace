@@ -85,15 +85,20 @@
 	else{
 		do{
 			$row = mysqli_fetch_assoc($result);
-			$senderID = $rows['senderID'];
-			$getsender = "SELECT username FROM users where userID = '$senderID'";
-			$senderresult = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+			if(!empty($row)){
+			$senderID = $row['senderID'];
+			$getsender = "SELECT username FROM user_info where userID = '$senderID'";
+			$senderresult = mysqli_query($conn,$getsender) or die ("Query error".mysqli_error($conn)."\n");
 			$row2 = mysqli_fetch_assoc($senderresult);
 			$senderusername = $row2['username'];
 			$message = $row['message'];
-			echo "From: '.$senderusername.'\n";
-			echo $message;
-			echo'<a href="messagereply.php"> Reply</a>';
+			echo "From: $senderusername\n";
+			echo "<br>";
+		        echo $message;
+		        echo "<br>";
+                        echo'<a href="messagereply.php?"> Reply</a>';
+			echo "<br>";
+			}
 		}while($row);
 	}
 ?>
@@ -111,15 +116,18 @@
 	else{
 		do{
 			$row = mysqli_fetch_assoc($result);
-			$recieverID = $rows['receiverID'];
-			$getreceiver = "SELECT username from users WHERE userID = '$receiverID'";	
-			$receiverresult = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+			if(!empty($row)){
+			$receiverID = $row['receiverID'];
+			$getreceiver = "SELECT username from user_info  WHERE userID = '$receiverID'";	
+			$receiverresult = mysqli_query($conn,$getreceiver) or die ("Query error".mysqli_error($conn)."\n");
 			$row2 = mysqli_fetch_assoc($receiverresult);
 			$receiverusername = $row2['username'];
 			$message = $row['message'];
-			echo "To: '.$receiverusername.'\n";
+			echo "To: $receiverusername";
+			echo "<br>";
 			echo $message;
-
+			echo "<br>";
+			}
 		}while($row);
 	}
 ?>
