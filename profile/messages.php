@@ -71,15 +71,17 @@
 			</section>
             <hr>
 <!-- recieved messages-->
+<div class="text">
 <h2>Inbox</h2>
 <?php
 	$userID = $_SESSION['userID'];
-	$query = "SELECT * FROM messages where receiver = '$userID'";
+	$query = "SELECT * FROM messages where receiverID = '$userID'";
        	$result =  mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
 	$num_rows = mysqli_num_rows($result);
 
 	if($num_rows == 0){
 		echo "You currently have no messages in your inbox";
+	}
 	else{
 		do{
 			$row = mysqli_fetch_assoc($result);
@@ -91,8 +93,37 @@
 			$message = $row['message'];
 			echo "From: '.$senderusername.'\n";
 			echo $message;
+			echo'<a href="messagereply.php"> Reply</a>';
 		}while($row);
-
+	}
 ?>
-<!-- sent messages -->
-<h2> Outbox</h2>
+<!-- messages that have been sent-->
+<h2> Outbox </h2>
+<?php
+	$userID = $_SESSION['userID'];
+	$query = "SELECT * FROM messages where senderID = '$userID'";
+	$result =  mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+	$num_rows = mysqli_num_rows($result);
+
+	if($num_rows == 0){
+		echo "You have not sent any messges";
+	}
+	else{
+		do{
+			$row = mysqli_fetch_assoc($result);
+			$recieverID = $rows['receiverID'];
+			$getreceiver = "SELECT username from users WHERE userID = '$receiverID'";	
+			$receiverresult = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+			$row2 = mysqli_fetch_assoc($receiverresult);
+			$receiverusername = $row2['username'];
+			$message = $row['message'];
+			echo "To: '.$receiverusername.'\n";
+			echo $message;
+
+		}while($row);
+	}
+?>
+</div>
+</main>
+</body>
+</html>

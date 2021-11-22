@@ -69,6 +69,7 @@
                             <li><a href="user_profile.php" >Messages</a></li>
 							<li><a href="updateprofile.php">Update Profile</a></li>
 							<li><a href="upload.php">Upload</a></li>
+							<li><a href="messages.php">Messages</a></li>
 						</ul>
 					</nav>
 				</div>
