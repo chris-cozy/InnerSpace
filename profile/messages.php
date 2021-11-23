@@ -38,8 +38,8 @@
 			</section>
             <hr>
 			<section>
-				<!-- recieved messages-->
-				<div class="text">
+					<!-- recieved messages-->
+					<div class="text">
 					<h2>Inbox</h2>
 					<?php
 						$userID = $_SESSION['userID'];
@@ -54,17 +54,32 @@
 							do{
 								$row = mysqli_fetch_assoc($result);
 								if(!empty($row)){
-								$senderID = $row['senderID'];
-								$getsender = "SELECT username FROM user_info where userID = '$senderID'";
-								$senderresult = mysqli_query($conn,$getsender) or die ("Query error".mysqli_error($conn)."\n");
-								$row2 = mysqli_fetch_assoc($senderresult);
-								$senderusername = $row2['username'];
-								$message = $row['message'];
-								echo "From: $senderusername\n";
-								echo "<br>";
+									$senderID = $row['senderID'];
+									$getsender = "SELECT username FROM user_info where userID = '$senderID'";
+									$senderresult = mysqli_query($conn,$getsender) or die ("Query error".mysqli_error($conn)."\n");
+									$row2 = mysqli_fetch_assoc($senderresult);
+									$senderusername = $row2['username'];
+									$message = $row['message'];
+									$messageID = $row['messageID'];
+									echo "From: $senderusername\n";
+									echo "<br>";
 									echo $message;
-								echo "<br>";
-								}
+									echo "<br>";
+									
+									$query = "SELECT * FROM messages where messageID = '$messageID'";
+									$result =  mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+									$row2 = mysqli_fetch_assoc($result);
+									$replied = $row2['reply'];
+									$reply_message = $row2['reply_message'];	
+									if($replied == 1){
+										echo "You Replied: $reply_message";
+										echo "<br>";
+									}
+									else{
+										echo"<a href='messagereply.php?msgID=$messageID'> Reply</a>";
+										echo "<br>";
+									}
+								}	
 							}while($row);
 						
 						}
@@ -77,6 +92,7 @@
 						$query = "SELECT * FROM messages where senderID = '$userID'";
 						$result =  mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
 						$num_rows = mysqli_num_rows($result);
+
 
 						if($num_rows == 0){
 							echo "You have not sent any messges";
@@ -99,7 +115,7 @@
 							}while($row);
 						}
 					?>
-				</div>
+					</div>
 			</section>
 			<section>
 				<hr>
