@@ -39,8 +39,8 @@ include 'functions.php';
               <h2 class='text'> Playlists</h2>
 
 
-              <?php
-                $uid = $_SESSION['userID'];
+            <?php
+            	$uid = $_SESSION['userID'];
                 $query = "SELECT * from user_playlists WHERE userID = '$uid'";
                 $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
                 $numrows = mysqli_num_rows($result);
@@ -53,13 +53,13 @@ include 'functions.php';
                 //displaying all of the users playlists
                   while($rows = mysqli_fetch_assoc($result)){
                     $playlistname = $rows['playlist_name'];
-		    $playlistID = $rows['playlistID'];
-		    echo "<br>";
-		    echo "<a href='playlistmedia.php?pid='".$playlistID."' class='text'> ".$playlistname." </a>";
-		    echo "<br>";
+		    		$playlistID = $rows['playlistID'];
+		   			echo "<br>";
+		    		echo "<a href='playlistmedia.php?pid=".$playlistID."&pname=".$playlistname."' class='text'> ".$playlistname." </a>";
+		    		echo "<br>";
                   }
                 }
-?>
+			?>
             </div>
           </section>
 

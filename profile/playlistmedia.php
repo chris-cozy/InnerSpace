@@ -13,7 +13,10 @@ include 'functions.php';
   <body style="background-color: rgb(42, 44, 44);">
     <header>
       <h2 class="text"><a href="MeTube.php" class="text">MeTube<3</a></h2>
-      <h3 class="text">*User's name here*</h3>
+      <h3 class="text"><?php 
+					$uid = $_SESSION['userID'];
+					getName($uid, $conn);
+				?></h3>
     </header>
     <main>
       <section>
@@ -32,7 +35,10 @@ include 'functions.php';
       <hr>
       <section>
         <div class="text">
-          <h2> Playlists</h2>
+          <h2> Playlist:  
+            <?php
+              echo $_GET['pname'];
+            ?></h2>
           <?php
             $i = 0;
             if(isset($_GET['pid'])){
@@ -54,7 +60,7 @@ include 'functions.php';
                   $row2=mysqli_fetch_assoc($result2);
                   $numrows2 = mysqli_num_rows($result2);
                   if (isset($row2['loc'])){
-                    $location = "profile/".$row2['loc'];
+                    $location = $row2['loc'];
                     $name = $row2['title'];
                     $type = $row2['type'];
 
@@ -84,13 +90,8 @@ include 'functions.php';
                 }while($row2 && $i < $numrows2);
               }
             }
-          ?>
-          <form>
-            <for action="" method="post">
-            <button name="delete" type="submit">Delete Playlist</button>
-          </form>
-
-          <?php
+            
+            //---HANDLES PLAYLIST DELETION---//
             if(isset($_POST['delete'])){
               $query = "DELETE FROM media_playlists where playlistID ='$pid';";
               $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
@@ -99,6 +100,10 @@ include 'functions.php';
               header("Location:playlists.php");
             }
           ?>
+          <form>
+            <for action="" method="post">
+            <button name="delete" type="submit">Delete Playlist</button>
+          </form>
         </div>
       </section>
     </main>
