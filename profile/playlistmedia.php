@@ -96,7 +96,7 @@ include 'functions.php';
               $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
               $query = "DELETE FROM user_playlists where playlistID ='$pid';";
               $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-              header("Location:playlistmedia.php");
+              header("Location:playlists.php");
             }
           ?>
         </div>
