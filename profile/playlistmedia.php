@@ -66,23 +66,23 @@ include 'functions.php';
 
                     if($type=='video'){
                       echo "<span style= 'display: inline-block;'>
-                      <video src='".$location."' controls width='700px'>This video could not be displayed :/</video>
+                      <video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
                       <br>
-                      <span><a href='../media_content.php?mediaID='".$mediaID."''>".$name."</a></span>
+                      <span><a href='../media_content.php?mediaID='".$mediaID."'' class='text'>".$name."</a></span>
                       </span>";
                     }
                     elseif($type=='audio'){
                       echo "<span style= 'display: inline-block;'>
                       <audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
                       <br>
-                      <span><a href='../media_content.php?mediaID='".$mediaID."''>".$name."</a></span>
+                      <span><a href='../media_content.php?mediaID='".$mediaID."'' class='text'>".$name."</a></span>
                       </span>";
                     }
                     elseif($type=='image'){
                       echo "<span style= 'display: inline-block;'>
-                      <img src='".$location."' width='700' alt='This image could not be displayed :/'/>
+                      <img src='".$location."' width='200' alt='This image could not be displayed :/'/>
                       <br>
-                      <span><a href='../media_content.php?mediaID='".$mediaID."''>".$name."</a></span>
+                      <span><a href='../media_content.php?mediaID='".$mediaID."'' class='text'>".$name."</a></span>
                       </span>";
                     }
                   }
