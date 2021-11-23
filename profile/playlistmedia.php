@@ -101,8 +101,7 @@ include 'functions.php';
               header("Location:playlists.php");
             }
           ?>
-          <form>
-            <for action="" method="post">
+          <form action="" method="post">
             <button name="delete" type="submit">Delete Playlist</button>
           </form>
         </div>
