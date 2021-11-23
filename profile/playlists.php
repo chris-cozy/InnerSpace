@@ -46,7 +46,7 @@ include 'functions.php';
                 $numrows = mysqli_num_rows($result);
 
                 if($numrows == 0){
-                  echo "You currently have no playlists";
+                  echo "<p class='text'>You currently have no playlists</p>";
                 }
 
                 else{
