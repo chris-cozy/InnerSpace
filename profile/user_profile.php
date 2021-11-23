@@ -57,7 +57,7 @@
 								$location = $row['loc'];
 								$name = $row['title'];
 								echo "<span style= 'display: inline-block;'>
-										<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
+										<video src='".$location."' controls width='200px' class='content' >This video could not be displayed :/</video>
 										<br>
 										<span><a href='../media_content.php?mediaID='".$row['mediaID']."'' class='text'>".$name."</a></span>
 									</span>";
@@ -90,7 +90,7 @@
 								$location = $row['loc'];
 								$name = $row['title'];
 								echo "<span style= 'display: inline-block;'>
-										<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
+										<audio src='".$location."' controls type='audio/mpeg' class='content' >This audio could not be displayed :/</audio>
 										<br>
 										<span><a href='../media_content.php?mediaID='".$row['mediaID']."'' class='text'>".$name."</a></span>
 									</span>";
@@ -123,7 +123,7 @@
 								$location = $row['loc'];
 								$name = $row['title'];
 								echo "<span style= 'display: inline-block;'>
-										<img src='".$location."' width='200' alt='This image could not be displayed :/'/>
+										<img src='".$location."' width='200' class='content' alt='This image could not be displayed :/'/>
 										<br>
 										<span><a href='../media_content.php?mediaID='".$row['mediaID']."'' class='text'>".$name."</a></span>
 									</span>";
@@ -173,19 +173,19 @@
                         }
                         if($type=='video'){
                           echo "<span style= 'display: inline-block;'>
-										        <video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
+										        <video src='".$location."' controls width='200px' class='content' >This video could not be displayed :/</video>
 										        <br>
 										        <span><a href='../media_content.php?mediaID='".$mediaID."'' class='text'>".$name."</a></span>
 									          </span>";
                         }elseif($type=='audio'){
                           echo "<span style= 'display: inline-block;'>
-										        <audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
+										        <audio src='".$location."' controls type='audio/mpeg' class='content' >This audio could not be displayed :/</audio>
 										        <br>
 										        <span><a href='../media_content.php?mediaID='".$mediaID."'' class='text'>".$name."</a></span>
 								          	</span>";
                         }elseif($type=='image'){
                           echo "<span style= 'display: inline-block;'>
-										        <img src='".$location."' width='200' alt='This image could not be displayed :/'/>
+										        <img src='".$location."' width='200' class='content' alt='This image could not be displayed :/'/>
 										        <br>
 										        <span><a href='../media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
 									          </span>";

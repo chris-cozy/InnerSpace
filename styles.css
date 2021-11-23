@@ -40,3 +40,7 @@ nav ul li a{
 body{
     background-color: rgb(42, 44, 44);
 }
+.content{
+    border: 2px white;
+    margin: 30px;
+}
