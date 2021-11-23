@@ -66,7 +66,7 @@
 			$result =  mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
 			$row2 = mysqli_fetch_assoc($result);
 			$replied = $row2['reply'];
-			
+			$reply_message = $row2['reply_message'];	
 			if($replied == 1){
 				echo "You Replied: $reply_message";
 				echo "<br>";
