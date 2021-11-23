@@ -44,7 +44,7 @@
                 	$numrows = mysqli_num_rows($result);
 
                 	if($numrows == 0){
-                  	echo "You have no friends";
+                  	echo "<p class='text'>You have no friends</p>";
                 	}
 
                 	else{
@@ -55,7 +55,7 @@
                  	 		$query = "SELECT username from user_info WHERE userID = '$friendID'";
                  	 		$result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
                  	 		$row = mysqli_fetch_assoc($result);
-				 	 		echo $row['username'];
+				 	 		echo "<p class='text'>".$row['username']."</p><br>";
                 		}
               		}
                 ?>
