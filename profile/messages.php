@@ -61,18 +61,20 @@
 			echo "<br>";
 		        echo $message;
 			echo "<br>";
-			}
+			
 			$query = "SELECT * FROM messages where messageID = '$messageID'";
 			$result =  mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
 			$row2 = mysqli_fetch_assoc($result);
-			$replied = $row['reply'];
+			$replied = $row2['reply'];
 			
 			if($replied == 1){
 				echo "You Replied: $reply_message";
 				echo "<br>";
 			}
 			else{
-				echo"<a href='messagereply.php?msgID='.$messageID.''> Reply</a>";
+				echo"<a href='messagereply.php?msgID=$messageID'> Reply</a>";
+				echo "<br>";
+			}
 			}	
 		}while($row);
 	
