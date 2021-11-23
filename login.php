@@ -13,7 +13,6 @@
   <p class='text'> Please login with your username and password</p>
 
   <form action = "" method = "post" class='text'>
-    <p>
       <label for "username">Username: </label><br>
         <input type="text" id = "username" name = "username"><br>
 
@@ -23,8 +22,8 @@
 <input type="submit" value="Send" name="submit">
 <input type="reset">
 
-<p class='text'>Don't have an account? Sign up  <a href = "signup.php"> here </a>
-</p>
+<p class='text'>Don't have an account? Sign up <a href='signup.php' class='text'>here</a></p>
+
 </form>
 </body>
 </html>

@@ -30,14 +30,15 @@
 						if (isset($row['userID'])){
 							$about = $row['about_info'];
 							$subs = $row['subscriber_count'];
+							echo "<h4 class='text'>ABOUT</h4>
+								<br>
+								<p class='text'>".$about."</p>
+								<br>
+								<h4 class='text'>Subscribers: ".$subs."</h4>";
 						}
 					}
-					echo "<h4 class='text'>ABOUT</h4>
-							<br>
-							<p>".$about."</p>
-							<br>
-							<h4 class='text'>Subscribers: ".$subs."</h4>";
-					//---HANDLING FAVORITED---//
+					
+					//---HANDLING FRIENDS---//
                     if(isset($_POST['fri'])){
                         $query = "INSERT INTO user_friends (userID, friendID) VALUES ('$uid', '$creatorID');";
                         mysqli_query($conn,$query);
@@ -73,7 +74,6 @@
 					$i = 0;
 					$creatorID = $_GET['creatorID'];
 					//WATCH PREPARED STATEMENTS VIDEO
-					$extensions_arr = array("mp4","avi","3gp","mov","mpeg");
 					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$creatorID' AND type = 'video' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
 					$resultCheck = mysqli_num_rows($fetchVideos);
@@ -83,15 +83,16 @@
 							if (isset($row['loc'])){
 								$location = "profile/".$row['loc'];
 								$name = $row['title'];
+								$mediaID = $row['mediaID'];
 								echo "<span style= 'display: inline-block;'>
 										<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
 										<br>
-										<span><a href='../media_content.php?mediaID='".$row['mediaID']."''>".$name."</a></span>
+										<span><a href='../media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
 									</span>";
 							}
 							$i++;
 
-						}while($row && $i < 4 && $i < $resultCheck);
+						}while($row && $i < 5);
 					}
 					?>
 				</div>
@@ -105,7 +106,7 @@
 					<?php
 					$creatorID = $_GET['creatorID'];
 					$i = 0;
-					$extensions_arr = array("mp3");
+
 					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$creatorID' AND type = 'audio' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
 					$resultCheck = mysqli_num_rows($fetchVideos);
@@ -115,14 +116,15 @@
 							if (isset($row['loc'])){
 								$location = "profile/".$row['loc'];
 								$name = $row['title'];
+								$mediaID = $row['mediaID'];
 								echo "<span style= 'display: inline-block;'>
 										<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
 										<br>
-										<span><a href='../media_content.php?mediaID='".$row['mediaID']."''>".$name."</a></span>
+										<span><a href='../media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
 									</span>";
 							}
 							$i++;
-						}while($row && $i < 4 && $i < $resultCheck);
+						}while($row && $i < 5);
 					}
 					?>
 				</div>
@@ -136,7 +138,7 @@
 					<?php
 					$creatorID = $_GET['creatorID'];
 					$i = 0;
-					$extensions_arr = array("jpg","png");
+		
 					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$creatorID' AND type = 'image' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
 					$resultCheck = mysqli_num_rows($fetchVideos);
@@ -147,15 +149,16 @@
 							if (isset($row['loc'])){
 								$location = "profile/".$row['loc'];
 								$name = $row['title'];
+								$mediaID = $row['mediaID'];
 								echo "<span style= 'display: inline-block;'>
 										<img src='".$location."' width='200' alt='This image could not be displayed :/'/>
 										<br>
-										<span><a href='../media_content.php?mediaID='".$row['mediaID']."''>".$name."</a></span>
+										<span><a href='../media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
 									</span>";
 							}
 							$i++;
 
-						}while($row && $i < 4 && $i < $resultCheck);
+						}while($row && $i < 5);
 					}
 					?>
 				</div>

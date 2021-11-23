@@ -1,10 +1,11 @@
 <?php
     session_start();
     include_once 'connection.php';
+    include 'functions.php';
     $uid = $_SESSION['userID'];
     //Allow file uploads
     if(isset($_POST['but_upload'])){
-        $maxsize = 50242880; // 50MB
+        $maxsize = 41943040; // 41MB
         if(isset($_FILES['file']['name']) && $_FILES['file']['name'] != ''){
             //This creates the target directory that the files will be stored in
             $name = $_FILES['file']['name'];
@@ -22,8 +23,10 @@
 
                // Check file size
                $size = $_FILES['file']['size'];
-               if(($_FILES['file']['size'] >= $maxsize) || ($_FILES["file"]["size"] == 0)) {
-                  $_SESSION['message'] = "File too large. File must be less than 5MB.";
+               if($_FILES['file']['size'] >= $maxsize) {
+                  $_SESSION['message'] = "File too large. File must be less than 50MB.";
+               }elseif($_FILES["file"]["size"] == 0){
+                $_SESSION['message'] = "File is empty.";
                }else{
                   // Uploads the files from their computer into the target directory
                   if(move_uploaded_file($_FILES['file']['tmp_name'],$target_file)){
@@ -68,22 +71,49 @@
         <title>MeTube<3</title>
         <link rel="stylesheet" href="../styles.css">
     </head>
-    <body style="background-color: rgb(42, 44, 44);">
-        <!-- Upload response -->
-        <?php
-        if(isset($_SESSION['message'])){
-            echo $_SESSION['message'];
-            unset($_SESSION['message']);
-        }
-        echo $_SESSION['userID'];
-        ?>
-        <form method="POST" action="" class='text' enctype='multipart/form-data'>
-            <label for="user_file">Select a file:</label>
-            <input type="file" name="file">
-            <input type="text" name="desc" placeholder="Enter a description">
-            <input type="text" name="key" placeholder="Enter a single keyword">
-            <input type="submit" value='Upload' name='but_upload'>
-        </form>
-
+    <body>
+        <header>
+            <h2 class="text"><a href="../MeTube.php" class="text">MeTube<3</a></h2>
+            <h3 class="text">
+				<?php 
+					$uid = $_SESSION['userID'];
+					getName($uid, $conn);
+				?>
+			</h3>
+        </header>
+        <main>
+            <section>
+                <div class="navbar">
+                    <nav>
+                        <ul class="text">
+                            <li><a href="user_profile.php" >Media</a></li>
+                            <li><a href="playlists.php" >Playlists</a></li>
+                            <li><a href="friends.php" >Friends</a></li>
+                            <li><a href="about.php" >About</a></li>
+                            <li><a href="updateprofile.php">Update Profile</a></li>
+                            <li><a href="upload.php"><b>Upload</b></a></li>
+                            <li><a href="messages.php">Messages</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+            <hr>
+            <!-- Upload response -->
+            <?php
+                if(isset($_SESSION['message'])){
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                }
+            ?>
+            <section>
+                <form method="POST" action="" class='text' enctype='multipart/form-data'>
+                    <label for="user_file">Select a file (41mb max):</label>
+                    <input type="file" name="file">
+                    <input type="text" name="desc" placeholder="Enter a description">
+                    <input type="text" name="key" placeholder="Enter a single keyword">
+                    <input type="submit" value='Upload' name='but_upload'>
+                </form>
+            </section>
+        </main>
     </body>
 </html>

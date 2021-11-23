@@ -27,6 +27,8 @@ include 'functions.php';
               <li><a href="playlists.php" ><b>Playlists</b></a></li>
               <li><a href="friends.php" >Friends</a></li>
               <li><a href="about.php" >About</a></li>
+              <li><a href="updateprofile.php">Update Profile</a></li>
+              <li><a href="upload.php">Upload</a></li>
               <li><a href="messages.php" >Messages</a></li>
             </ul>
           </nav>
@@ -68,21 +70,21 @@ include 'functions.php';
                       echo "<span style= 'display: inline-block;'>
                       <video src='".$location."' controls width='200px' class='content' >This video could not be displayed :/</video>
                       <br>
-                      <span><a href='../media_content.php?mediaID='".$mediaID."'' class='text'>".$name."</a></span>
+                      <span><a href='../media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
                       </span>";
                     }
                     elseif($type=='audio'){
                       echo "<span style= 'display: inline-block;'>
                       <audio src='".$location."' controls type='audio/mpeg' class='content' >This audio could not be displayed :/</audio>
                       <br>
-                      <span><a href='../media_content.php?mediaID='".$mediaID."'' class='text'>".$name."</a></span>
+                      <span><a href='../media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
                       </span>";
                     }
                     elseif($type=='image'){
                       echo "<span style= 'display: inline-block;'>
                       <img src='".$location."' width='200' class='content' alt='This image could not be displayed :/'/>
                       <br>
-                      <span><a href='../media_content.php?mediaID='".$mediaID."'' class='text'>".$name."</a></span>
+                      <span><a href='../media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
                       </span>";
                     }
                   }

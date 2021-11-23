@@ -28,6 +28,8 @@
 							<li><a href="playlists.php" >Playlists</a></li>
 							<li><a href="friends.php" ><b>Friends</b></a></li>
                             <li><a href="about.php" >About</a></li>
+							<li><a href="updateprofile.php">Update Profile</a></li>
+              				<li><a href="upload.php">Upload</a></li>
                             <li><a href="messages.php" >Messages</a></li>
 						</ul>
 					</nav>
@@ -55,7 +57,9 @@
                  	 		$query = "SELECT username from user_info WHERE userID = '$friendID'";
                  	 		$result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
                  	 		$row = mysqli_fetch_assoc($result);
-				 	 		echo "<p class='text'>".$row['username']."</p><br>";
+							$friendName = $row['username'];
+				 	 		echo "<a href='../general_user_page.php?creatorID=".$friendID."&creatorUser=".$friendName."' class='text'>".$friendName."</a><br>";
+							  
                 		}
               		}
                 ?>

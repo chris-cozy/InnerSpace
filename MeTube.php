@@ -63,10 +63,11 @@
 							if (isset($row['loc'])){
 								$location = "profile/".$row['loc'];
 								$name = $row['title'];
+								$mediaID = $row['mediaID'];
 								echo "<span style= 'display: inline-block;'>
 										<video src='".$location."' controls width='200px' class='content'>This video could not be displayed :/</video>
 										<br>
-										<span><a href='media_content.php?mediaID='".$row['mediaID']."'' class='text'>".$name."</a></span>
+										<span><a href='media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
 									</span>";
 							}
 							$i++;
@@ -96,10 +97,11 @@
 							if (isset($row['loc'])){
 								$location = "profile/".$row['loc'];
 								$name = $row['title'];
+								$mediaID = $row['mediaID'];
 								echo "<span style= 'display: inline-block;'>
 										<audio src='".$location."' controls type='audio/mpeg' class='content'>This audio could not be displayed :/</audio>
 										<br>
-										<span><a href='media_content.php?mediaID='".$row['mediaID']."'' class='text'>".$name."</a></span>
+										<span><a href='media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
 									</span>";
 							}
 							$i++;
@@ -128,10 +130,11 @@
 							if (isset($row['loc'])){
 								$location = "profile/".$row['loc'];
 								$name = $row['title'];
+								$mediaID = $row['mediaID'];
 								echo "<span style= 'display: inline-block;'>
 										<img src='".$location."' width='200' class='content' alt='This image could not be displayed :/'/>
 										<br>
-										<span><a href='media_content.php?mediaID=".$row['mediaID']."' class='text'>".$name."</a></span>
+										<span><a href='media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
 									</span>";
 							}
 							$i++;

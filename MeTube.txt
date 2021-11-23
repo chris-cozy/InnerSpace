@@ -17,3 +17,6 @@ To make a commit/checkpoint, there are two steps
         - git push -u origin main
 		○ After this it will ask for your  username and password
 After all of these steps are done I can go back to GitHub and view the repository. The code has successfully been pushed
+
+To do:
+Media Views

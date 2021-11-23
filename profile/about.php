@@ -31,6 +31,8 @@
 							<li><a href="playlists.php" >Playlists</a></li>
 							<li><a href="friends.php" >Friends</a></li>
                             <li><a href="about.php" ><b>About</b></a></li>
+							<li><a href="updateprofile.php">Update Profile</a></li>
+              				<li><a href="upload.php">Upload</a></li>
                             <li><a href="messages.php" >Messages</a></li>
 						</ul>
 					</nav>
@@ -64,14 +66,14 @@
 					<?php
 						$uid = $_SESSION['userID'];
 						//Enter code to display account info
-						$fetchAccountInfo = mysqli_query($conn, "SELECT * FROM account_info WHERE userID=('$uid')");
-						while($row = mysqli_fetch_assoc($fetchAccountInfo)){
-							$about = $row['aboutInfo'];
-							$subscriberCount = $row['subscriberCount'];
+						$query = mysqli_query($conn, "SELECT * FROM account_info WHERE userID=('$uid')");
+						while($row = mysqli_fetch_assoc($query)){
+							$about = $row['about_info'];
+							$subscriberCount = $row['subscriber_count'];
 							echo "<ul class='text'>
 							<li>Subscriber Count: ".$subscriberCount."</li>
 							<li>About: ".$about."</li>
-						</ul>";
+							</ul>";
 						}
 					?>
 				</span>
