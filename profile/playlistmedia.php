@@ -92,6 +92,7 @@ include 'functions.php';
             }
             
             //---HANDLES PLAYLIST DELETION---//
+            $pid = $_GET['pid'];
             if(isset($_POST['delete'])){
               $query = "DELETE FROM media_playlists where playlistID ='$pid';";
               $result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
