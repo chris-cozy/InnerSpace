@@ -9,7 +9,7 @@
         <title>MeTube<3</title>
 		<link rel="stylesheet" href="styles.css">
     </head>
-    <body style="background-color: rgb(42, 44, 44);">
+    <body>
 		<header>
 			<h1 class="logo"><a href="MeTube.php" class="text">MeTube<3</a></h1>
 			<form>

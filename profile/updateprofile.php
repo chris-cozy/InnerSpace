@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body style="background-color: rgb(42, 44, 44);">
+<body>
 <h2 class='text'> Update Profile Information </h2>
 <br>
   <form action = "" method = "post" class='text'>

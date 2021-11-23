@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body style="background-color: rgb(42, 44, 44);">
+<body>
   <p class='text'> Please login with your username and password</p>
 
   <form action = "" method = "post" class='text'>

@@ -14,7 +14,7 @@
         <title>Metube: Profile</title>
 		<link rel="stylesheet" href="styles.css">
     </head>
-    <body style="background-color: rgb(42, 44, 44);">
+    <body>
         <header>
             <h2 class="text"><a href="MeTube.php" class="text">MeTube<3</a></h2>
             <h3 class="text"><?php echo $_SESSION['creatorUser']; ?></h3>

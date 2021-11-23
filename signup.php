@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body  style="background-color: rgb(42, 44, 44);">
+<body>
   <h2 class="text">SIGN UP</h2>
   <form action="" method="post">
       <label for="username">Please Select a Username: </label><br>

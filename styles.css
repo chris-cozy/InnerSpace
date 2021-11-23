@@ -37,3 +37,6 @@ nav ul li a{
     margin: auto;
     align-items: center;
 }
+body{
+    background-color: rgb(42, 44, 44);
+}
