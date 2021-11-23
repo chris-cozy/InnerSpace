@@ -1,4 +1,5 @@
-ession_start();
+<?php
+session_start();
         include_once 'connection.php';
         include 'functions.php';
 ?>
@@ -37,15 +38,12 @@ ession_start();
 
 
 	<?php
-		$messageID = $_POST['messageID'];
+		$messageID = $_GET['msgID'];
 		$query = "SELECT * FROM messages where messageID = '$messageID'";
 		$result =  mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
 		$row = mysqli_fetch_assoc($result);
 		$replyto = $row['senderID'];
 		$message = $row['message'];
-		echo"Reply To: $replyto";
-		
-		echo "<br>";
 
 		echo $message; 
 
@@ -60,12 +58,17 @@ ession_start();
 	</form>
 
 <?php
-		if(isset($_POST['submit'];)){
+		if(isset($_POST['submit'])){
 			$replymessage=$_POST['reply'];
-			$messageID = $_POST['messageID'];
-			$query = "UDPATE messages SET reply = '1', reply_message='$replymessage'";
+			$messageID = $_GET['msgID'];
+			$query = "UPDATE messages SET reply = '1', reply_message='$replymessage'";
 			$result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
-			
+			$senderID = $_SESSION['userID'];	
 
-			$query = "INSERT INTO messages (message, receiverID, senderID) VALUES ('$replymessage','$replyto','$
+			$query = "INSERT INTO messages (message, receiverID, senderID) VALUES ('$replymessage','$replyto','$senderID')";
+			$result = mysqli_query($conn,$query) or die ("Query error".mysqli_error($conn)."\n");
+
+			header("Location:messages.php");
+		}
+?>
 
