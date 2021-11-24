@@ -16,7 +16,7 @@
             $extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
             // Valid file extensions
-            $extensions_arr = array("mp4","avi","3gp","mov","mpeg","mp3","jpg","png");
+            $extensions_arr = array("mp4","avi","3gp","mov","mpeg","mp3","jpg","png","gif");
 
             // Check extension
             if( in_array($extension,$extensions_arr) ){
@@ -34,7 +34,7 @@
                     //Determine type
                     $vid = array("mp4","avi","3gp","mov","mpeg");
                     $aud = array("mp3");
-                    $img = array("jpg","png");
+                    $img = array("jpg","png","gif");
 
                     if (in_array($extension,$vid)){
                         $type = "video";
