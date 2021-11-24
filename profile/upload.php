@@ -49,8 +49,11 @@
                     $key = $_POST['key'];
                     $query = "INSERT INTO media (userID, title, loc, type, ext, data_size, description, keyword) VALUES('$uid', '$name', '$target_file', '$type', '$extension', '$size', '$desc', '$key');";
      
-                    mysqli_query($conn,$query);
-                    $_SESSION['message'] = "Upload successfully.";
+                    if(mysqli_query($conn,$query)){
+                        $_SESSION['message'] = "Upload successfully.";
+                    }else{
+                        $_SESSION['message'] = "Upload failed.";
+                    }
                   }
                }
 
