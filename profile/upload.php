@@ -24,9 +24,9 @@
                // Check file size
                $size = $_FILES['file']['size'];
                if($_FILES['file']['size'] >= $maxsize) {
-                  $_SESSION['message'] = "File too large. File must be less than 50MB.";
+                    $_SESSION['message'] = "File too large. File must be less than 50MB.";
                }elseif($_FILES["file"]["size"] == 0){
-                $_SESSION['message'] = "File is empty.";
+                    $_SESSION['message'] = "File is empty.";
                }else{
                   // Uploads the files from their computer into the target directory
                   if(move_uploaded_file($_FILES['file']['tmp_name'],$target_file)){
@@ -47,7 +47,7 @@
                     // Insert record.
                     $desc = $_POST['desc'];
                     $key = $_POST['key'];
-                    $query = "INSERT INTO media (userID, title, loc, type, ext, data_size, description, keyword) VALUES('$uid', '$name', '$target_file', '$type', '$extension', '$size', '$desc', '$key')";
+                    $query = "INSERT INTO media (userID, title, loc, type, ext, data_size, description, keyword) VALUES('$uid', '$name', '$target_file', '$type', '$extension', '$size', '$desc', '$key');";
      
                     mysqli_query($conn,$query);
                     $_SESSION['message'] = "Upload successfully.";
