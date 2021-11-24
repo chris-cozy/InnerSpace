@@ -2,6 +2,7 @@
     session_start();
     include_once 'connection.php';
     include 'functions.php';
+    
     $uid = $_SESSION['userID'];
     //Allow file uploads
     if(isset($_POST['but_upload'])){
