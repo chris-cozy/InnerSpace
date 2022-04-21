@@ -15,9 +15,15 @@ This project is a basic social media site, written with HTML/CSS as the frontend
 - Keyword Search
 - Favorite media
 
-<h2>File Overview</h2>
 <h2>Installation</h2>
 This project currently is not web-active for installation/use due to private database access restrictions.
 <h2>Tools and Technologies</h2>
+<div id ="badges">
+  <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" title="Git" alt="Git" width="40" height="40">
+  <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML5" width="40" height="40">
+  <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original.svg" title="CSS3" alt="CSS3" width="40" height="40">
+  <img src="https://github.com/devicons/devicon/blob/master/icons/php/php-original.svg" title="PHP" alt="PHP" width="40" height="40">
+  <img src="https://github.com/devicons/devicon/blob/master/icons/vscode/vscode-original.svg" title="VScode" alt="VScode" width="40" height="40">
+</div>
 <h2>Developer Notes</h2>
 May clean up the web page design in the future. 
