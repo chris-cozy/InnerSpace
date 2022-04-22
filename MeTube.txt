@@ -1,7 +1,3 @@
-PhpMyAdmin:
-metube__user
-p@ssword1
-
 Git Basics
 The command git status checks in on the status of your repository
 To make a commit/checkpoint, there are two steps
