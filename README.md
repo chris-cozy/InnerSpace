@@ -1,6 +1,6 @@
 # MeTube: A Basic Social Media Site 📱
 <h2>Description</h2>
-This project is a basic social media site, written with HTML/CSS as the frontend, and PHP as the backend. The purpose of this project was to take a dive into full stack web development, as well as database management and organization. Essentially a boilerplate for a social media website.
+This project is a basic social media site, written with HTML/CSS as the frontend, and PHP/MySQL as the backend. The purpose of this project was to dip a toe into full stack web development, as well as database management and organization. Essentially a boilerplate for a social media website. The inspiration behind the concept was https://youtube.com
 <h2>Features</h2>
 
 - View media anonymously
