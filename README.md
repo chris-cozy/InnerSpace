@@ -27,3 +27,4 @@ This project currently is not web-active for installation/use due to private dat
 </div>
 <h2>Developer Notes</h2>
 May clean up the web page design in the future. 
+This project was my first experience with HTML, CSS, PHP, and MySQL. A first child of sorts. As such, the practices used may not be the most refined, but they are functional. As I learn more about the technologies I may update this project.
