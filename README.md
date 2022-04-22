@@ -16,7 +16,7 @@ This project is a basic social media site, written with HTML/CSS as the frontend
 - Favorite media
 
 <h2>Installation</h2>
-This project currently is not web-active for installation/use due to private database access restrictions.
+This project currently is not web-active for installation/use due to private database access restrictions. The connection.php file requires specific database credentials to be functional.
 <h2>Tools and Technologies</h2>
 <div id ="badges">
   <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" title="Git" alt="Git" width="40" height="40">
