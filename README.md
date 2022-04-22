@@ -28,3 +28,8 @@ This project currently is not web-active for installation/use due to private dat
 <h2>Developer Notes</h2>
 May clean up the web page design in the future. 
 This project was my first experience with HTML, CSS, PHP, and MySQL. A first child of sorts. As such, the practices used may not be the most refined, but they are functional. As I learn more about the technologies I may update this project.
+<br>
+This was also my first experience collaborating with git. Due to merging issues, the indenting of the code on many of these pages are janky. May go back and fix that for readability purposes.
+<h2>Collaborators</h2>
+@chris-cozy
+@madelineoliver
