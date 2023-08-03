@@ -9,6 +9,14 @@
     font-family: monospace;
     font-size: 25px;
     cursor: pointer;
+    display: inline-block;
+}
+.logo-image{
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin: auto;
+    display: inline-block;
 }
 .navbar{
     width: 100%;
@@ -16,6 +24,7 @@
     margin: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .headnav{
     flex: 1;

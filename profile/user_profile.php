@@ -42,30 +42,27 @@
 				<h2 class="text">Your Videos</h2>
 				<div>
 					<?php
-					//Initialize media counter
-					$i = 0;
-					//Set user id variable
-					$uid = $_SESSION['userID'];
-					$query = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'video' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-					$results = mysqli_num_rows($query);
-					//Check if there are valid rows
-					if ($results > 0){
-						do{
-							//Display media
-							$row = mysqli_fetch_assoc($query);
-							if (isset($row['loc'])){
-								$location = $row['loc'];
-								$name = $row['title'];
-								$mediaID = $row['mediaID'];
-								echo "<span style= 'display: inline-block;'>
-										<video src='".$location."' controls width='200px' class='content' >This video could not be displayed :/</video>
-										<br>
-										<span><a href='../media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
-									</span>";
-							}
-							$i++;
-						}while($row && $i < 5);
-					}
+						$type = "in-video";
+						$loop = 5;
+						$uid = $_SESSION['userID'];
+						$query = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'video' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+
+						$results = mysqli_num_rows($query);
+						$i = 0;
+						//Check if there are valid rows
+						if ($results > 0){
+							do{
+								//Display media
+								$row = mysqli_fetch_assoc($query);
+								if (isset($row['loc'])){
+									$location = $row['loc'];
+									$name = $row['title'];
+									$mediaID = $row['mediaID'];
+									displayMedia($type, $location, $mediaID, $name);
+								}
+								$i++;
+							}while($row && $i < $loop);
+						}
 					?>
 				</div>
 				<br>
@@ -76,30 +73,26 @@
 				<h2 class="text">Your Audio</h2>
 				<div>
 					<?php
-					//Initialize media counter
-					$i = 0;
-					//Set user id variable
-					$uid = $_SESSION['userID'];
-					$query = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'audio' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-					$results = mysqli_num_rows($query);
-					//Check if there are valid rows
-					if ($results > 0){
-						do{
-							//Display media
-							$row = mysqli_fetch_assoc($query);
-							if (isset($row['loc'])){
-								$location = $row['loc'];
-								$name = $row['title'];
-								$mediaID = $row['mediaID'];
-								echo "<span style= 'display: inline-block;'>
-										<audio src='".$location."' controls type='audio/mpeg' class='content' >This audio could not be displayed :/</audio>
-										<br>
-										<span><a href='../media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
-									</span>";
-							}
-							$i++;
-						}while($row && $i < 5);
-					}
+						$type = "in-audio";
+						$loop = 5;
+						$uid = $_SESSION['userID'];
+						$query = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'audio' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+						$results = mysqli_num_rows($query);
+						$i = 0;
+						//Check if there are valid rows
+						if ($results > 0){
+							do{
+								//Display media
+								$row = mysqli_fetch_assoc($query);
+								if (isset($row['loc'])){
+									$location = $row['loc'];
+									$name = $row['title'];
+									$mediaID = $row['mediaID'];
+									displayMedia($type, $location, $mediaID, $name);
+								}
+								$i++;
+							}while($row && $i < $loop);
+						}
 					?>
 				</div>
 				<br>
@@ -110,30 +103,26 @@
 				<h2 class="text">Your Images</h2>
 				<div>
 					<?php
-					//Initialize media counter
-					$i = 0;
-					//Set user id variable
-					$uid = $_SESSION['userID'];
-					$query = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'image' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-					$results= mysqli_num_rows($query);
-					//Check if there are valid rows
-					if ($results > 0){
-						do{
-							//Display media
-							$row = mysqli_fetch_assoc($query);
-							if (isset($row['loc'])){
-								$location = $row['loc'];
-								$name = $row['title'];
-								$mediaID = $row['mediaID'];
-								echo "<span style= 'display: inline-block;'>
-										<img src='".$location."' width='200' class='content' alt='This image could not be displayed :/'/>
-										<br>
-										<span><a href='../media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
-									</span>";
-							}
-							$i++;
-						}while($row && $i < 5);
-					}
+						$type = "in-image";
+						$loop = 5;
+						$uid = $_SESSION['userID'];
+						$query = mysqli_query($conn, "SELECT * FROM media WHERE userID ='$uid' AND type = 'image' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+						$results= mysqli_num_rows($query);
+						$i = 0;
+						//Check if there are valid rows
+						if ($results > 0){
+							do{
+								//Display media
+								$row = mysqli_fetch_assoc($query);
+								if (isset($row['loc'])){
+									$location = $row['loc'];
+									$name = $row['title'];
+									$mediaID = $row['mediaID'];
+									displayMedia($type, $location, $mediaID, $name);
+								}
+								$i++;
+							}while($row && $i < $loop);
+						}
 					?>
 				</div>
 			</section>

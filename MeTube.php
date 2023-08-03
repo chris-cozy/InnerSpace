@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	include_once 'connection.php';
+	include 'functions.php';
 
 	if(isset($_POST['search'])){
 		$_SESSION['keyword'] = $_POST['key'];
@@ -12,12 +13,14 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>MeTube<3</title>
+        <title>MeTube <3</title>
 		<link rel="stylesheet" href="styles.css">
     </head>
     <body>
 		<header>
+			<img class="logo-image" src="image/mootube.png" alt="logo unavailable"/>
 			<h1 class="logo"><a href="MeTube.php" class="text">MeTube<3</a></h1>
+			
 			<form method="POST" action="">
 				<input type="text" name='key' placeholder="Keyword Search">
 				<input type="submit" value='Search' name='search'>
@@ -50,96 +53,39 @@
 				<!--Display recent uploaded videos-->
 				<div>
 					<?php
-					//Initialize counter
-					$i = 0;
-					//Query to grab recent videos
-					$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'video' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-					$results = mysqli_num_rows($query);
-					//Check if there are any videos
-					if ($results > 0){
-						//Output the most recent 5
-						do{
-							$row = mysqli_fetch_assoc($query);
-							if (isset($row['loc'])){
-								$location = "profile/".$row['loc'];
-								$name = $row['title'];
-								$mediaID = $row['mediaID'];
-								echo "<span style= 'display: inline-block;'>
-										<video src='".$location."' controls width='200px' class='content'>This video could not be displayed :/</video>
-										<br>
-										<span><a href='media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
-									</span>";
-							}
-							$i++;
-
-						}while($row && $i < 5);
-					}
+						$type = "video";
+						$loop = 5;
+						//Query to grab recent videos
+						$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'video' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+						mediaLoop($query, $type, $loop);
 					?>
 				</div>
 				<br>
 				<hr>
-				<br>
 			</section>
 			<section>
 				<h2 class="text">Recommended Audio</h2>
 				<div>
 					<?php
-					//Initialize counter
-					$i = 0;
-					//Query to grab recent audio
-					$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'audio' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-					$results = mysqli_num_rows($query);
-					//Check if there are any videos
-					if ($results > 0){
-						do{
-							//Output the most recent 5
-							$row = mysqli_fetch_assoc($query);
-							if (isset($row['loc'])){
-								$location = "profile/".$row['loc'];
-								$name = $row['title'];
-								$mediaID = $row['mediaID'];
-								echo "<span style= 'display: inline-block;'>
-										<audio src='".$location."' controls type='audio/mpeg' class='content'>This audio could not be displayed :/</audio>
-										<br>
-										<span><a href='media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
-									</span>";
-							}
-							$i++;
-						}while($row && $i < 5);
-					}
+						$type = "audio";
+						$loop = 5;
+						//Query to grab recent audio
+						$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'audio' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+						mediaLoop($query, $type, $loop);
 					?>
 				</div>
 				<br>
 				<hr>
-				<br>
 			</section>
 			<section>
 				<h2 class="text">Recommended Images</h2>
 				<div>
 					<?php
-					//Initialize counter
-					$i = 0;
-					//Query to grab recent images
-					$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'image' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
-					$results = mysqli_num_rows($query);
-					//Check if there are any videos
-					if ($results > 0){
-						do{
-							//Output the most recent 5
-							$row = mysqli_fetch_assoc($query);
-							if (isset($row['loc'])){
-								$location = "profile/".$row['loc'];
-								$name = $row['title'];
-								$mediaID = $row['mediaID'];
-								echo "<span style= 'display: inline-block;'>
-										<img src='".$location."' width='200' class='content' alt='This image could not be displayed :/'/>
-										<br>
-										<span><a href='media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
-									</span>";
-							}
-							$i++;
-						}while($row && $i < 5);
-					}
+						$type = "image";
+						$loop = 5;
+						//Query to grab recent images
+						$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'image' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+						mediaLoop($query, $type, $loop);
 					?>
 				</div>
 			</section>

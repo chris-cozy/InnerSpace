@@ -48,30 +48,12 @@
 				<!--Display recent uploaded videos-->
 				<div>
 					<?php
-                    $key = $_SESSION['keyword'];
-					$i = 0;
-					//WATCH PREPARED STATEMENTS VIDEO
-					$extensions_arr = array("mp4","avi","3gp","mov","mpeg");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'video' AND keyword = '$key' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+						$key = $_SESSION['keyword'];
+						$type = "video";
+						$loop = 5;
+						$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'video' AND keyword = '$key' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
-					$resultCheck = mysqli_num_rows($fetchVideos);
-					if ($resultCheck > 0){
-						do{
-							$row = mysqli_fetch_assoc($fetchVideos);
-							if (isset($row['loc'])){
-								$location = "profile/".$row['loc'];
-								$name = $row['title'];
-								$mediaID = $row['mediaID'];
-								echo "<span style= 'display: inline-block;'>
-										<video src='".$location."' controls width='200px'>This video could not be displayed :/</video>
-										<br>
-										<span><a href='media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
-									</span>";
-							}
-							$i++;
-
-						}while($row && $i < 5);
-					}
+						mediaLoop($query, $type, $loop);
 					?>
 				</div>
 				<br>
@@ -82,28 +64,12 @@
 				<h2 class="text">Searched Audio</h2>
 				<div>
 					<?php
-                    $key = $_SESSION['keyword'];
-					$i = 0;
-					$extensions_arr = array("mp3");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'audio' AND keyword = '$key' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+						$key = $_SESSION['keyword'];
+						$type = "audio";
+						$loop = 5;
+						$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'audio' AND keyword = '$key' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
-					$resultCheck = mysqli_num_rows($fetchVideos);
-					if ($resultCheck > 0){
-						do{
-							$row = mysqli_fetch_assoc($fetchVideos);
-							if (isset($row['loc'])){
-								$location = "profile/".$row['loc'];
-								$name = $row['title'];
-								$mediaID = $row['mediaID'];
-								echo "<span style= 'display: inline-block;'>
-										<audio src='".$location."' controls type='audio/mpeg'>This audio could not be displayed :/</audio>
-										<br>
-										<span><a href='media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
-									</span>";
-							}
-							$i++;
-						}while($row && $i < 5);
-					}
+						mediaLoop($query, $type, $loop);
 					?>
 				</div>
 				<br>
@@ -114,30 +80,12 @@
 				<h2 class="text">Searched Images</h2>
 				<div>
 					<?php
-                    $key = $_SESSION['keyword'];
-					$i = 0;
-					$extensions_arr = array("jpg","png");
-					$fetchVideos = mysqli_query($conn, "SELECT * FROM media WHERE type = 'image' AND keyword = '$key' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
+						$key = $_SESSION['keyword'];
+						$type = "image";
+						$loop = 5;
+						$query = mysqli_query($conn, "SELECT * FROM media WHERE type = 'image' AND keyword = '$key' ORDER BY mediaID DESC;") or die ("Query error".mysqli_error($conn)."\n");
 
-					$resultCheck = mysqli_num_rows($fetchVideos);
-
-					if ($resultCheck > 0){
-						do{
-							$row = mysqli_fetch_assoc($fetchVideos);
-							if (isset($row['loc'])){
-								$location = "profile/".$row['loc'];
-								$name = $row['title'];
-								$mediaID = $row['mediaID'];
-								echo "<span style= 'display: inline-block;'>
-										<img src='".$location."' width='200' alt='This image could not be displayed :/'/>
-										<br>
-										<span><a href='media_content.php?mediaID=".$mediaID."' class='text'>".$name."</a></span>
-									</span>";
-							}
-							$i++;
-
-						}while($row && $i < 5);
-					}
+						mediaLoop($query, $type, $loop);
 					?>
 				</div>
 			</section>
