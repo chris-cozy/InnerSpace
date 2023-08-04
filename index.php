@@ -1,13 +1,13 @@
-
 <?php
 session_start();
 session_destroy();
-header("Location:MeTube.php");
+header("Location:MediaVerse.php");
 
 ?>
 <!DOCTYPE html>
 
 <html>
+
 <head>
   <title> Metube Login</title>
 </head>
@@ -16,4 +16,5 @@ header("Location:MeTube.php");
 
 
 </body>
+
 </html>
