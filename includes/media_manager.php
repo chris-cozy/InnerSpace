@@ -23,7 +23,7 @@ class MediaManager
                     $location = "profile/" . $row['loc'];
                     $name = $row['title'];
                     $mediaID = $row['mediaID'];
-                    displayMedia($type, $location, $mediaID, $name);
+                    $this->displayMedia($type, $location, $mediaID, $name);
                 }
                 $i++;
             } while ($row && $i < $limit);
@@ -76,6 +76,39 @@ class MediaManager
                         </span>";
                 break;
         }
+    }
+
+    public function getRecentMediaByType($userID, $type, $limit)
+    {
+        $query = mysqli_prepare($this->conn, "SELECT * FROM media WHERE userID = ? AND type = ? ORDER BY mediaID DESC LIMIT ?");
+        mysqli_stmt_bind_param($query, "isi", $userID, $type, $limit);
+        mysqli_stmt_execute($query);
+        $result = mysqli_stmt_get_result($query);
+        $media = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_stmt_close($query);
+        return $media;
+    }
+
+    public function getMediaByID($mediaID)
+    {
+        $query = mysqli_prepare($this->conn, "SELECT * FROM media WHERE mediaID = ?");
+        mysqli_stmt_bind_param($query, "i", $mediaID);
+        mysqli_stmt_execute($query);
+        $result = mysqli_stmt_get_result($query);
+        $media = mysqli_fetch_assoc($result);
+        mysqli_stmt_close($query);
+        return $media;
+    }
+
+    public function getUserFavorites($userID)
+    {
+        $query = mysqli_prepare($this->conn, "SELECT mediaID FROM media_favorited WHERE userID = ?");
+        mysqli_stmt_bind_param($query, "i", $userID);
+        mysqli_stmt_execute($query);
+        $result = mysqli_stmt_get_result($query);
+        $favorites = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_stmt_close($query);
+        return $favorites;
     }
 
     // Add more methods for media handling, e.g., media uploads, media retrieval by user, etc.
