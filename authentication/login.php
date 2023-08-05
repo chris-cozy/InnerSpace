@@ -43,13 +43,13 @@ if (isset($_POST['submit'])) {
 
 <head>
   <title>MediaVerse Login</title>
-  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
   <p class='text'> Please login with your username and password</p>
 
-  <form action="" method="post" class='text'>
+  <form action="" method="post" class='login-form'>
     <label for "username">Username: </label><br>
     <input type="text" id="username" name="username"><br>
 

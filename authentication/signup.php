@@ -4,7 +4,7 @@ include '../includes/connection.php';
 
 SessionManager::startSession();
 
-function createUser($conn, $username, $password, $gender, $fname, $lname, $birthday)
+function createUser($conn, $username, $password, $fname, $lname, $birthday)
 {
   // Prepare the SQL statement with parameter binding
   $query = "SELECT * FROM user_info WHERE username = ?";
@@ -22,9 +22,9 @@ function createUser($conn, $username, $password, $gender, $fname, $lname, $birth
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Prepare the INSERT SQL statement with parameter binding
-    $insertQuery = "INSERT INTO user_info(username, password, gender, first_name, last_name, birthday) VALUES (?, ?, ?, ?, ?, ?)";
+    $insertQuery = "INSERT INTO user_info(username, password, first_name, last_name, birthday) VALUES (?, ?, ?, ?, ?)";
     $insertStmt = $conn->prepare($insertQuery);
-    $insertStmt->bind_param("ssssss", $username, $hashedPassword, $gender, $fname, $lname, $birthday);
+    $insertStmt->bind_param("ssssss", $username, $hashedPassword, $fname, $lname, $birthday);
 
     if ($insertStmt->execute()) {
       // Get the newly inserted user ID
@@ -48,12 +48,11 @@ function createUser($conn, $username, $password, $gender, $fname, $lname, $birth
 if (isset($_POST['submit'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
-  $gender = $_POST['gender'];
   $fname = $_POST['fname'];
   $lname = $_POST['lname'];
   $birthday = $_POST['birthday'];
 
-  createUser($conn, $username, $password, $gender, $fname, $lname, $birthday);
+  createUser($conn, $username, $password, $fname, $lname, $birthday);
 }
 ?>
 <!DOCTYPE html>
@@ -61,26 +60,16 @@ if (isset($_POST['submit'])) {
 
 <head>
   <title>MediaVerse Sign Up</title>
-  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
   <h2 class="text">SIGN UP</h2>
-  <form action="" method="post" class='text'>
+  <form action="" method="post" class='signup-form'>
     <label for="username">Please Select a Username: </label><br>
     <input type="text" id="username" name="username" required><br>
     <label for="password">Please Select a Password: </label><br>
     <input type="password" id="password" name="password" required><br>
-
-    <h3>Please Select Your Gender:</h3><br>
-    <input type="radio" id="female" name="gender" value="Female" required>
-    <label for="female">Female</label><br>
-
-    <input type="radio" id="male" name="gender" value="Male" required>
-    <label for="male">Male</label><br>
-
-    <input type="radio" id="other" name="gender" value="Other" required>
-    <label for="Female">Other</label><br>
 
     <br>
 
