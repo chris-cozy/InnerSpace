@@ -64,6 +64,9 @@ try {
 
     <a href="update_profile.php">Update Profile</a>
 
+    <!-- Add navigation links -->
+    <p><a href="home.php">Home</a> | <a href="explore.php">Explore</a></p>
+
     <h3>Posts:</h3>
     <?php foreach ($posts as $post) : ?>
         <div>
