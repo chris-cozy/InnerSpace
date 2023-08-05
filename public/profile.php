@@ -14,12 +14,12 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Get the user ID from the session
-$user_id = $_SESSION['user_id'];
+$current_user_id = $_SESSION['user_id'];
 
 try {
     // Prepare a select statement to retrieve user data
     $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id");
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindParam(':user_id', $current_user_id, PDO::PARAM_INT);
 
     // Execute the prepared statement
     $stmt->execute();
@@ -29,6 +29,27 @@ try {
 } catch (PDOException $e) {
     // Handle any database errors
     die("Error fetching user data: " . $e->getMessage());
+}
+// Get the count of followers for the current user
+try {
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM follows WHERE following_id = :user_id");
+    $stmt->bindParam(':user_id', $current_user_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $follower_count = $stmt->fetchColumn();
+} catch (PDOException $e) {
+    // Handle any database errors
+    die("Error fetching follower count: " . $e->getMessage());
+}
+
+// Get the count of accounts the current user is following
+try {
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM follows WHERE follower_id = :user_id");
+    $stmt->bindParam(':user_id', $current_user_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $following_count = $stmt->fetchColumn();
+} catch (PDOException $e) {
+    // Handle any database errors
+    die("Error fetching following count: " . $e->getMessage());
 }
 
 try {
@@ -51,11 +72,11 @@ try {
 <html>
 
 <head>
-    <title>User Profile</title>
+    <title>My Profile</title>
 </head>
 
 <body>
-    <h2>User Profile</h2>
+    <h2>My Profile</h2>
     <p>Username: <?php echo $user['username']; ?></p>
     <p>Email: <?php echo $user['email']; ?></p>
     <p>Bio: <?php echo $user['bio']; ?></p>
@@ -67,6 +88,9 @@ try {
     <!-- Add navigation links -->
     <p><a href="home.php">Home</a> | <a href="explore.php">Explore</a></p>
 
+    <p>Followers: <?php echo $follower_count; ?></p>
+    <p>Following: <?php echo $following_count; ?></p>
+
     <h3>Posts:</h3>
     <?php foreach ($posts as $post) : ?>
         <div>
@@ -76,6 +100,7 @@ try {
             <?php elseif ($post['content_type'] === 'video') : ?>
                 <video src="<?php echo $post['media_path']; ?>" controls width="200"></video>
             <?php endif; ?>
+            <a href="post_details.php?post_id=<?php echo $post['post_id']; ?>">View Details</a>
         </div>
     <?php endforeach; ?>
 </body>
