@@ -1,5 +1,5 @@
 <?php
-include_once 'connection.php';
+include_once 'includes/connection.php';
 include 'includes/session_manager.php';
 include 'includes/media_manager.php';
 
