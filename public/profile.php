@@ -30,6 +30,21 @@ try {
     // Handle any database errors
     die("Error fetching user data: " . $e->getMessage());
 }
+
+try {
+    // Prepare a select statement to retrieve user's posts
+    $stmt = $pdo->prepare("SELECT * FROM posts WHERE user_id = :user_id ORDER BY created_at DESC");
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+
+    // Execute the prepared statement
+    $stmt->execute();
+
+    // Fetch user's posts as an associative array
+    $posts = $stmt->fetchAll();
+} catch (PDOException $e) {
+    // Handle any database errors
+    die("Error fetching user's posts: " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +63,18 @@ try {
     <img src="<?php echo $user['profile_pic']; ?>" alt="Profile Picture" width="100" height="100">
 
     <a href="update_profile.php">Update Profile</a>
+
+    <h3>Posts:</h3>
+    <?php foreach ($posts as $post) : ?>
+        <div>
+            <p><?php echo $post['content']; ?></p>
+            <?php if ($post['content_type'] === 'image') : ?>
+                <img src="<?php echo $post['media_path']; ?>" alt="Post Image" width="200">
+            <?php elseif ($post['content_type'] === 'video') : ?>
+                <video src="<?php echo $post['media_path']; ?>" controls width="200"></video>
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
 </body>
 
 </html>
