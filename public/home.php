@@ -62,8 +62,28 @@ try {
 
     <a href="update_profile.php">Update Profile</a>
 
+    <!-- Add navigation links -->
+    <p><a href="home.php">Home</a> | <a href="explore.php">Explore</a></p>
+
     <h3>Posts from users you follow:</h3>
-    <?php foreach ($posts as $post) : ?>
+    <?php
+    // Pagination settings
+    $posts_per_page = 5; // Change this number to control the number of posts per page
+    $total_posts = count($posts);
+    $total_pages = ceil($total_posts / $posts_per_page);
+
+    // Get the current page number from the URL
+    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+    // Calculate the starting index for the current page
+    $start_index = ($current_page - 1) * $posts_per_page;
+
+    // Get the posts for the current page
+    $current_page_posts = array_slice($posts, $start_index, $posts_per_page);
+    ?>
+    // Display the posts for the current page
+    <?php foreach ($current_page_posts as $post) :
+    ?>
         <div>
             <p><?php echo $post['content']; ?></p>
             <p>Posted by: <?php echo $post['username']; ?></p>
@@ -74,6 +94,15 @@ try {
             <?php endif; ?>
         </div>
     <?php endforeach; ?>
+
+    <!-- Pagination links -->
+    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+        <?php if ($i === $current_page) : ?>
+            <strong><?php echo $i; ?></strong>
+        <?php else : ?>
+            <a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
 </body>
 
 </html>
