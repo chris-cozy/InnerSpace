@@ -88,6 +88,8 @@ try {
             <?php elseif ($post['content_type'] === 'video') : ?>
                 <video src="<?php echo $post['media_path']; ?>" controls width="200"></video>
             <?php endif; ?>
+            <!-- Add link to post details page -->
+            <a href="post_details.php?post_id=<?php echo $post['post_id']; ?>">View Details</a>
         </div>
     <?php endforeach; ?>
 
