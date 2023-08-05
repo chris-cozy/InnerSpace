@@ -28,7 +28,7 @@ if (isset($_POST['search'])) {
 <head>
 	<meta charset="UTF-8">
 	<title>Profile</title>
-	<link rel="stylesheet" href="../assets/css/style.css">
+	<link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
 <body>
