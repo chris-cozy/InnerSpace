@@ -30,7 +30,7 @@ try {
 
 try {
     // Prepare a select statement to retrieve posts from users that the current user follows
-    $stmt = $pdo->prepare("SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id WHERE posts.user_id IN (SELECT following_id FROM followers WHERE follower_id = :user_id) ORDER BY posts.created_at DESC");
+    $stmt = $pdo->prepare("SELECT posts.*, users.username FROM posts JOIN users ON posts.user_id = users.user_id WHERE posts.user_id IN (SELECT following_id FROM follows WHERE follower_id = :user_id) ORDER BY posts.created_at DESC");
     $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 
     // Execute the prepared statement
