@@ -1,9 +1,9 @@
 <?php
 // Replace the following database credentials with your actual database details
-$hostname = 'localhost';
-$username = 'your_database_username';
-$password = 'your_database_password';
-$db_name = 'your_database_name';
+$hostname = getenv('DB_HOST');
+$username = getenv('DB_USERNAME');
+$password = getenv('DB_PASSWORD');
+$db_name = getenv('DB_NAME');
 
 try {
     // Create a new PDO instance
