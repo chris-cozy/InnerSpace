@@ -1,13 +1,34 @@
 <?php
+require_once '../vendor/autoload.php';
+
+// Specify the path to the .env file
+$dotenvFilePath = __DIR__ . '/.env';
+
+// Check if the .env file exists before attempting to load it
+if (file_exists($dotenvFilePath)) {
+    // Load the .env file
+    $envVars = parse_ini_file($dotenvFilePath, false, INI_SCANNER_RAW);
+
+    // Set the environment variables
+    foreach ($envVars as $key => $value) {
+        $_ENV[$key] = $value;
+        putenv("$key=$value");
+    }
+} else {
+    die(".env file not found. Make sure it exists in the root directory of your project.");
+}
 // Replace the following database credentials with your actual database details
 $hostname = getenv('DB_HOST');
 $username = getenv('DB_USERNAME');
 $password = getenv('DB_PASSWORD');
 $db_name = getenv('DB_NAME');
+$db_port = getenv('DB_PORT');
+$charset = 'utf8';
 
 try {
+    $dsn = "mysql:host={$hostname};port={$db_port};dbname={$db_name};charset={$charset}";
     // Create a new PDO instance
-    $pdo = new PDO("mysql:host=$hostname;dbname=$db_name", $username, $password);
+    $pdo = new PDO($dsn, $username, $password);
 
     // Set PDO error mode to exception to handle errors gracefully
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
