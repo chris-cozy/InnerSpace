@@ -1,35 +1,59 @@
-# MeTube: A Basic Social Media Site 📱
-<h2>Description</h2>
-This project is a basic social media site, written with HTML/CSS as the frontend, and PHP/MySQL as the backend. The purpose of this project was to dip a toe into full stack web development, as well as database management and organization. Essentially a boilerplate for a social media website. The inspiration behind the concept was https://youtube.com
-<h2>Features</h2>
+# **Connectify - A Social Media Web App**
 
-- View media anonymously
-- Create an account
-- Log into your account
-- Update your user profile
-- Post media (audio, video, images, gifs)
-- Comment on posted media
-- Like/dislike posted media
-- Friend other users
-- Private message other users
-- Keyword Search
-- Favorite media
+Connectify is a modern social media web application that allows users to connect with friends, share content, and engage in conversations. With Connectify, users can create an account, log in, and start exploring a vibrant community of users. They can post text, photos, and videos, like and comment on other users' posts, and follow their favorite accounts. Connectify also provides a direct messaging feature for private conversations between users.
 
-<h2>Installation</h2>
-This project currently is not web-active for installation/use due to private database access restrictions. The connection.php file requires specific database credentials to be functional.
-<h2>Tech Stack</h2>
-<div id ="badges">
-  <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" title="Git" alt="Git" width="40" height="40">
-  <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML5" width="40" height="40">
-  <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original.svg" title="CSS3" alt="CSS3" width="40" height="40">
-  <img src="https://github.com/devicons/devicon/blob/master/icons/php/php-original.svg" title="PHP" alt="PHP" width="40" height="40">
-  <img src="https://github.com/devicons/devicon/blob/master/icons/vscode/vscode-original.svg" title="VScode" alt="VScode" width="40" height="40">
-</div>
-<h2>Developer Notes</h2>
-May clean up the web page design in the future. 
-This project was my first experience with HTML, CSS, PHP, and MySQL. A first child of sorts. As such, the practices used may not be the most refined, but they are functional. As I learn more about the technologies I may update this project.
-<br>
-This was also my first experience collaborating with git. Due to merging issues, the indenting of the code on many of these pages are janky. May go back and fix that for readability purposes.
-<h2>Collaborators</h2>
-@chris-cozy
-@madelineoliver
+## **Features**
+
+- User Registration and Login: Users can create an account with a unique username and password, or log in if they already have an account.
+- Home and Explore Pages: Users can view a home page that displays content from users they follow, as well as an explore page with content from all users.
+- Profile and Update Profile: Users have a personalized profile page where they can view and edit their profile information and profile picture.
+- Post Content: Users can create and share posts with text, photos, or videos.
+- Likes, Dislikes, and Comments: Users can like, dislike, and comment on other users' posts.
+- Direct Messaging: Users can send and receive direct messages for private conversations with other users.
+- Follow and Unfollow: Users can follow and unfollow other users to see their posts on the home page.
+
+## **Installation**
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/chris-cozy/connectify.git
+   ```
+
+2. Set up the Apache web server with PHP and MySQL on your local machine.
+3. Enable URL rewriting using the **`.htaccess`** file provided in the project.
+4. Create a new MySQL database and import the **`connectify.sql`** file to set up the required database schema.
+5. Update the database connection configuration in the **`includes/db_connection.php`** file with your database credentials.
+6. Navigate to the project directory and start the Apache server.
+7. Open a web browser and visit **`http://localhost/connectify/`** to access the Connectify web app.
+
+## **Usage**
+
+1. Create an account or log in if you already have one.
+2. Explore the home page to see content from the users you follow.
+3. Visit the explore page to discover content from all users.
+4. Update your profile with your desired information and profile picture.
+5. Create new posts with text, photos, or videos.
+6. Like, dislike, and comment on posts from other users.
+7. Use the direct messaging feature to have private conversations with other users.
+8. Follow or unfollow other users to stay connected with their updates.
+
+## **Technologies Used**
+
+- PHP: Backend development and server-side scripting language.
+- MySQL: Database management system for storing user data and content.
+- HTML/CSS: Frontend development for creating the user interface.
+- Apache Web Server: To host and serve the web application.
+- Bootstrap: CSS framework for a modern and responsive design.
+
+## **Screenshots**
+
+Coming Soon
+
+## **Contributing**
+
+We welcome contributions to the Connectify project. If you have any suggestions, improvements, or bug fixes, feel free to submit a pull request or open an issue.
+
+## **License**
+
+Connectify is open-source software licensed under the **[MIT License](https://opensource.org/licenses/MIT)**.
