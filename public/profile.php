@@ -101,6 +101,9 @@ try {
                     <li class="nav-item">
                         <a class="nav-link" href="conversations.php">Messages</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -120,10 +123,10 @@ try {
             <div class="col-md-3">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>Followers: <?php echo $follower_count; ?></p>
+                        <p><?php echo $follower_count; ?> Followers</p>
                     </div>
                     <div class="col-md-6">
-                        <p>Following: <?php echo $following_count; ?></p>
+                        <p><?php echo $following_count; ?> Following</p>
                     </div>
                 </div>
 
@@ -154,15 +157,17 @@ try {
         <?php foreach ($current_page_posts as $post) : ?>
             <div class="card mb-3">
                 <div class="card-body">
+                    <a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0">@<?php echo $user['username']; ?></a>
                     <p class="card-text"><?php echo $post['content']; ?></p>
+
                     <?php if ($post['content_type'] === 'image') : ?>
                         <img src="<?php echo $post['media_path']; ?>" alt="Post Image" class="img-thumbnail" width="200">
                     <?php elseif ($post['content_type'] === 'video') : ?>
                         <video src="<?php echo $post['media_path']; ?>" controls class="img-thumbnail" width="200"></video>
                     <?php endif; ?>
-                    <a href="post_details.php?post_id=<?php echo $post['post_id']; ?>" class="btn btn-primary btn-sm">View Details</a>
+                    <!-- Add link to post details page -->
+                    <a href="post_details.php?post_id=<?php echo $post['post_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0 link-opacity-50">View Details</a>
                 </div>
-
             </div>
         <?php endforeach; ?>
         <!-- Pagination links -->
