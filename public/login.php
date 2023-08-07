@@ -67,22 +67,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <title>User Login</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Optional: Add Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.25.0/font/bootstrap-icons.css">
+
+
 </head>
 
-<body>
-    <h2>User Login</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-        <label>Username:</label>
-        <input type="text" name="username" value="<?php echo $username; ?>">
-        <span><?php echo $username_err; ?></span><br>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center">User Login</h2>
+                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" name="username" id="username" class="form-control" value="<?php echo $username; ?>">
+                                <span class="text-danger"><?php echo $username_err; ?></span>
+                            </div>
 
-        <label>Password:</label>
-        <input type="password" name="password">
-        <span><?php echo $password_err; ?></span><br>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" name="password" id="password" class="form-control">
+                                <span class="text-danger"><?php echo $password_err; ?></span>
+                            </div>
 
-        <input type="submit" value="Login">
-        <p>Don't have an account? <a href="register.php">Register here</a>.</p>
-    </form>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                        </form>
+                        <p class="text-center">Don't have an account? <a href="register.php">Register here</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS (Popper.js and Bootstrap's JavaScript) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
