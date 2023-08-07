@@ -35,24 +35,58 @@ try {
 
 <head>
     <title>Conversations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
 </head>
 
 <body>
-    <h2>Conversations</h2>
-    <ul>
-        <?php foreach ($conversations as $conversation) : ?>
-            <?php
-            // Determine the other user ID in the conversation
-            $other_user_id = ($conversation['user1_id'] === $current_user_id) ? $conversation['user2_id'] : $conversation['user1_id'];
-            // Fetch the other user's username
-            $stmt = $pdo->prepare("SELECT username FROM users WHERE user_id = :user_id");
-            $stmt->bindParam(':user_id', $other_user_id, PDO::PARAM_INT);
-            $stmt->execute();
-            $other_user = $stmt->fetch();
-            ?>
-            <li><a href="conversation.php?conversation_id=<?php echo $conversation['conversation_id']; ?>"><?php echo $other_user['username']; ?></a></li>
-        <?php endforeach; ?>
-    </ul>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Connectify</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="explore.php">Explore</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="conversations.php">Messages</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2 class="mb-4">Messages</h2>
+        <hr>
+        <ul class="list-group">
+            <?php foreach ($conversations as $conversation) : ?>
+                <?php
+                // Determine the other user ID in the conversation
+                $other_user_id = ($conversation['user1_id'] === $current_user_id) ? $conversation['user2_id'] : $conversation['user1_id'];
+                // Fetch the other user's username
+                $stmt = $pdo->prepare("SELECT username FROM users WHERE user_id = :user_id");
+                $stmt->bindParam(':user_id', $other_user_id, PDO::PARAM_INT);
+                $stmt->execute();
+                $other_user = $stmt->fetch();
+                ?>
+                <li class="list-group-item"><a href="conversation.php?conversation_id=<?php echo $conversation['conversation_id']; ?>"><?php echo $other_user['username']; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <!-- Add Bootstrap JS (Popper.js and Bootstrap's JavaScript) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
