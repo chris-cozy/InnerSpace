@@ -191,19 +191,28 @@ try {
         </div>
 
 
+        <div class="row">
+            <div class="col-md-5">
+                <?php if ($user['user_id'] !== $current_user_id) : // Show follow/unfollow button only for other users' profiles 
+                ?>
+                    <?php if ($is_following) : ?>
+                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post" class="mt-3">
+                            <input type="submit" name="unfollow" value="Unfollow" class="btn btn-danger">
+                        </form>
+                    <?php else : ?>
+                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post" class="mt-3">
+                            <input type="submit" name="follow" value="Follow" class="btn btn-primary">
+                        </form>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
+            <div class="col-md-5">
+                <a href="create_conversation.php?receiver_id=<?php echo $user_id; ?>" class="btn btn-primary">Message</a>
 
-        <?php if ($user['user_id'] !== $current_user_id) : // Show follow/unfollow button only for other users' profiles 
-        ?>
-            <?php if ($is_following) : ?>
-                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post" class="mt-3">
-                    <input type="submit" name="unfollow" value="Unfollow" class="btn btn-danger">
-                </form>
-            <?php else : ?>
-                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post" class="mt-3">
-                    <input type="submit" name="follow" value="Follow" class="btn btn-primary">
-                </form>
-            <?php endif; ?>
-        <?php endif; ?>
+            </div>
+
+        </div>
+
 
 
         <hr>
