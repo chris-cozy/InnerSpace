@@ -1,6 +1,4 @@
 <?php
-// update_profile.php
-
 // Include the database connection file
 require_once '../includes/db_connection.php';
 
@@ -14,39 +12,6 @@ if (!isset($_SESSION['user_id'])) {
 // Get the user ID from the session
 $user_id = $_SESSION['user_id'];
 
-// Initialize variables to hold form input and error messages
-$bio = '';
-$bio_err = '';
-
-// Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Process the form data when the form is submitted
-
-    // Validate bio
-    if (empty(trim($_POST['bio']))) {
-        $bio_err = 'Please enter a bio.';
-    } else {
-        $bio = trim($_POST['bio']);
-    }
-
-    // Check for any input errors before updating the user's profile
-    if (empty($bio_err)) {
-        // Prepare an update statement to update the user's bio
-        $stmt = $pdo->prepare("UPDATE users SET bio = :bio WHERE user_id = :user_id");
-        $stmt->bindParam(':bio', $bio, PDO::PARAM_STR);
-        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-
-        // Execute the prepared statement
-        if ($stmt->execute()) {
-            // Profile update successful, redirect to the user's profile page
-            header('Location: profile.php');
-            exit;
-        } else {
-            echo 'Something went wrong. Please try again later.';
-        }
-    }
-}
-
 try {
     // Prepare a select statement to retrieve user data
     $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id");
@@ -57,9 +22,66 @@ try {
 
     // Fetch user data as an associative array
     $user = $stmt->fetch();
+    $bio = $user['bio'];
 } catch (PDOException $e) {
     // Handle any database errors
     die("Error fetching user data: " . $e->getMessage());
+}
+
+// Initialize variables to hold form input and error messages
+
+
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // Process the form data when the form is submitted 
+    if (isset($_FILES['media']) && $_FILES['media']['error'] === UPLOAD_ERR_OK) {
+        $media = $_FILES['media'];
+        $media_name = $media['name'];
+        $media_tmp_name = $media['tmp_name'];
+
+        // Move the uploaded media file to a folder on the server
+        $media_dir = 'uploads/profiles/';
+        $media_path = $media_dir . $media_name;
+        move_uploaded_file($media_tmp_name, $media_path);
+
+        // Save the post with media path in the database
+        try {
+            $stmt = $pdo->prepare("UPDATE users SET profile_pic = :profile_pic WHERE user_id = :user_id");
+            $stmt->bindParam(':profile_pic', $media_path, PDO::PARAM_STR);
+            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+
+
+            if ($stmt->execute()) {
+                echo 'Success.';
+            } else {
+                echo 'Something went wrong. Please try again later.';
+            }
+        } catch (PDOException $e) {
+            // Handle any database errors
+            die("Error updating profile image: " . $e->getMessage());
+        }
+    }
+
+    if (!empty(trim($_POST['bio']))) {
+        try {
+            $stmt = $pdo->prepare("UPDATE users SET bio = :bio WHERE user_id = :user_id");
+            $stmt->bindParam(':bio', $_POST['bio'], PDO::PARAM_STR);
+            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+
+            // Execute the prepared statement
+            if ($stmt->execute()) {
+                echo 'Success.';
+            } else {
+                echo 'Something went wrong. Please try again later.';
+            }
+        } catch (PDOException $e) {
+            // Handle any database errors
+            die("Error updating bio: " . $e->getMessage());
+        }
+    }
+    header('Location: profile.php');
+    exit;
 }
 ?>
 
@@ -105,22 +127,21 @@ try {
     </nav>
     <div class="container mt-5">
         <h2 class="mb-4">Update Profile</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="bio" class="form-label">Bio:</label>
                 <textarea class="form-control" id="bio" name="bio" rows="4"><?php echo $user['bio']; ?></textarea>
-                <span class="text-danger"><?php echo $bio_err; ?></span><br>
+                <br>
             </div>
 
             <!-- Allow users to update their profile picture -->
             <div class="mb-3">
-                <label for="profile_picture" class="form-label">Profile Picture</label>
-                <input type="file" class="form-control" id="profile_picture" name="profile_picture">
-                <!-- You'll need to handle file upload and save the file path in the database -->
+                <label for="media" class="form-label">Profile Picture</label>
+                <input type="file" class="form-control" id="media" name="media">
+                <small class="form-text text-muted">(jpeg, png, gif)</small>
             </div>
 
-
-            <input type="submit" class="btn btn-primary" value="Update">
+            <button type="submit" class="btn btn-primary">Update</button>
             <a href="profile.php" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
