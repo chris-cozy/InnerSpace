@@ -168,18 +168,17 @@ try {
         </div>
     </nav>
     <div class="container mt-5">
-        <div class="row">
+        <div class="hstack">
             <div class="col-md-3">
                 <!-- Display user profile picture -->
-                <img src="<?php echo $user['profile_pic']; ?>" alt="Profile Picture" width="100" height="100">
+                <img src="<?php echo $user['profile_pic']; ?>" class="rounded-circle" alt="Profile Picture" width="100" height="100">
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <h2><?php echo $user['username']; ?></h2>
-                <p><?php echo $user['email']; ?></p>
-                <p><?php echo $user['bio']; ?></p>
+                <h7><?php echo $user['bio']; ?></p>
             </div>
             <div class="col-md-3">
-                <div class="row">
+                <div>
                     <div class="col-md-6">
                         <p><?php echo $follower_count; ?> Followers</p>
                     </div>
@@ -188,33 +187,25 @@ try {
                     </div>
                 </div>
             </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-1">
                 <?php if ($user['user_id'] !== $current_user_id) : // Show follow/unfollow button only for other users' profiles 
                 ?>
                     <?php if ($is_following) : ?>
-                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post" class="mt-3">
+                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post">
                             <input type="submit" name="unfollow" value="Unfollow" class="btn btn-danger">
                         </form>
                     <?php else : ?>
-                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post" class="mt-3">
+                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post">
                             <input type="submit" name="follow" value="Follow" class="btn btn-primary">
                         </form>
                     <?php endif; ?>
                 <?php endif; ?>
+
             </div>
-            <div class="col-md-5">
+            <div class="col-md-1">
                 <a href="create_conversation.php?receiver_id=<?php echo $user_id; ?>" class="btn btn-primary">Message</a>
-
             </div>
-
         </div>
-
-
-
         <hr>
         <?php
         // Pagination settings
@@ -237,7 +228,7 @@ try {
                     <a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0">@<?php echo $user['username']; ?></a>
                     <p class="card-text"><?php echo $post['content']; ?></p>
 
-                    <?php if ($post['content_type'] === 'image') : ?>
+                    <?php if ($post['content_type'] === 'photo') : ?>
                         <img src="<?php echo $post['media_path']; ?>" alt="Post Image" class="img-thumbnail" width="200">
                     <?php elseif ($post['content_type'] === 'video') : ?>
                         <video src="<?php echo $post['media_path']; ?>" controls class="img-thumbnail" width="200"></video>
