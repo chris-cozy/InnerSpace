@@ -80,12 +80,18 @@ try {
                 // Determine the other user ID in the conversation
                 $other_user_id = ($conversation['user1_id'] === $current_user_id) ? $conversation['user2_id'] : $conversation['user1_id'];
                 // Fetch the other user's username
-                $stmt = $pdo->prepare("SELECT username FROM users WHERE user_id = :user_id");
+                $stmt = $pdo->prepare("SELECT username, profile_pic FROM users WHERE user_id = :user_id");
                 $stmt->bindParam(':user_id', $other_user_id, PDO::PARAM_INT);
                 $stmt->execute();
                 $other_user = $stmt->fetch();
                 ?>
-                <li class="list-group-item"><a href="conversation.php?conversation_id=<?php echo $conversation['conversation_id']; ?>"><?php echo $other_user['username']; ?></a></li>
+                <li class="list-group-item hstack gap-3">
+                    <img src="<?php echo $other_user['profile_pic']; ?>" class="rounded-circle" alt="Profile Picture" width="50" height="50">
+                    <a href="conversation.php?conversation_id=<?php echo $conversation['conversation_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0">
+                        <h5><?php echo $other_user['username']; ?></h5>
+                    </a>
+
+                </li>
             <?php endforeach; ?>
         </ul>
     </div>
