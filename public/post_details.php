@@ -175,7 +175,7 @@ try {
             <div class="card-body">
                 <a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0">@<?php echo $post['username']; ?></a>
                 <p class="card-text"><?php echo $post['content']; ?></p>
-                <?php if ($post['content_type'] === 'image') : ?>
+                <?php if ($post['content_type'] === 'photo') : ?>
                     <img src="<?php echo $post['media_path']; ?>" alt="Post Image" class="img-thumbnail" width="200">
                 <?php elseif ($post['content_type'] === 'video') : ?>
                     <video src="<?php echo $post['media_path']; ?>" controls class="img-thumbnail" width="200"></video>

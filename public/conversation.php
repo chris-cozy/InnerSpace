@@ -145,6 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </nav>
     <div class="container mt-5">
+        <img src="<?php echo $other_user['profile_pic']; ?>" class="rounded-circle" alt="Profile Picture" width="50" height="50">
         <h2 class="mb-4"><?php echo $other_user['username']; ?></h2>
         <div class="mb-3">
             <?php foreach ($messages as $message) : ?>

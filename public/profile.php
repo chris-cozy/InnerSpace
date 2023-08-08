@@ -110,18 +110,17 @@ try {
     </nav>
     <div class="container mt-5">
         <!-- User Profile Info -->
-        <div class="row">
+        <div class="hstack">
             <div class="col-md-3">
-                <img src="<?php echo $user['profile_pic']; ?>" alt="Profile Picture" width="100" height="100">
+                <img src="<?php echo $user['profile_pic']; ?>" class="rounded-circle" alt="Profile Picture" width="100" height="100">
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <h2><?php echo $user['username']; ?></h2>
-                <p><?php echo $user['email']; ?></p>
-                <p><?php echo $user['bio']; ?></p>
+                <h7><?php echo $user['bio']; ?></p>
 
             </div>
             <div class="col-md-3">
-                <div class="row">
+                <div>
                     <div class="col-md-6">
                         <p><?php echo $follower_count; ?> Followers</p>
                     </div>
@@ -129,10 +128,10 @@ try {
                         <p><?php echo $following_count; ?> Following</p>
                     </div>
                 </div>
-
+            </div>
+            <div class="col-md-1">
                 <a href="update_profile.php" class="btn btn-primary">Edit Profile</a>
             </div>
-
 
         </div>
 
@@ -160,7 +159,7 @@ try {
                     <a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0">@<?php echo $user['username']; ?></a>
                     <p class="card-text"><?php echo $post['content']; ?></p>
 
-                    <?php if ($post['content_type'] === 'image') : ?>
+                    <?php if ($post['content_type'] === 'photo') : ?>
                         <img src="<?php echo $post['media_path']; ?>" alt="Post Image" class="img-thumbnail" width="200">
                     <?php elseif ($post['content_type'] === 'video') : ?>
                         <video src="<?php echo $post['media_path']; ?>" controls class="img-thumbnail" width="200"></video>
