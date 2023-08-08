@@ -95,12 +95,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <input type="password" name="password" id="password" class="form-control">
                                 <span class="text-danger"><?php echo $password_err; ?></span>
                             </div>
-
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary">Login</button>
+                            <div class="container mt-3">
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                </div>
                             </div>
+
                         </form>
-                        <p class="text-center">Don't have an account? <a href="register.php">Register here</a>.</p>
+                        <div class="container mt-3">
+                            <p class="text-center">Don't have an account? <a href="register.php">Register here</a>.</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
