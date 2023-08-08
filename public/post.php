@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $media_type = $media['type'];
 
             // Move the uploaded media file to a folder on the server
-            $media_dir = 'uploads/';
+            $media_dir = 'uploads/posts/';
             $media_path = $media_dir . $media_name;
             move_uploaded_file($media_tmp_name, $media_path);
 
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $stmt = $pdo->prepare("INSERT INTO posts (user_id, content_type, content, media_path) VALUES (:user_id, :content_type, :content, :media_path)");
                 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-                $stmt->bindValue(':content_type', $_FILES['media']['type'] === 'video/mp4' ? 'video' : 'image', PDO::PARAM_STR);
+                $stmt->bindValue(':content_type', $_FILES['media']['type'] === 'video/mp4' ? 'video' : 'photo', PDO::PARAM_STR);
                 $stmt->bindParam(':content', $content, PDO::PARAM_STR);
                 $stmt->bindParam(':media_path', $media_path, PDO::PARAM_STR);
 
