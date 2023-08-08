@@ -61,6 +61,21 @@ try {
     die("Error fetching messages: " . $e->getMessage());
 }
 
+try {
+    // Prepare a select statement to retrieve the user's profile information
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id");
+    $stmt->bindParam(':user_id', $other_user_id, PDO::PARAM_INT);
+
+    // Execute the prepared statement
+    $stmt->execute();
+
+    // Fetch the user's profile as an associative array
+    $other_user = $stmt->fetch();
+} catch (PDOException $e) {
+    // Handle any database errors
+    die("Error fetching user data: " . $e->getMessage());
+}
+
 // Process sending new messages
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ensure the message content is not empty
@@ -93,24 +108,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <title>Conversation with <?php echo $other_user['username']; ?></title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
 <body>
-    <h2>Conversation with <?php echo $other_user['username']; ?></h2>
-    <div>
-        <?php foreach ($messages as $message) : ?>
-            <p>
-                <?php echo ($message['sender_id'] === $current_user_id) ? 'You' : $other_user['username']; ?>: <?php echo $message['content']; ?>
-            </p>
-        <?php endforeach; ?>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Connectify</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="explore.php">Explore</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="post.php">Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="conversations.php">Messages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2 class="mb-4"><?php echo $other_user['username']; ?></h2>
+        <div class="mb-3">
+            <?php foreach ($messages as $message) : ?>
+                <p class="<?php echo ($message['sender_id'] === $current_user_id) ? 'text-end' : 'text-start'; ?>">
+                    <?php echo ($message['sender_id'] === $current_user_id) ? 'You' : $other_user['username']; ?>: <?php echo $message['content']; ?>
+                </p>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- Message Form -->
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?conversation_id=' . $conversation_id); ?>" method="post">
+            <div class="mb-3">
+
+                <textarea class="form-control" id="message_content" name="message_content" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
     </div>
 
-    <!-- Message Form -->
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?conversation_id=' . $conversation_id); ?>" method="post">
-        <label>Send a Message:</label>
-        <textarea name="message_content" required></textarea>
-        <input type="submit" name="send_message" value="Send Message">
-    </form>
+    <!-- Add Bootstrap JS (Popper.js and Bootstrap's JavaScript) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
