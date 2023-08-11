@@ -1,42 +1,63 @@
-# **Connectify - A Social Media Web App**
+# **InnerSpace - Interior Design Platform**
 
-Connectify is a modern social media web application that allows users to connect with friends, share content, and engage in conversations. With Connectify, users can create an account, log in, and start exploring a vibrant community of users. They can post text, photos, and videos, like and comment on other users' posts, and follow their favorite accounts. Connectify also provides a direct messaging feature for private conversations between users.
+Welcome to InnerSpace, a platform for interior design enthusiasts to connect, share, and explore inspiring design ideas. Share your interior design projects, discover new trends, and connect with fellow designers and enthusiasts.
+
+## Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
 ## **Features**
 
-- User Registration and Login: Users can create an account with a unique username and password, or log in if they already have an account.
-- Home and Explore Pages: Users can view a home page that displays content from users they follow, as well as an explore page with content from all users.
-- Profile and Update Profile: Users have a personalized profile page where they can view and edit their profile information and profile picture.
-- Post Content: Users can create and share posts with text, photos, or videos.
-- Likes, Dislikes, and Comments: Users can like, dislike, and comment on other users' posts.
-- Direct Messaging: Users can send and receive direct messages for private conversations with other users.
-- Follow and Unfollow: Users can follow and unfollow other users to see their posts on the home page.
+- Create an account with a unique username and password, or log in if you already have an account.
+- View posts from users you follow, on the home page.
+- Explore a feed of interior design posts from all users.
+- Post your own interior design projects, including text, images and videos.
+- Connect with other designers and enthusiasts through user profiles, following/unfollowing, and direct messaging.
+- Discover trending interior design trends and styles.
+- Like, comment, and engage with others' posts.
+- Personalize and update your profile page.
 
-## **Installation**
+## **Getting Started**
+
+### Prerequisites
+
+- PHP 7.0 or higher
+- MySQL Database
+- Web Server (e.g., Apache, Nginx)
+
+### Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/chris-cozy/connectify.git
+   git clone https://github.com/chris-cozy/innerspace.git
    ```
 
-2. Set up the Apache web server with PHP and MySQL on your local machine.
-3. Enable URL rewriting using the **`.htaccess`** file provided in the project.
-4. Create a new MySQL database and import the **`connectify.sql`** file to set up the required database schema.
-5. Update the database connection configuration in the **`includes/db_connection.php`** file with your database credentials.
-6. Navigate to the project directory and start the Apache server.
-7. Open a web browser and visit **`http://localhost/connectify/`** to access the Connectify web app.
+2. Import the database schema using `connectify.sql``.
+
+3. Update the database connection details in `config.php``.
+
+4. Start your web server.
+
+5. Access the application through your web browser. `http://localhost/innerspace/`
 
 ## **Usage**
 
-1. Create an account or log in if you already have one.
-2. Explore the home page to see content from the users you follow.
-3. Visit the explore page to discover content from all users.
-4. Update your profile with your desired information and profile picture.
-5. Create new posts with text, photos, or videos.
-6. Like, dislike, and comment on posts from other users.
-7. Use the direct messaging feature to have private conversations with other users.
-8. Follow or unfollow other users to stay connected with their updates.
+- Register for an account or log in if you already have one.
+- Explore the Home and Explore feeds to discover interior design posts.
+- Post your own interior design projects by clicking on the "Post" link.
+- Engage with other users by liking, commenting, and connecting.
+- Navigate through the sidebar to access different sections of the application.
+- Update your profile information and profile picture in the Profile section.
+- Send and receive messages with other users in the Messages section.
+- Stay connected and inspired by the interior design community!
 
 ## **Technologies Used**
 
@@ -52,8 +73,19 @@ Coming Soon
 
 ## **Contributing**
 
-We welcome contributions to the Connectify project. If you have any suggestions, improvements, or bug fixes, feel free to submit a pull request or open an issue.
+Contributions are welcome! If you'd like to contribute to InnerSpace, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and test them thoroughly.
+4. Submit a pull request to the main repository.
 
 ## **License**
 
 Connectify is open-source software licensed under the **[MIT License](https://opensource.org/licenses/MIT)**.
+
+## Contact
+
+If you have any questions or suggestions, feel free to reach out:
+
+- GitHub: **[chris-cozy](https://github.com/chris-cozy)**
