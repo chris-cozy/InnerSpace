@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Handle any database errors
             die("Error disliking the post: " . $e->getMessage());
         }
-    } elseif (isset($_POST['comment'])) {
+    } elseif (isset($_POST['comment_content'])) {
         // Process the comment form submission
         $comment_content = trim($_POST['comment_content']);
 
@@ -98,7 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->bindParam(':content', $comment_content, PDO::PARAM_STR);
 
                 // Execute the prepared statement
-                $stmt->execute();
+                if ($stmt->execute()) {
+                    header('Location: post_details.php?post_id=' . $post_id); // Redirect to explore page if no post ID provided
+                    exit;
+                }
             } catch (PDOException $e) {
                 // Handle any database errors
                 die("Error adding comment: " . $e->getMessage());
@@ -201,18 +204,21 @@ try {
         </div>
 
         <hr>
-        <!-- Comment Form -->
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?post_id=' . $post_id); ?>" method="post">
-            <div class="mb-3">
-                <textarea class="form-control" id="comment_content" name="comment_content" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-sm">Comment</button>
-        </form>
-        <div class="container mt-4">
+        <div class="container mt-5">
+            <!-- Comment Form -->
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?post_id=' . $post_id); ?>" method="post">
+                <div class="mb-3">
+                    <textarea class="form-control" id="comment_content" name="comment_content" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Comment</button>
+            </form>
+        </div>
+
+        <div class="container mt-5">
             <ul class="list-group mb-3">
                 <?php foreach ($comments as $comment) : ?>
                     <li class="list-group-item">
-                        <p class="mb-0">@<?php echo $comment['username']; ?> | <?php echo $comment['content']; ?></p>
+                        <p class="mb-0"><a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0">@<?php echo $comment['username']; ?></a> | <?php echo $comment['content']; ?></p>
                     </li>
                 <?php endforeach; ?>
             </ul>
