@@ -92,58 +92,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>Create Post</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Connectify</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="explore.php">Explore</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="post.php">Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="conversations.php">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                </ul>
+    <div class="container-fluid main-body">
+        <div class="row align-items-start">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <h1>InnerSpace</h1>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link " href="home.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="explore.php">Explore</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="profile.php">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="post.php">Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="conversations.php">Messages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                        <!-- Add more links as needed -->
+                    </ul>
+                </div>
             </div>
+            <div class="col-md-8">
+                <h2 class="mb-4 mt-4">Create Post</h2>
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Share your message...</label>
+                        <textarea class="form-control" id="content" name="content" rows="4"><?php echo $content; ?></textarea>
+                        <span class="text-danger"><?php echo $content_err; ?></span><br>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <input type="file" class="form-control" id="media" name="media">
+                        <small class="form-text text-muted">(jpeg, png, gif, mp4)</small>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Post</button>
+                    <button type="reset" class="btn btn-primary">Cancel</button>
+                </form>
+            </div>
+
         </div>
-    </nav>
-    <div class="container mt-5">
-        <h2 class="mb-4">Create Post</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="content" class="form-label">Content:</label>
-                <textarea class="form-control" id="content" name="content" rows="4"><?php echo $content; ?></textarea>
-                <span class="text-danger"><?php echo $content_err; ?></span><br>
-            </div>
 
-            <div class="mb-3">
-                <label for="media" class="form-label">Upload:</label>
-                <input type="file" class="form-control" id="media" name="media">
-                <small class="form-text text-muted">(jpeg, png, gif, mp4)</small>
-            </div>
-
-
-            <button type="submit" class="btn btn-primary">Post</button>
-            <button type="reset" class="btn btn-primary">Cancel</button>
-        </form>
     </div>
     <!-- Add Bootstrap JS (Popper.js and Bootstrap's JavaScript) -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>

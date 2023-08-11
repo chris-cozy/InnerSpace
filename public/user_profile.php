@@ -133,126 +133,141 @@ try {
 <head>
     <title><?php echo $user['username']; ?> Profile</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Connectify</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="explore.php">Explore</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="post.php">Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="conversations.php">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container mt-5">
-        <div class="hstack">
+    <div class="container-fluid main-body">
+        <div class="row align-items-start">
             <div class="col-md-3">
-                <!-- Display user profile picture -->
-                <img src="<?php echo $user['profile_pic']; ?>" class="rounded-circle" alt="Profile Picture" width="100" height="100">
-            </div>
-            <div class="col-md-4">
-                <h2><?php echo $user['username']; ?></h2>
-                <h7><?php echo $user['bio']; ?></p>
-            </div>
-            <div class="col-md-3">
-                <div>
-                    <div class="col-md-6">
-                        <p><?php echo $follower_count; ?> Followers</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p><?php echo $following_count; ?> Following</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-1">
-                <?php if ($user['user_id'] !== $current_user_id) : // Show follow/unfollow button only for other users' profiles 
-                ?>
-                    <?php if ($is_following) : ?>
-                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post">
-                            <input type="submit" name="unfollow" value="Unfollow" class="btn btn-danger">
-                        </form>
-                    <?php else : ?>
-                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post">
-                            <input type="submit" name="follow" value="Follow" class="btn btn-primary">
-                        </form>
-                    <?php endif; ?>
-                <?php endif; ?>
-
-            </div>
-            <div class="col-md-1">
-                <a href="create_conversation.php?receiver_id=<?php echo $user_id; ?>" class="btn btn-primary">Message</a>
-            </div>
-        </div>
-        <hr>
-        <?php
-        // Pagination settings
-        $posts_per_page = 5; // Change this number to control the number of posts per page
-        $total_posts = count($posts);
-        $total_pages = ceil($total_posts / $posts_per_page);
-
-        // Get the current page number from the URL
-        $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-        // Calculate the starting index for the current page
-        $start_index = ($current_page - 1) * $posts_per_page;
-
-        // Get the posts for the current page
-        $current_page_posts = array_slice($posts, $start_index, $posts_per_page);
-        ?>
-        <?php foreach ($current_page_posts as $post) : ?>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0">@<?php echo $user['username']; ?></a>
-                    <p class="card-text"><?php echo $post['content']; ?></p>
-
-                    <?php if ($post['content_type'] === 'photo') : ?>
-                        <img src="<?php echo $post['media_path']; ?>" alt="Post Image" class="img-thumbnail" width="200">
-                    <?php elseif ($post['content_type'] === 'video') : ?>
-                        <video src="<?php echo $post['media_path']; ?>" controls class="img-thumbnail" width="200"></video>
-                    <?php endif; ?>
-                    <!-- Add link to post details page -->
-                    <a href="post_details.php?post_id=<?php echo $post['post_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0 link-opacity-50">View Details</a>
-                </div>
-            </div>
-        <?php endforeach; ?>
-        <!-- Pagination links -->
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
-                    <?php if ($i === $current_page) : ?>
-                        <li class="page-item active" aria-current="page">
-                            <span class="page-link"><?php echo $i; ?><span class="sr-only">(current)</span></span>
+                <div class="sidebar">
+                    <h1>InnerSpace</h1>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link " href="home.php">Home</a>
                         </li>
-                    <?php else : ?>
-                        <li class="page-item"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-                    <?php endif; ?>
-                <?php endfor; ?>
-            </ul>
-        </nav>
+                        <li class="nav-item">
+                            <a class="nav-link" href="explore.php">Explore</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.php">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="post.php">Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="conversations.php">Messages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                        <!-- Add more links as needed -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="vstack">
+
+                    <img src="<?php echo $user['banner_pic']; ?>" class="mt-3 mb-3 banner" alt="Profile Picture" width="900" height="300">
+                    <div class="hstack">
+                        <img src="<?php echo $user['profile_pic']; ?>" class="rounded-circle pfp ml-3" alt="Profile Picture" width="150" height="auto">
+
+
+
+                        <div class="vstack">
+                            <h2><?php echo $user['username']; ?></h2>
+                            <h7 class="mb-2 mt-2"><?php echo $user['bio']; ?></p>
+                                <div class="row">
+                                    <div class="col-6 mb-2 mt-2">
+
+                                        <p><?php echo $follower_count; ?> Followers</p>
+
+
+                                    </div>
+                                    <div class="col-6 mb-2 mt-2">
+
+                                        <p><?php echo $following_count; ?> Following</p>
+                                    </div>
+                                </div>
+                                <div class="hstack">
+                                    <?php if ($user['user_id'] !== $current_user_id) : // Show follow/unfollow button only for other users' profiles 
+                                    ?>
+                                        <?php if ($is_following) : ?>
+                                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post">
+                                                <input type="submit" name="unfollow" value="Unfollow" class="btn btn-danger user-profile-buttons">
+                                            </form>
+                                        <?php else : ?>
+                                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post">
+                                                <input type="submit" name="follow" value="Follow" class="btn btn-primary">
+                                            </form>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+
+                                    <a href="create_conversation.php?receiver_id=<?php echo $user_id; ?>" class="btn btn-primary">Message</a>
+                                </div>
+
+
+
+                        </div>
+                    </div>
+                    <hr>
+                    <h7 class="profile-posts">Posts</h7>
+                    <?php
+                    // Pagination settings
+                    $posts_per_page = 5; // Change this number to control the number of posts per page
+                    $total_posts = count($posts);
+                    $total_pages = ceil($total_posts / $posts_per_page);
+
+                    // Get the current page number from the URL
+                    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+                    // Calculate the starting index for the current page
+                    $start_index = ($current_page - 1) * $posts_per_page;
+
+                    // Get the posts for the current page
+                    $current_page_posts = array_slice($posts, $start_index, $posts_per_page);
+                    ?>
+                    <!--User's Posts Here-->
+                    <?php foreach ($posts as $post) : ?>
+                        <div class="card">
+                            <div class=" card-body mb-2 mt-2">
+                                <a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0 white">@<?php echo $user['username']; ?></a>
+                                <p class="card-text mb-2 mt-2"><?php echo $post['content']; ?></p>
+
+                                <?php if ($post['content_type'] === 'photo') : ?>
+                                    <img src="<?php echo $post['media_path']; ?>" alt="Post Image" class="img-thumbnail mb-2 mt-2" width="500">
+                                <?php elseif ($post['content_type'] === 'video') : ?>
+                                    <video src="<?php echo $post['media_path']; ?>" controls class="img-thumbnail mb-2 mt-2" width="500"></video>
+                                <?php endif; ?>
+                                <!-- Add link to post details page -->
+                                <a href="post_details.php?post_id=<?php echo $post['post_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0 link-opacity-50 mt-4 muted d-block">View Details</a>
+
+                            </div>
+                        </div>
+                        <hr>
+                    <?php endforeach; ?>
+                    <!-- Pagination links 
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                                <?php if ($i === $current_page) : ?>
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link"><?php echo $i; ?><span class="sr-only">(current)</span></span>
+                                    </li>
+                                <?php else : ?>
+                                    <li class="page-item"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                        </ul>
+                    </nav>
+                    -->
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
