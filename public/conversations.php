@@ -63,22 +63,22 @@ try {
                     <h1>InnerSpace</h1>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " href="home.php">Home</a>
+                            <a class="nav-link " href="home.php"><i class="bi bi-house"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="explore.php">Explore</a>
+                            <a class="nav-link" href="explore.php"><i class="bi bi-search"></i> Explore</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="profile.php">Profile</a>
+                            <a class="nav-link" href="profile.php"><i class="bi bi-person"></i> Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="post.php">Post</a>
+                            <a class="nav-link" href="post.php"><i class="bi bi-plus-square"></i> Post</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="conversations.php"><i class="bi bi-chat-left"></i> Messages</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="conversations.php">Messages</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Logout</a>
+                            <a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-left"></i> Logout</a>
                         </li>
                         <!-- Add more links as needed -->
                     </ul>

@@ -95,41 +95,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>User Registration</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/auth_styles.css">
 </head>
 
-<body>
+<body class="login-background">
     <div class="container mt-5">
-        <h2 class="mb-4">User Registration</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>">
-                <span class="text-danger"><?php echo $username_err; ?></span><br>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card login-card">
+                    <div class="card-body white">
+                        <h2 class="card-title text-center">User Registration</h2>
+                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                            <div class="form-group">
+                                <label for="username" class="form-label">Username:</label>
+                                <input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>">
+                                <span class="text-danger"><?php echo $username_err; ?></span><br>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
+                                <span class="text-danger"><?php echo $email_err; ?></span><br>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password" class="form-label">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                                <span class="text-danger"><?php echo $password_err; ?></span><br>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirm_password" class="form-label">Confirm Password:</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                                <span class="text-danger"><?php echo $confirm_password_err; ?></span><br>
+                            </div>
+
+                            <div class="container mt-3">
+                                <div class="form-group text-center">
+                                    <input type="submit" class="btn btn-primary" value="Register">
+                                </div>
+                            </div>
+
+
+                        </form>
+                        <div class="container mt-3">
+                            <p class="text-center">Already have an account? <a href="login.php" class="link link-underline link-underline-opacity-0 amber">Login here</a></p>
+                        </div>
+
+                    </div>
+                </div>
+
+
             </div>
+        </div>
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
-                <span class="text-danger"><?php echo $email_err; ?></span><br>
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" name="password">
-                <span class="text-danger"><?php echo $password_err; ?></span><br>
-            </div>
-
-            <div class="mb-3">
-                <label for="confirm_password" class="form-label">Confirm Password:</label>
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-                <span class="text-danger"><?php echo $confirm_password_err; ?></span><br>
-            </div>
-
-
-            <input type="submit" class="btn btn-primary" value="Register">
-
-        </form>
-        <p class="mt-3">Already have an account? <a href="login.php">Login here</a>.</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>

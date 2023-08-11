@@ -5,8 +5,11 @@ body, h1, h2, p, ul {
     color: #fff;
 }
 
-/* Add a CSS reset for consistent styling across browsers */
-/* ... (reset CSS rules) ... */
+.login{
+    background-color: #7E8E98;
+    color: #7E8E98;
+}
+
 
 .container {
     display: flex;
@@ -26,6 +29,7 @@ body, h1, h2, p, ul {
 }
 
 .sidebar h1 {
+    font-family: "Lucida Handwriting";
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -52,7 +56,11 @@ body, h1, h2, p, ul {
 
 .nav-link.active {
     font-weight: bold;
-    color: #76A5AF;
+    color: #c18c3e;
+}
+
+.nav-link:hover{
+    color: #b7685e;
 }
 
 .content {
@@ -105,13 +113,26 @@ body, h1, h2, p, ul {
 
 .btn-primary{
     background-color: #c18c3e;
+    border-color: #c18c3e;
 }
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #b7685e;
+    border-color: #b7685e; /*set the color you want here*/
+}
+
 .profile-posts{
     text-align: center;
 }
 
 .list-group-item{
     background-color: #7E8E98;
+    color: #fff;
+}
+
+.list-group-item:hover{
+    background-color: #5c676ec4;
 }
 
 .messages-pfp{
@@ -120,4 +141,8 @@ body, h1, h2, p, ul {
 
 .user-profile-buttons{
     margin-right: 5%;
+}
+
+a.link:hover{
+    color: #b7685e;
 }

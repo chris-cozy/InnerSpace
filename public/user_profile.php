@@ -144,22 +144,22 @@ try {
                     <h1>InnerSpace</h1>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " href="home.php">Home</a>
+                            <a class="nav-link " href="home.php"><i class="bi bi-house"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="explore.php">Explore</a>
+                            <a class="nav-link" href="explore.php"><i class="bi bi-search"></i> Explore</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="profile.php">Profile</a>
+                            <a class="nav-link" href="profile.php"><i class="bi bi-person"></i> Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="post.php">Post</a>
+                            <a class="nav-link" href="post.php"><i class="bi bi-plus-square"></i> Post</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="conversations.php">Messages</a>
+                            <a class="nav-link" href="conversations.php"><i class="bi bi-chat-left"></i> Messages</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Logout</a>
+                            <a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-left"></i> Logout</a>
                         </li>
                         <!-- Add more links as needed -->
                     </ul>
@@ -175,40 +175,45 @@ try {
 
 
                         <div class="vstack">
-                            <h2><?php echo $user['username']; ?></h2>
-                            <h7 class="mb-2 mt-2"><?php echo $user['bio']; ?></p>
-                                <div class="row">
-                                    <div class="col-6 mb-2 mt-2">
 
-                                        <p><?php echo $follower_count; ?> Followers</p>
-
-
-                                    </div>
-                                    <div class="col-6 mb-2 mt-2">
-
-                                        <p><?php echo $following_count; ?> Following</p>
-                                    </div>
-                                </div>
-                                <div class="hstack">
-                                    <?php if ($user['user_id'] !== $current_user_id) : // Show follow/unfollow button only for other users' profiles 
-                                    ?>
-                                        <?php if ($is_following) : ?>
+                            <div class="hstack">
+                                <h2 class="col-6"><?php echo $user['username']; ?></h2>
+                                <?php if ($user['user_id'] !== $current_user_id) : // Show follow/unfollow button only for other users' profiles 
+                                ?>
+                                    <?php if ($is_following) : ?>
+                                        <div class="col-2">
                                             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post">
                                                 <input type="submit" name="unfollow" value="Unfollow" class="btn btn-danger user-profile-buttons">
                                             </form>
-                                        <?php else : ?>
+                                        </div>
+
+                                    <?php else : ?>
+                                        <div class="col-2">
                                             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?user_id=' . $user['user_id']); ?>" method="post">
                                                 <input type="submit" name="follow" value="Follow" class="btn btn-primary">
                                             </form>
-                                        <?php endif; ?>
+                                        </div>
+
                                     <?php endif; ?>
+                                <?php endif; ?>
 
-                                    <a href="create_conversation.php?receiver_id=<?php echo $user_id; ?>" class="btn btn-primary">Message</a>
+                                <a href="create_conversation.php?receiver_id=<?php echo $user_id; ?>" class="btn btn-primary">Message</a>
+                            </div>
+                            <h7 class="mb-2 mt-2"><?php echo $user['bio']; ?></h7>
+                            <div class="row">
+                                <div class="col-2 mb-2 mt-2">
+
+                                    <p><?php echo $follower_count; ?> Followers</p>
+
+
                                 </div>
+                                <div class="col-2 mb-2 mt-2">
 
-
-
+                                    <p><?php echo $following_count; ?> Following</p>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                     <hr>
                     <h7 class="profile-posts">Posts</h7>

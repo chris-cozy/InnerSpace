@@ -1,0 +1,32 @@
+.login-background{
+    background-color: #7E8E98;
+    color: #7E8E98;
+}
+
+.login-card{
+    background-color: #333333;
+    border-radius: 2.5%;
+}
+
+.white{
+    color: #fff;
+}
+
+.amber{
+    color: #c18c3e;
+}
+
+.btn-primary{
+    background-color: #c18c3e;
+    border-color: #c18c3e;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #b7685e;
+    border-color: #b7685e; /*set the color you want here*/
+}
+
+.link:hover{
+    color: #b7685e;
+}

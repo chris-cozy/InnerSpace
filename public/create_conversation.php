@@ -61,56 +61,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Create Conversation</title>
     <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Connectify</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="explore.php">Explore</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="post.php">Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="conversations.php">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                </ul>
+    <div class="container-fluid main-body">
+        <div class="row align-items-start">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <h1>InnerSpace</h1>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link " href="home.php"><i class="bi bi-house"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="explore.php"><i class="bi bi-search"></i> Explore</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.php"><i class="bi bi-person"></i> Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="post.php"><i class="bi bi-plus-square"></i> Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="conversations.php"><i class="bi bi-chat-left"></i> Messages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                        </li>
+                        <!-- Add more links as needed -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <h2 class="mb-4 mt-4">Create Message</h2>
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . "?receiver_id=$receiver_id"); ?>" method="post">
+                    <div class="mb-3">
+                        <label for="message_content" class="form-label">Share your message...</label>
+                        <textarea class="form-control" id="message_content" name="message_content" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Send</button>
+                    <a href="user_profile.php?user_id=<?php echo $receiver_id; ?>" class="btn btn-secondary">Cancel</a>
+                </form>
             </div>
         </div>
-    </nav>
 
-    <div class="container mt-5">
-        <h2 class="mb-4">Create Message</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . "?receiver_id=$receiver_id"); ?>" method="post">
-            <div class="mb-3">
-                <label for="message_content" class="form-label">Message:</label>
-                <textarea class="form-control" id="message_content" name="message_content" rows="4" required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Send</button>
-            <a href="user_profile.php?user_id=<?php echo $receiver_id; ?>" class="btn btn-secondary">Cancel</a>
-        </form>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

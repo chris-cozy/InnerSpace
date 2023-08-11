@@ -139,91 +139,87 @@ try {
 <head>
     <title>Post Details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Connectify</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="explore.php">Explore</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="post.php">Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="conversations.php">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                </ul>
+    <div class="container-fluid main-body">
+        <div class="row align-items-start">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <h1>InnerSpace</h1>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link " href="home.php"><i class="bi bi-house"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="explore.php"><i class="bi bi-search"></i> Explore</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.php"><i class="bi bi-person"></i> Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="post.php"><i class="bi bi-plus-square"></i> Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="conversations.php"><i class="bi bi-chat-left"></i> Messages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                        </li>
+                        <!-- Add more links as needed -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="vstack">
+                    <div class="card mb-1">
+                        <div class="card-body">
+                            <p class="white">
+                                <a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link link-offset-2 link-underline link-underline-opacity-0 white">@<?php echo $post['username']; ?></a>
+                            </p>
+
+                            <p class="card-text mb-2 mt-2"><?php echo $post['content']; ?></p>
+                            <?php if ($post['content_type'] === 'photo') : ?>
+                                <img src="<?php echo $post['media_path']; ?>" alt="Post Image" class="img-thumbnail" width="500">
+                            <?php elseif ($post['content_type'] === 'video') : ?>
+                                <video src="<?php echo $post['media_path']; ?>" controls class="img-thumbnail" width="500"></video>
+                            <?php endif; ?>
+
+                        </div>
+                    </div>
+                    <div class="card mb-1">
+                        <div class="card-body">
+                            <p class="card-text"><?php echo $like_count; ?> Likes</p>
+                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?post_id=' . $post_id); ?>" method="post" class="mt-3">
+                                <input type="submit" name="like" value="Like" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <!-- Comment Form -->
+                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?post_id=' . $post_id); ?>" method="post">
+                                <div class="mb-3">
+                                    <textarea class="form-control" id="comment_content" name="comment_content" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm">Comment</button>
+                            </form>
+                            <ul class="list-group mb-3 mt-3">
+                                <?php foreach ($comments as $comment) : ?>
+                                    <li class="list-group-item">
+                                        <p class="mb-0"><a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link link-offset-2 link-underline link-underline-opacity-0 white">@<?php echo $comment['username']; ?></a></p>
+                                        <p><?php echo $comment['content']; ?></p>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </nav>
-    <div class="container mt-5">
-        <div class="card mb-3">
-            <div class="card-body">
-                <a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0">@<?php echo $post['username']; ?></a>
-                <p class="card-text"><?php echo $post['content']; ?></p>
-                <?php if ($post['content_type'] === 'photo') : ?>
-                    <img src="<?php echo $post['media_path']; ?>" alt="Post Image" class="img-thumbnail" width="200">
-                <?php elseif ($post['content_type'] === 'video') : ?>
-                    <video src="<?php echo $post['media_path']; ?>" controls class="img-thumbnail" width="200"></video>
-                <?php endif; ?>
-
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="row">
-                <div class="col-md-4">
-                    <p class="card-text"><?php echo $like_count; ?> Likes</p>
-                </div>
-                <div class="col-md-4">
-                    <p class="card-text"><?php echo $dislike_count; ?> Dislikes</p>
-                </div>
-
-            </div>
-
-            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?post_id=' . $post_id); ?>" method="post" class="mt-3">
-                <input type="submit" name="like" value="Like" class="btn btn-primary">
-                <input type="submit" name="dislike" value="Dislike" class="btn btn-danger">
-            </form>
-        </div>
-
-        <hr>
-        <div class="container mt-5">
-            <!-- Comment Form -->
-            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?post_id=' . $post_id); ?>" method="post">
-                <div class="mb-3">
-                    <textarea class="form-control" id="comment_content" name="comment_content" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary btn-sm">Comment</button>
-            </form>
-        </div>
-
-        <div class="container mt-5">
-            <ul class="list-group mb-3">
-                <?php foreach ($comments as $comment) : ?>
-                    <li class="list-group-item">
-                        <p class="mb-0"><a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0">@<?php echo $comment['username']; ?></a> | <?php echo $comment['content']; ?></p>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-
     </div>
     <!-- Add Bootstrap JS (Popper.js and Bootstrap's JavaScript) -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
