@@ -1,0 +1,123 @@
+/* Reset default margin and padding */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+/* Add a CSS reset for consistent styling across browsers */
+/* ... (reset CSS rules) ... */
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 20%;
+    min-height: 100vh;
+    background-color: #333333;
+    padding: 20px;
+    border-right: 1px solid #333333;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.sidebar h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #fff;
+    margin-left: 30px;
+}
+
+.nav {
+    list-style: none;
+    padding-left: 0;
+}
+
+.nav-item {
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
+
+.nav-link {
+    display: block; /* Added to ensure each link is on a new line */
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: #76A5AF;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 20%; /* Adjust margin to match sidebar width */
+}
+
+.main-body {
+    background-color: #7E8E98;
+    overflow-x: hidden;
+}
+
+.container-fluid{
+    padding: 0;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.card{
+    background-color: #7E8E98;
+    border-color: #7E8E98;
+}
+
+.white{
+    color: #fff;
+}
+
+.muted{
+    color: #a0a77f
+}
+
+.banner{
+    position: relative;
+    padding: 1%;
+    border: 1px solid #7E8E98;
+    border-radius: 5%;
+    z-index: 1;
+}
+
+.pfp{
+    border: 5px solid #7E8E98;
+    margin-right: 5%;
+}
+
+.btn-primary{
+    background-color: #c18c3e;
+}
+.profile-posts{
+    text-align: center;
+}
+
+.list-group-item{
+    background-color: #7E8E98;
+}
+
+.messages-pfp{
+    margin-right: 5%;
+}
+
+.user-profile-buttons{
+    margin-right: 5%;
+}

@@ -110,61 +110,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Conversation with <?php echo $other_user['username']; ?></title>
     <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Connectify</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="explore.php">Explore</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="post.php">Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="conversations.php">Messages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                </ul>
+    <div class="container-fluid main-body">
+        <div class="row align-items-start">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <h1>InnerSpace</h1>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link " href="home.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="explore.php">Explore</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="profile.php">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="post.php">Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="conversations.php">Messages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                        <!-- Add more links as needed -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="hstack">
+                    <img src="<?php echo $other_user['profile_pic']; ?>" class="rounded-circle messages-pfp" alt="Profile Picture" width="50" height="50">
+                    <h2 class="mb-4 mt-4"><?php echo $other_user['username']; ?></h2>
+                </div>
+
+                <div class="mb-3">
+                    <?php foreach ($messages as $message) : ?>
+                        <p class="<?php echo ($message['sender_id'] === $current_user_id) ? 'text-end' : 'text-start'; ?>">
+                            <?php echo ($message['sender_id'] === $current_user_id) ? 'You' : $other_user['username']; ?>: <?php echo $message['content']; ?>
+                        </p>
+                    <?php endforeach; ?>
+                </div>
+
+                <!-- Message Form -->
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?conversation_id=' . $conversation_id); ?>" method="post">
+                    <div class="mb-3">
+
+                        <textarea class="form-control" id="message_content" name="message_content" rows="1" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
             </div>
         </div>
-    </nav>
-    <div class="container mt-5">
-        <img src="<?php echo $other_user['profile_pic']; ?>" class="rounded-circle" alt="Profile Picture" width="50" height="50">
-        <h2 class="mb-4"><?php echo $other_user['username']; ?></h2>
-        <div class="mb-3">
-            <?php foreach ($messages as $message) : ?>
-                <p class="<?php echo ($message['sender_id'] === $current_user_id) ? 'text-end' : 'text-start'; ?>">
-                    <?php echo ($message['sender_id'] === $current_user_id) ? 'You' : $other_user['username']; ?>: <?php echo $message['content']; ?>
-                </p>
-            <?php endforeach; ?>
-        </div>
-
-        <!-- Message Form -->
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?conversation_id=' . $conversation_id); ?>" method="post">
-            <div class="mb-3">
-
-                <textarea class="form-control" id="message_content" name="message_content" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send</button>
-        </form>
     </div>
-
     <!-- Add Bootstrap JS (Popper.js and Bootstrap's JavaScript) -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>

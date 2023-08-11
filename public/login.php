@@ -83,6 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title text-center">Connectify</h2>
+                        <div>
+                            <p>Demo Username: CozyNook</p>
+                            <p>Demo Password: 123456</p>
+                        </div>
                         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                             <div class="form-group">
                                 <label for="username">Username:</label>
