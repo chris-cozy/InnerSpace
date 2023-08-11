@@ -85,22 +85,22 @@ try {
                     <h1>InnerSpace</h1>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " href="home.php">Home</a>
+                            <a class="nav-link " href="home.php"><i class="bi bi-house"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="explore.php">Explore</a>
+                            <a class="nav-link" href="explore.php"><i class="bi bi-search"></i> Explore</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="profile.php">Profile</a>
+                            <a class="nav-link active" href="profile.php"><i class="bi bi-person"></i> Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="post.php">Post</a>
+                            <a class="nav-link" href="post.php"><i class="bi bi-plus-square"></i> Post</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="conversations.php">Messages</a>
+                            <a class="nav-link" href="conversations.php"><i class="bi bi-chat-left"></i> Messages</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Logout</a>
+                            <a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-left"></i> Logout</a>
                         </li>
                         <!-- Add more links as needed -->
                     </ul>
@@ -111,28 +111,35 @@ try {
                 <div class="vstack">
                     <img src="<?php echo $user['banner_pic']; ?>" class="mt-3 mb-3 banner" alt="Profile Picture" width="900" height="300">
                     <div class="hstack">
-                        <img src="<?php echo $user['profile_pic']; ?>" class="rounded-circle pfp ml-3" alt="Profile Picture" width="150" height="auto">
+                        <img src="<?php echo $user['profile_pic']; ?>" class="rounded-circle pfp ml-3" alt="Profile Picture" width="150" height="150">
 
 
 
                         <div class="vstack">
-                            <h2><?php echo $user['username']; ?></h2>
-                            <h7 class="mb-2 mt-2"><?php echo $user['bio']; ?></p>
-                                <div class="row">
-                                    <div class="col-6 mb-2 mt-2">
-
-                                        <p><?php echo $follower_count; ?> Followers</p>
-
-
-                                    </div>
-                                    <div class="col-6 mb-2 mt-2">
-
-                                        <p><?php echo $following_count; ?> Following</p>
-                                    </div>
+                            <div class="hstack">
+                                <h2 class="col-8"><?php echo $user['username']; ?></h2>
+                                <div class="col-2">
+                                    <a href="update_profile.php" class="btn btn-primary">Edit Profile</a>
                                 </div>
 
+                            </div>
 
-                                <a href="update_profile.php" class="btn btn-primary">Edit Profile</a>
+                            <h7 class="mb-2 mt-2"><?php echo $user['bio']; ?></h7>
+                            <div class="row">
+                                <div class="col-2 mb-2 mt-2">
+
+                                    <p><?php echo $follower_count; ?> Followers</p>
+
+
+                                </div>
+                                <div class="col-2 mb-2 mt-2">
+
+                                    <p><?php echo $following_count; ?> Following</p>
+                                </div>
+                            </div>
+
+
+
                         </div>
                     </div>
 
@@ -159,7 +166,7 @@ try {
                     <?php foreach ($posts as $post) : ?>
                         <div class="card">
                             <div class=" card-body mb-2 mt-2">
-                                <a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0 white">@<?php echo $user['username']; ?></a>
+                                <a href="user_profile.php?user_id=<?php echo $post['user_id']; ?>" class="link link-offset-2 link-underline link-underline-opacity-0 white">@<?php echo $user['username']; ?></a>
                                 <p class="card-text mb-2 mt-2"><?php echo $post['content']; ?></p>
 
                                 <?php if ($post['content_type'] === 'photo') : ?>
@@ -168,7 +175,7 @@ try {
                                     <video src="<?php echo $post['media_path']; ?>" controls class="img-thumbnail mb-2 mt-2" width="500"></video>
                                 <?php endif; ?>
                                 <!-- Add link to post details page -->
-                                <a href="post_details.php?post_id=<?php echo $post['post_id']; ?>" class="link-offset-2 link-underline link-underline-opacity-0 link-opacity-50 mt-4 muted d-block">View Details</a>
+                                <a href="post_details.php?post_id=<?php echo $post['post_id']; ?>" class="link link-offset-2 link-underline link-underline-opacity-0 link-opacity-50 mt-4 muted d-block">View Details</a>
 
                             </div>
                         </div>

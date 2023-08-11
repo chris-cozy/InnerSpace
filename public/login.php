@@ -72,17 +72,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Optional: Add Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.25.0/font/bootstrap-icons.css">
-
+    <link rel="stylesheet" href="../assets/css/auth_styles.css">
 
 </head>
 
-<body class="bg-light">
-    <div class="container mt-5">
+<body class="login-background">
+    <div class="container mt-5 ">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title text-center">Connectify</h2>
+                <div class="card login-card">
+                    <div class="card-body white">
+                        <h2 class="card-title text-center">InnerSpace</h2>
                         <div>
                             <p>Demo Username: CozyNook</p>
                             <p>Demo Password: 123456</p>
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         </form>
                         <div class="container mt-3">
-                            <p class="text-center">Don't have an account? <a href="register.php">Register here</a>.</p>
+                            <p class="text-center">Don't have an account? <a href="register.php" class=" link link-underline link-underline-opacity-0 amber">Register here</a></p>
                         </div>
 
                     </div>
