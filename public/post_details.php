@@ -58,7 +58,7 @@ try {
     die("Error fetching comments: " . $e->getMessage());
 }
 
-// Check if the form is submitted (for liking/disliking the post)
+// Check if the form is submitted (for liking/commenting on the post)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['like'])) {
         // Process the like button click
@@ -72,19 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (PDOException $e) {
             // Handle any database errors
             die("Error liking the post: " . $e->getMessage());
-        }
-    } elseif (isset($_POST['dislike'])) {
-        // Process the dislike button click
-        try {
-            $stmt = $pdo->prepare("INSERT INTO dislikes (user_id, post_id) VALUES (:user_id, :post_id)");
-            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-            $stmt->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-
-            // Execute the prepared statement
-            $stmt->execute();
-        } catch (PDOException $e) {
-            // Handle any database errors
-            die("Error disliking the post: " . $e->getMessage());
         }
     } elseif (isset($_POST['comment_content'])) {
         // Process the comment form submission
@@ -119,17 +106,6 @@ try {
 } catch (PDOException $e) {
     // Handle any database errors
     die("Error fetching like count: " . $e->getMessage());
-}
-
-// Get the dislike count for the post
-try {
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM dislikes WHERE post_id = :post_id");
-    $stmt->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $dislike_count = $stmt->fetchColumn();
-} catch (PDOException $e) {
-    // Handle any database errors
-    die("Error fetching dislike count: " . $e->getMessage());
 }
 ?>
 
