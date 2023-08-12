@@ -6,6 +6,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     bio TEXT,
     profile_pic VARCHAR(255),
+    banner_pic VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -19,7 +20,6 @@ CREATE TABLE posts (
     media_path VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     likes_count INT DEFAULT 0
-    dislikes_count INT DEFAULT 0
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
@@ -56,16 +56,6 @@ CREATE TABLE messages (
 -- Create the likes table to store likes on posts
 CREATE TABLE likes (
     like_id INT AUTO_INCREMENT PRIMARY KEY,
-    post_id INT NOT NULL,
-    user_id INT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    FOREIGN KEY (post_id) REFERENCES posts (post_id),
-    FOREIGN KEY (user_id) REFERENCES users (user_id)
-);
-
--- Create the dislikes table to store dislikes on posts
-CREATE TABLE dislikes (
-    dislike_id INT AUTO_INCREMENT PRIMARY KEY,
     post_id INT NOT NULL,
     user_id INT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
