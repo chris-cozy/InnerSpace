@@ -69,7 +69,11 @@ Welcome to InnerSpace, a platform for interior design enthusiasts to connect, sh
 
 ## **Screenshots**
 
-Coming Soon
+<img src="./display/login.png?raw=true" alt="Login Screen" width="300">
+<img src="./display/profile.png?raw=true" alt="Profile Screen" width="300">
+<img src="./display/explore.png?raw=true" alt="Explore Screen" width="300">
+<img src="./display/post.png?raw=true" alt="Post Screen" width="300">
+<img src="./display/other_profile.png?raw=true" alt="Other Profile Screen" width="300">
 
 ## **Contributing**
 
