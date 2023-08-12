@@ -92,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>Create Post</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 
@@ -112,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <a class="nav-link" href="profile.php"><i class="bi bi-person"></i> Profile</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="post.php"><i class="bi bi-plus-square"></i> Post</a>
+                            <a class="nav-link active" href="post.php"><i class="bi bi-plus-square"></i> Post</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="conversations.php"><i class="bi bi-chat-left"></i> Messages</a>
